@@ -1,0 +1,99 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es" lang="es">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Taller de Aplicaciones</title>
+</head>
+
+<body>
+<div style="height:auto;width:100%;">
+  <div style="background-color:black;width:100%;">
+    <h3 style="color:#fff;text-align:center;"><br>HTML: Formularios y Botones</h3>
+  </div>
+  <table>
+	<tr>
+		<td style="background-color:#989898;width:15%" VALIGN=TOP> 
+		<b>Tabla de Contenidos</b>
+		<br>&nbsp;
+		<br><a href="index.html">Inicio</a>
+		<br><a href="entradatextual.html">Entrada textual</a>
+		<br><a href="opciones.html">Opciones</a>
+		<br><a href="botones.html">Botones</a>
+		<br><a href="entradaarchivos.html">Entrada de archivos</a></td>
+		<td>&nbsp;&nbsp;&nbsp;</td>
+		<td style="background-color:#fff;width:80%;" VALIGN=TOP>
+		<h1>Entrada textual</h1>
+		<h2>Entrada de línea</h2>
+
+		<p>Este control recolecta información textual en una sola línea sin saltos. En la mayoría de los formularios, la tecla "enter" presionada en uno de estos campos, envía la información actual del campo.</p>
+
+		<p>Este control es insertado en documentos HTML usando el tag HTML input con el valor "text" en su atributo "type". El valor inicial, mostrado cuando la página se carga, puede ser definido usando el atributo "value".</p>
+
+		<center><b>Código</b></center>
+		<table width="450" border="0" align="center" cellpadding="7" cellspacing="0" style="border:1px dashed #000000;">
+			<tr>
+				<td bgcolor="#989898">&lt;form method="post" action="algo.php"&gt;<br />Ingresa un texto: &lt;input name="ingresodetexto" type="text" value="Tu texto va aquí." /&gt;<br />&lt;/form&gt;
+				</td></tr></table><br>
+		<center><b>Vista</b></center>
+		<table width="450" border="0" align="center" cellpadding="7" cellspacing="0" style="border:1px dashed #000000;">
+			<tr>
+				<td bgcolor="#989898">Ingresa un texto: <input name="ingresodetexto" type="text" value="Tu texto va aquí" />
+				</td></tr></table><br>
+		
+		<hr>
+		<h2>Entrada de multi-línea</h2>
+
+		<p>Este control permite a los usuarios ingresar texto en una o más líneas. Se inserta utilizando el tag HTML &lt;textarea&gt;. En este tag, el contenido será el texto inicial.
+		<b>Nota:</b> los tributos "rows" y "cols" son las dimensiones de la caja de texto.</p>
+
+		<center><b>Código</b><center>
+		<table width="450" border="0" align="center" cellpadding="7" cellspacing="0" style="border:1px dashed #000000;">
+			<tr>
+				<td bgcolor="#989898">&lt;form method="post" action="algo.php"&gt;<br />Ingresa tus comentarios:&lt;br /&gt;&lt;textarea name="comentarios" rows="2"  cols="30"&gt;...Esta ayudantía es fome...&lt;/textarea&gt;<br />&lt;/form&gt;
+				</td></tr></table><br>
+
+
+		<center><b>Vista</b></center>
+
+		<table width="450" border="0" align="center" cellpadding="7" cellspacing="0" style="border:1px dashed #000000;">
+			<tr>
+				<td bgcolor="#989898">Ingresa tus comentarios:<br /><textarea cols="30" rows="2" name="comentarios">...Esta ayudantía es fome...</textarea>
+				</td></tr></table><br>
+				
+				<hr>
+				<h2>Entradas de password</h2>
+
+		<p>Este control es una entrada de línea con la diferencia de que "esconde" los carácteres ingresados mostrándolos como puntos o asteriscos para evitar que los usuarios vean su contenido.</p>
+
+		<p>Es definido utilizando el valor "pass" en el atributo "type", y su valor inicial puede ser definido usando el atributo "value".</p>
+
+		<center><b>Código</b></center>
+		<table width="450" border="0" align="center" cellpadding="7" cellspacing="0" style="border:1px dashed #000000;">
+			<tr>
+				<td bgcolor="#989898">&lt;form method="post" action="algo.php"&gt;<br />Ingresa tu contraseña: &lt;input name="contrasenia" type="password" value="123456" /&gt;<br />&lt;/form&gt;
+				</td></tr></table><br>
+
+
+		<center><b>Vista</b></center>
+		<table width="450" border="0" align="center" cellpadding="7" cellspacing="0" style="border:1px dashed #000000;">
+			<tr>
+				<td bgcolor="#989898">Ingresa tu contraseña: <input name="contrasenia" type="password" value="123456" />
+				</td></tr></table><br>
+
+
+
+		<br>
+		 </table>
+  <div style="background-color:black; height:auto;width:100%;clear:both;">
+	<table style="width:100%; color:#fff;">
+	<tr>
+		<td style="width:30%; text-align:center;">&nbsp;</td>
+		<td style="width:40%; text-align:center;"><img src="./imagenes/logoescuela.png" width="115" height="23"></img>
+		<img src="./imagenes/logo_universidad.png"></img></td>
+	</tr>
+	</table>    
+  </div>
+</div>
+</body>
+</head>
+</html>
+ 

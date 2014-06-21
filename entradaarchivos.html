@@ -1,0 +1,94 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es" lang="es">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Taller de Aplicaciones</title>
+</head>
+
+<body>
+<div style="height:auto;width:100%;">
+  <div style="background-color:black;width:100%;">
+    <h3 style="color:#fff;text-align:center;"><br>HTML: Formularios y Botones</h3>
+  </div>
+  <table>
+	<tr>
+		<td style="background-color:#989898;width:15%" VALIGN=TOP> 
+		<b>Tabla de Contenidos</b>
+		<br>&nbsp;
+		<br><a href="index.html">Inicio</a>
+		<br><a href="entradatextual.html">Entrada textual</a>
+		<br><a href="opciones.html">Opciones</a>
+		<br><a href="botones.html">Botones</a>
+		<br><a href="entradaarchivos.html">Entrada de archivos</a>
+		</td>
+		<td>&nbsp;&nbsp;&nbsp;</td>
+		<td style="background-color:#fff;width:80%;" VALIGN=TOP>
+		<br>
+		<h1>Entrada de archivos</h1>
+
+		<p>La entrada de archivos puede ser utilizada para subir archivos al servidor. Este control muestra una caja de texto donde el usuario debe especificar la ruta del archivo (que será adjuntado localmente por el navegador) que será enviado al servidor.</p>
+
+		<p>Nota que para los formularios con subida de archivos debes especificar el valor "multipart/form-data" en el atributo "enctype" del tag HTML form, de otro modo, el archivo no será enviado.</p>
+		<br><br>
+		<center><b>Código</b></center>
+		<table width="450" border="0" align="center" cellpadding="7" cellspacing="0" style="border:1px dashed #000000;">
+			<tr>
+				<td bgcolor="#989898">&lt;form method="post" action="agente.php" enctype="multipart/form-data"&gt;<br />Ingresa el archivo: &lt;input name="imagen" type="file" /&gt;<br />&lt;/form&gt;
+				</td></tr></table><br>
+
+		<br><br>
+		<center><b>Vista</b></center>
+
+		<table width="450" border="0" align="center" cellpadding="7" cellspacing="0" style="border:1px dashed #000000;">
+			<tr>
+				<td bgcolor="#989898">Ingresa el archivo: <input name="imagen" type="file" />
+				</td></tr></table><br><br><br>
+<hr>
+		<h1>Formularios para correos</h1>
+		<p>También podemos crear formularios de contacto en nuestras páginas que enlacen directamente a nuestro cliente de correo modificando el campo "action"</p>
+		<center><b>Código</b></center>
+		<table width="450" border="0" align="center" cellpadding="7" cellspacing="0" style="border:1px dashed #000000;">
+			<tr>
+				<td bgcolor="#989898">&lt;form action=&quot;mailto:emaild@email.com&quot; method=&quot;post&quot; enctype=&quot;text/plain&quot; &gt;<br> 
+      &lt;input type=&quot;hidden&quot; name=&quot;opcion&quot; value=&quot;si&quot;&gt;<br> 
+      &lt;/form&gt;
+				</td></tr></table><br>
+
+		<br><br>
+		<center><b>Vista</b></center>
+
+		<table width="450" border="0" align="center" cellpadding="7" cellspacing="0" style="border:1px dashed #000000;">
+			<tr>
+				<td bgcolor="#989898"><form action="mailto:email@email.com" method="post" enctype="text/plain">
+Nombre: <input type="text" name="nombre" size="25" maxlength="50"><br><br>
+Apellidos: <input type="text" name="apellidos" size="25" maxlength="100">
+<br><br>
+  Correo: 
+  <input type="text" value="@" name="correo" size="25" maxlength="100">
+<br><br>
+<table width="50%" border="0" align="center" cellpadding="10" cellspacing="0">
+    <tr>
+    <td><div align="center">
+          <input type="submit" value="Enviar formulario">
+        </div></td>
+    <td><div align="center">
+          <input type="Reset" value="Borrar  formulario">
+        </div></td>
+  </tr>
+</table>
+</form>
+				</td></tr></table><br><br><br>
+
+		 </table>
+  <div style="background-color:black; height:auto;width:100%;clear:both;">
+	<table style="width:100%; color:#fff;">
+	<tr>
+		<td style="width:30%; text-align:center;">&nbsp;</td>
+		<td style="width:40%; text-align:center;"><img src="./imagenes/logoescuela.png" width="115" height="23"></img>
+		<img src="./imagenes/logo_universidad.png"></img></td>
+	</tr>
+	</table>    
+  </div>
+</div>
+</body>
+</head>
+</html>

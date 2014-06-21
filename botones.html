@@ -1,0 +1,104 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es" lang="es">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Taller de Aplicaciones</title>
+</head>
+
+<body>
+<div style="height:auto;width:100%;">
+  <div style="background-color:black;width:100%;">
+    <h3 style="color:#fff;text-align:center;"><br>HTML: Formularios y Botones</h3>
+  </div>
+  <table>
+	<tr>
+		<td style="background-color:#989898;width:15%" VALIGN=TOP> 
+		<b>Tabla de Contenidos</b>
+		<br>&nbsp;
+		<br><a href="index.html">Inicio</a>
+		<br><a href="entradatextual.html">Entrada textual</a>
+		<br><a href="opciones.html">Opciones</a>
+		<br><a href="botones.html">Botones</a>
+		<br><a href="entradaarchivos.html">Entrada de archivos</a>
+		</td>
+		<td>&nbsp;&nbsp;&nbsp;</td>
+		<td style="background-color:#fff;width:80%;" VALIGN=TOP>
+		<br>
+		<h1>Botones</h1>
+
+		<p>Un botón esta diseñado para realizar una acción con el formulario que lo contenga. De hecho, existen dos tipos básicos de botones: para enviar el formulario y para resetearlo.</p>
+
+		<p>Los botones pueden insertarse a través del tag HTML input o el elemento HTML button (botones de contenido).</p>
+
+		<h2>Botones de envío</h2>
+
+		<p>Este tipo de botones envía automáticamente el formulario en que se encuentra cuando es presionado. Es insertado utilizando el tag HTML input con el valor "submit" en su atributo "type".</p>
+		
+		<center><b>Código</b></center>
+		<table width="450" border="0" align="center" cellpadding="7" cellspacing="0" style="border:1px dashed #000000;">
+			<tr>
+				<td bgcolor="#989898">&lt;form method="post" action="algo.php"&gt;<br />&lt;input type="submit" value="Botón sin utilidad" /&gt;<br />&lt;/form&gt;
+				</td></tr></table><br>
+
+
+		<center><b>Vista</b></center>
+
+		<table width="450" border="0" align="center" cellpadding="7" cellspacing="0" style="border:1px dashed #000000;">
+			<tr>
+				<td bgcolor="#989898"><center><input type="submit" value="Botón sin utilidad" /></center>
+				</td></tr></table><br>
+
+
+		<hr>
+		<h2>Botones de contenido</h2>
+
+		<p>Los botones de contenido pueden tener una porción de código HTML. </p>
+
+		<center><b>Código</b></center>
+		<table width="450" border="0" align="center" cellpadding="7" cellspacing="0" style="border:1px dashed #000000;">
+			<tr>
+				<td bgcolor="#989898">&lt;form method="post" action="algo.php"&gt;<br />&lt;button type="button"&gt;<br />Pulse &lt;b&gt;AQUÍ&lt;/b&gt;&lt;br /&gt;<br />para huir de esta ayudantía.<br />&lt;/button&gt;<br />&lt;/form&gt;
+				</td></tr></table><br>
+
+
+		<center><b>Vista</b></center>
+
+		<table width="450" border="0" align="center" cellpadding="7" cellspacing="0" style="border:1px dashed #000000;">
+			<tr>
+				<td bgcolor="#989898"><center><button> Pulse <strong>AQUÍ</strong><br /> para huir de esta ayudantía. </button></center>
+				</td></tr></table><br>
+
+		<hr>
+		<h2>Botones de imagen</h2>
+
+		<p>Los botones de imagen funcionan exactamente como los botones de envío con la única diferencia que los de imagen son representados visualmente con la imagen especificada en el atributo "src".</p>
+
+		<p>Los botones de imagen se insertan con el tag HTML input, usando el valor "image" en su atributo "type".</p>
+
+		<center><b>Código</b></center>
+		<table width="450" border="0" align="center" cellpadding="7" cellspacing="0" style="border:1px dashed #000000;">
+			<tr>
+				<td bgcolor="#989898">&lt;form method="post" action="algo.php"&gt;<br />&lt;input type="image" src="./imagenes/boton.png"&gt;<br />&lt;/form&gt;
+				</td></tr></table><br>
+
+
+		<center><b>Vista</b></center>
+
+		<table width="450" border="0" align="center" cellpadding="7" cellspacing="0" style="border:1px dashed #000000;">
+			<tr>
+				<td bgcolor="#989898"><center><input src="./imagenes/boton.png" type="image" /></center>
+				</td></tr></table><br>
+
+		 </table>
+  <div style="background-color:black; height:auto;width:100%;clear:both;">
+	<table style="width:100%; color:#fff;">
+	<tr>
+		<td style="width:30%; text-align:center;">&nbsp;</td>
+		<td style="width:40%; text-align:center;"><img src="./imagenes/logoescuela.png" width="115" height="23"></img>
+		<img src="./imagenes/logo_universidad.png"></img></td>
+	</tr>
+	</table>    
+  </div>
+</div>
+</body>
+</head>
+</html>
