@@ -71,6 +71,10 @@
 					$desc = mysql_query('desc HORARIO', $enlace);
 					describir($desc);
 					break;
+				case 9:
+					$desc = mysql_query('desc LOCAL', $enlace); 
+					describir($desc);
+					break;
 			}
 		?>	
 		</table>
