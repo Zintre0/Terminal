@@ -38,9 +38,43 @@
 				exit;
 			}
 			switch ($_GET["valores"]) {
-				case 1:
-					break;
 				case 2:
+					echo('<form name="formulario" method="get" action="procesar.php">
+							<table summary="Submitted table designs" width="50" border="0" align="center" cellpadding="7" cellspacing="0" style="border:1px dashed #000000;">
+							<tr class="odd">
+							<td>Ingresa el nombre de la casa: <input name="nom_cas" type="text" value="Tu texto va aqui" id="consulta" /></td>
+							<td>Ingresa la capacidad de la casa: <input name="cap_cas" type="text" value="Tu texto va aqui" id="consulta" /></td>
+							<td>Selecciona la ciudad donde se encuentra
+							<select name="cod_ciu">
+							<optgroup label="Seleccione un ciudad">');
+							if (!$enlace = mysql_connect('localhost', 'root', 'h3forever')) {
+								echo 'No pudo conectarse a mysql';
+								exit;
+							}
+
+							if (!mysql_select_db('casaveraneo', $enlace)) {
+								echo 'No pudo seleccionar la base de datos';
+								exit;
+							}
+							
+							$sql1 = 'SELECT nom_ciu FROM ciudad';
+							$sucu = mysql_query($sql1, $enlace);
+							if (!$sucu) {
+								echo "Error de BD, no se pudo consultar la base de datos\n";
+								#echo "Error MySQL: ' . mysql_error();
+								exit;
+							}
+							//$fila = mysql_fetch_assoc($sucu);
+							while ($fil = mysql_fetch_assoc($sucu)) {
+								$emm = utf8_encode($fil['nom_ciu']);
+								echo ("<option value='$emm'>$emm</option>");
+							}
+							echo ('</optgroup>');
+							echo ('</select>');
+							echo('</td>
+								<td><input type="submit" value="send"></td></tr>
+								</table>
+								</form>');
 					break;
 				case 3:
 					break;

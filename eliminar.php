@@ -38,9 +38,35 @@
 				exit;
 			}
 			switch ($_GET["valores"]) {
-				case 1:
-					break;
 				case 2:
+					echo ('<form name="formulario" method="get" action="procesar.php">
+							<table summary="Submitted table designs" width="450" border="0" align="center" cellpadding="7" cellspacing="0" style="border:1px dashed #000000;">
+							<td>Selecciona la casa que quiere eliminar
+							<select name="nom_cas_elim">
+							<optgroup label="Selecciona una casa">');
+							if (!$enlace = mysql_connect('localhost', 'root', 'h3forever')) {
+								echo 'No pudo conectarse a mysql';
+								exit;
+							}
+
+							if (!mysql_select_db('casaveraneo', $enlace)) {
+								echo 'No pudo seleccionar la base de datos';
+								exit;
+							}
+							
+							$sql1 = 'SELECT nom_cas FROM casa_veraneo';
+							$sucu = mysql_query($sql1, $enlace);
+							if (!$sucu) {
+								echo "Error de BD, no se pudo consultar la base de datos\n";
+								exit;
+							}
+							while ($fil = mysql_fetch_assoc($sucu)) {
+								$emm = utf8_encode($fil['nom_cas']);
+								echo ("<option value='$emm'>$emm</option>");
+							}
+							echo ('</optgroup>');
+							echo ('</select></td><td><input type="submit" value="send"></td></table>
+						</form>');
 					break;
 				case 3:
 					break;

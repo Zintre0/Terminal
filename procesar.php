@@ -30,20 +30,24 @@
 		<?
 			$valor = 0;
 			foreach ($_GET as $R => $V){
-					if ($R=="nom_cas"){
-						$valor=3;
+					if ($R=="nom_act"){
+						$valor=1;
 						break;
 					}
 					else if ($R=="nom_cas"){
 						$valor=2;
 						break;
 					}
-					else if ($R=="nom_act"){
-						$valor=1;
+					else if ($R=="nom_cas22"){
+						$valor=3;
 						break;
 					}
 					else if ($R=="nom_act_elim"){
 						$valor=10;
+						break;
+					}
+					else if ($R=="nom_cas_elim"){
+						$valor=11;
 						break;
 					}
 			}
@@ -65,7 +69,29 @@
 					echo "Error de BD, no se pudo consultar la base de datos\n";
 					exit;
 				}
-				echo ('<h1>INGRESADO CORRECTAMENTE</h1></div>');
+				echo ('<h1>INGRESADO CORRECTAMENTE</h1>');
+			}
+			if ($valor==2){
+				if (!$enlace = mysql_connect('localhost', 'root', 'h3forever')) {
+						echo 'No pudo conectarse a mysql';
+						exit;
+					}
+
+					if (!mysql_select_db('casaveraneo', $enlace)) {
+						echo 'No pudo seleccionar la base de datos';
+						exit;
+					}
+					$nom_cas= "'".$_GET['nom_cas']."'";
+					$cap_cas= "'".$_GET['cap_cas']."'";
+					$cod_ciu= "'".$_GET['cod_ciu']."'";
+					
+					$ingreso = "INSERT INTO casa_veraneo values($nom_cas,$cap_cas,$cod_ciu)";
+					$ingresar = mysql_query($ingreso, $enlace);
+					if (!$ingresar) {
+						echo "Error de BD, no se pudo consultar la base de datos\n";
+						exit;
+					}
+					echo ('<h1>INGRESADO CORRECTAMENTE</h1>');
 			}
 			if ($valor==10){
 				if (!$enlace = mysql_connect('localhost', 'root', 'h3forever')) {
@@ -84,7 +110,26 @@
 					echo "Error de BD, no se pudo consultar la base de datos\n";
 					exit;
 				}
-				echo ('<h1>ELIMINADO CORRECTAMENTE</h1></div>');
+				echo ('<h1>ELIMINADO CORRECTAMENTE</h1>');
+			}
+			if ($valor==11){
+				if (!$enlace = mysql_connect('localhost', 'root', 'h3forever')) {
+					echo 'No pudo conectarse a mysql';
+					exit;
+				}
+
+				if (!mysql_select_db('casaveraneo', $enlace)) {
+					echo 'No pudo seleccionar la base de datos';
+					exit;
+				}
+				$elim= "'".$_GET['nom_cas_elim']."'";
+				$ingreso = "DELETE FROM casa_veraneo WHERE nom_cas=$elim";
+				$ingresar = mysql_query($ingreso, $enlace);
+				if (!$ingresar) {
+					echo "Error de BD, no se pudo consultar la base de datos\n";
+					exit;
+				}
+				echo ('<h1>ELIMINADO CORRECTAMENTE</h1>');
 			}
 		
 		?>

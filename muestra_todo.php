@@ -19,7 +19,7 @@
 		<br><div class="dos"><a href="index.php?menu=1">Inicio</a></div>
 		<br><div class="dos"><a href="index.php?menu=5">Actividad</a></div>
 		<div class="dos"><a href="index.php?menu=6">Actividad Casa</a></div>
-		<div class="dos"><a href="index.php?menu=2">Casa Veraneo</a></div>
+		<div class="dos"><a href="muestra_todo.php?menu=2">Casa Veraneo</a></div>
 		<div class="dos"><a href="index.php?menu=3">Ciudad</a></div>
 		<div class="dos"><a href="index.php?menu=4">Ninio</a></div>
 		</td>
@@ -30,12 +30,13 @@
 		<?
 			$menu = array (1,2,3,4);
 			$valores = array (1,2,3,4);
+			$cheet = array(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15);
 			if (!$enlace = mysql_connect('localhost', 'root', 'h3forever')) {
 				echo 'No pudo conectarse a mysql';
 				exit;
 			}
 
-			if (!mysql_select_db('casaveraneo', $enlace)) {
+			if (!mysql_select_db('TERMINAL_DE_BUSES', $enlace)) {
 				echo 'No pudo seleccionar la base de datos';
 				exit;
 			}
@@ -45,13 +46,15 @@
 					inicio();
 					break;
 				case 2:
-					echo('<table border="0" align="center" cellpadding="7" cellspacing="0" style="border:1px dashed #000000;">');
-					echo ('<caption align="center">CASA VERANEO</caption>');
-					echo ('<a href="eliminar.php?valores=2"><input type="submit" value="Eliminar" /></a><a href="ingreso.php?valores=2"><input type="submit" value="Nuevo" /></a>');
-					$sql1 = 'desc casa_veraneo';
-					$sql2 = 'SELECT * FROM casa_veraneo';
-					tablas($sql1,$sql2,$enlace);
-					echo ('</table>');
+					$nom_tablas = mysql_query('show tables', $enlace);
+					//Tables_in_TERMINAL_DE_BUSES
+					$i=0;
+					while ($fila = mysql_fetch_assoc($nom_tablas)) {
+						$i++;
+						echo ( '<a href="muestra_todo.php?cheet='."$i".'">'.$fila['Tables_in_TERMINAL_DE_BUSES'].'</a>');
+						echo ('<br>');
+					}
+					echo ("CANT: $i");
 					break;
 				case 3:
 					echo('<table border="0" align="center" cellpadding="7" cellspacing="0" style="border:1px dashed #000000;">');
@@ -88,6 +91,34 @@
 					break;
 				default:
 					inicio();
+					break;
+			}
+			switch ($_GET["cheet"]) {
+				case 1:
+					$nom_col = mysql_query('desc BUS', $enlace);
+					//Tables_in_TERMINAL_DE_BUSES
+					$i=0;
+					echo('<td style="width:20%;" VALIGN=TOP>');
+					while ($fila = mysql_fetch_assoc($nom_col)) {
+						$i++;
+						echo '<p>'.$fila['Field'].'</p>';
+						echo ('<br>');
+					}
+					echo ('<p>'."CANT: $i".'</p>');
+					echo('</td>');
+					break;
+				case 2:
+					$nom_col = mysql_query('desc COBRO_SERVICIO', $enlace);
+					//Tables_in_TERMINAL_DE_BUSES
+					$i=0;
+					echo('<td style="width:20%;" VALIGN=TOP>');
+					while ($fila = mysql_fetch_assoc($nom_col)) {
+						$i++;
+						echo '<p>'.$fila['Field'].'</p>';
+						echo ('<br>');
+					}
+					echo ('<p>'."CANT: $i".'</p>');
+					echo('</td>');
 					break;
 			}
 		
