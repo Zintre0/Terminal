@@ -6,6 +6,7 @@
 <title>Taller de Aplicaciones</title>
 </head>
 
+
 <body>
 <div style="height:auto;width:100%;">
   <div style="background-color:black;width:100%;">
