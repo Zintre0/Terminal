@@ -45,12 +45,7 @@ INSERT INTO `GIRO` VALUES
 (2,'Aseo'),
 (3,'Transporte'),
 (4,'Ventas Varias'),
-(5,'Ventas Alimentos'),
-(6,'Restaurant'),
-(7,'Cabaret'),
-(8,'Deporte'),
-(9,'Educacion'),
-(10,'Finanzas');
+(5,'Restaurant');
 
 /*!40000 ALTER TABLE `GIRO` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -60,16 +55,17 @@ LOCK TABLES `EMPRESA` WRITE;
 
 INSERT INTO `EMPRESA` VALUES 
 
-(100,3,4,4,'Buses Condor Rojas','100.989.654-0'),
-(200,3,1,1,'Buses Peter Rock','143.489.334-4'),
-(300,3,2,2,'Transportes Pato Yañez','142.443.444-5'),
-(400,3,5,5,'Transportes Tocopilla Mintindi?','155.543.444-5'),
-(500,2,6,6,'Aseos Jorge Luis Sampaoli','235.433.445-k'),
-(600,1,6,6,'Guardias Tripode','266.453.545-2'),
-(700,1,7,7,'Guardias Rambo','116.113.145-1'),
-(800,2,8,8,'Limpieza Ivan Luis Zaamorano','133.143.143-4'),
-(900,2,8,8,'Limpieza Alessi Sanshe','333.333.343-3'),
-(1000,3,9,9,'Transportes Arturo Vidal','673.873.383-8');
+(1,3,4,NULL,'Buses Condor Rojas','100.989.654-0'),
+(2,3,1,NULL,'Buses Peter Rock','143.489.334-4'),
+(3,3,2,NULL,'Transportes Pato Yañez','142.443.444-5'),
+(4,3,5,NULL,'Transportes Tocopilla Mintindi?','155.543.444-5'),
+(5,2,NULL,6,'Aseos Jorge Luis Sampaoli','235.433.445-k'),
+(6,1,NULL,6,'Guardias Tripode','266.453.545-2'),
+(7,1,NULL,7,'Guardias Rambo','116.113.145-1'),
+(8,2,NULL,8,'Limpieza Ivan Luis Zaamorano','133.143.143-4'),
+(9,2,NULL,8,'Limpieza Alessi Sanshe','333.333.343-3'),
+(10,5,8,NULL,'Restaurant Luiggi','322.223.143-3'),
+(11,3,9,NULL,'Transportes Arturo Vidal','673.873.383-8');
 
 /*!40000 ALTER TABLE `EMPRESA` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -79,16 +75,17 @@ LOCK TABLES `REPRESENTANTE` WRITE;
 
 INSERT INTO `REPRESENTANTE` VALUES 
 
-(1,100,'Condor','Rojas Rojas','18.456.874-0'),
-(2,200,'Jorge','Sampaoli Moya','15.346.544-0'),
-(3,300,'Ivan','Zamorano Zamora','12.436.234-3'),
-(4,400,'Peter','Rock Cepeda','14.236.223-3'),
-(5,500,'Alexis','Sanchez Vidal','15.346.253-6'),
-(6,600,'Arturo','Vidal Sanchez','17.676.253-0'),
-(7,700,'Matias','Fernandez Moya','18.886.283-8'),
-(8,800,'Gary','Medel Medel','15.586.553-5'),
-(9,900,'Marcelo','Bielsa Bonini','16.455.453-7'),
-(10,1000,'Pedro','Carcuro Solabarrieta','18.355.333-6');
+(1,1,'Condor','Rojas Rojas','18.456.874-0'),
+(2,2,'Jorge','Sampaoli Moya','15.346.544-0'),
+(3,3,'Ivan','Zamorano Zamora','12.436.234-3'),
+(4,4,'Peter','Rock Cepeda','14.236.223-3'),
+(5,5,'Alexis','Sanchez Vidal','15.346.253-6'),
+(6,6,'Arturo','Vidal Sanchez','17.676.253-0'),
+(7,7,'Matias','Fernandez Moya','18.886.283-8'),
+(8,8,'Gary','Medel Medel','15.586.553-5'),
+(9,9,'Marcelo','Bielsa Bonini','16.455.453-7'),
+(10,10,'Marta','Rojas Sepulveda','10.125.553-7'),
+(11,11,'Pedro','Carcuro Solabarrieta','18.355.333-6');
 
 /*!40000 ALTER TABLE `REPRESENTANTE` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -107,6 +104,7 @@ INSERT INTO `CONTRATO` VALUES
 (7, 7, '2012-01-29', '2014-08-01', 1, 3400000),
 (8, 9, '2005-08-25', '2016-12-31', 30, 3000000),
 (9, 10, '2012-08-12', '2014-12-12', 30, 3500000),
+(11, 11, '2010-08-12', '2015-08-12', 30, 3000000),
 (10, 8, '2002-08-23', '2017-02-21', 5, 2300000);
 
 /*!40000 ALTER TABLE `CONTRATO` ENABLE KEYS */;
@@ -126,6 +124,7 @@ INSERT INTO `CONTACTO` VALUES
 (7,4,'86423214','matigol@hotmail.com'),
 (8,3,'62187315','pitbull@hotmail.com'),
 (9,2,'64113549','locobielsa@hotmail.com'),
+(11,11,'6666666','Mrojassep@hotmail.com'),
 (10,1,'62315549','estoyllorando@hotmail.com');
 
 /*!40000 ALTER TABLE `CONTACTO` ENABLE KEYS */;
@@ -184,6 +183,7 @@ INSERT INTO `REPRESENTANTE_PROFESIONAL` VALUES
 (2,7),
 (2,8),
 (5,9),
+(1,11),
 (5,10);
 
 /*!40000 ALTER TABLE `REPRESENTANTE_PROFESIONAL` ENABLE KEYS */;
@@ -194,41 +194,41 @@ LOCK TABLES `BUS` WRITE;
 
 INSERT INTO `BUS` VALUES
 
-(1, 100, 'ABCD-09', 30),
-(2, 100, 'BCDE-10', 40),
-(3, 100, 'QWER-12', 50),
-(4, 100, 'ERTR-14', 60),
-(5, 100, 'TRUV-13', 39),
-(6, 200, 'WSXE-09', 54),
-(7, 200, 'CDER-10', 40),
-(8, 200, 'CVFG-12', 50),
-(9, 200, 'GRTD-14', 60),
-(10, 200, 'ERTF-13', 30),
-(11, 300, 'VVVV-09', 40),
-(12, 300, 'RTGF-10', 44),
-(13, 300, 'YHNM-12', 43),
-(14, 300, 'IOLK-14', 50),
-(15, 300, 'POLI-13', 60),
-(16, 400, 'HOLI-09', 40),
-(17, 400, 'NPTL-10', 40),
-(18, 400, 'CTNR-12', 30),
-(19, 400, 'CMRT-14', 50),
-(20, 400, 'AQSX-13', 50),
-(21, 1000, 'QAZX-09', 30),
-(22, 1000, 'WSXQ-10', 44),
-(23, 1000, 'EDSF-12', 42),
-(24, 1000, 'RFCD-14', 60),
-(25, 1000, 'VGTF-13', 45),
-(26, 100, 'BGHT-09', 45),
-(27, 100, 'TGFD-10', 44),
-(28, 200, 'BNHY-12', 55),
-(29, 300, 'BVFR-14', 58),
-(30, 400, 'CFRD-13', 40),
-(31, 100, 'NMJU-09', 50),
-(32, 100, 'HYTR-10', 50),
-(33, 100, 'BGRF-12', 50),
-(34, 100, 'IOPL-14', 60),
-(35, 100, 'NHNY-13', 60);
+(1, 1, 'ABCD-09', 30),
+(2, 1, 'BCDE-10', 40),
+(3, 1, 'QWER-12', 50),
+(4, 1, 'ERTR-14', 60),
+(5, 1, 'TRUV-13', 39),
+(6, 2, 'WSXE-09', 54),
+(7, 2, 'CDER-10', 40),
+(8, 2, 'CVFG-12', 50),
+(9, 2, 'GRTD-14', 60),
+(10, 2, 'ERTF-13', 30),
+(11, 3, 'VVVV-09', 40),
+(12, 3, 'RTGF-10', 44),
+(13, 3, 'YHNM-12', 43),
+(14, 3, 'IOLK-14', 50),
+(15, 3, 'POLI-13', 60),
+(16, 4, 'HOLI-09', 40),
+(17, 4, 'NPTL-10', 40),
+(18, 4, 'CTNR-12', 30),
+(19, 4, 'CMRT-14', 50),
+(20, 4, 'AQSX-13', 50),
+(21, 11, 'QAZX-09', 30),
+(22, 11, 'WSXQ-10', 44),
+(23, 11, 'EDSF-12', 42),
+(24, 11, 'RFCD-14', 60),
+(25, 11, 'VGTF-13', 45),
+(26, 1, 'BGHT-09', 45),
+(27, 1, 'TGFD-10', 44),
+(28, 2, 'BNHY-12', 55),
+(29, 3, 'BVFR-14', 58),
+(30, 4, 'CFRD-13', 40),
+(31, 1, 'NMJU-09', 50),
+(32, 11, 'HYTR-10', 50),
+(33, 1, 'BGRF-12', 50),
+(34, 1, 'IOPL-14', 60),
+(35, 11, 'NHNY-13', 60);
 
 /*!40000 ALTER TABLE `BUS` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -245,7 +245,7 @@ INSERT INTO `LOCAL` VALUES
 (5, 4, 3, 2),
 (6, 5, 5, 3),
 (7, 5, 5, 1),
-(8, 4, 2, 2),
+(8, 5, 2, 2),
 (9, 3, 2, 3),
 (10, 2, 2, 1),
 (11, 1, 2, 2),
@@ -273,7 +273,8 @@ INSERT INTO `LOCAL` VALUES
 (33, 8, 5, 3),
 (34, 2, 1, 1),
 (35, 3, 2, 2),
-(36, 10, 2, 3);
+(36, 11, 2, 3),
+(37, NULL, 2, 3);
 
 /*!40000 ALTER TABLE `LOCAL` ENABLE KEYS */;
 UNLOCK TABLES;

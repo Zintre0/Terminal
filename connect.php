@@ -40,20 +40,25 @@
 		<?
 			switch($_GET["num"]){
 				case 1:
-					$desc = mysql_query('desc BUS', $enlace);
-					describir($desc);
+					$sql1 = 'desc BUS';
+					$sql2 = 'SELECT * FROM BUS';
+					tablas($sql1,$sql2,$enlace);
+					//echo ('</table>');
 					break;
 				case 2:
-					$desc = mysql_query('desc COBRO_SERVICIO', $enlace);
-					describir($desc);
+					$sql1 = 'desc COBRO_SERVICIO';
+					$sql2 = 'SELECT * FROM COBRO_SERVICIO';
+					tablas($sql1,$sql2,$enlace);
 					break;
-				case 3:
-					$desc = mysql_query('desc CONTACTO', $enlace);
-					describir($desc);
+				case 3:					
+					$sql1 = 'desc CONTACTO';
+					$sql2 = 'SELECT * FROM CONTACTO';
+					tablas($sql1,$sql2,$enlace);
 					break;
 				case 4:
-					$desc = mysql_query('desc CONTRATO', $enlace);
-					describir($desc);
+					$sql1 = 'desc CONTRATO';
+					$sql2 = 'SELECT * FROM CONTRATO';
+					tablas($sql1,$sql2,$enlace);
 					break;
 				case 5:
 					$desc = mysql_query('desc EMPRESA', $enlace);
@@ -91,5 +96,35 @@
 			echo $fila['Field'];
 			echo ("</th>");
 		}
+	}
+	
+	function tablas($sql1,$sql2,$enlace){
+		echo('<table border="1">');
+		$nom_col = mysql_query($sql1, $enlace);
+		$fields = mysql_query($sql2, $enlace);
+		echo ('<tr>');
+		while ($fila = mysql_fetch_assoc($nom_col)) {
+			echo ('<th>'); 
+			echo $fila['Field'];
+			echo ('</th>');
+		}
+		//echo('<th>ACCION</th>');
+		//echo ('<th><a href="eliminar.php?mer=1"><input type="submit" value="Eliminar" /></a><a href="eliminar.php?mer=1"><input type="submit" value="Nuevo" /></a></th>');
+		echo ('</tr>');
+		$fields = mysql_query($sql2, $enlace);
+		echo ('<tr>');
+		while ($fila2 = mysql_fetch_assoc($fields)) {
+			$nom_col = mysql_query($sql1, $enlace);
+			while ($fila = mysql_fetch_assoc($nom_col)) {
+				echo ('<td>'); 
+				//echo $fila2[$fila['Field']];
+				echo utf8_encode($fila2[$fila['Field']]); 
+				echo ('</td>'); 
+			}
+			//echo('<td><div class="dos"><a href="#">Eliminar</a><a href="#">Modificar</a></div></td>');
+			echo ('</tr>');
+		}
+		echo ('</table>');
+		
 	}
 ?>
