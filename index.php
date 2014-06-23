@@ -17,73 +17,169 @@
 		<td style="width:20%" VALIGN=TOP>
 		<b>Tabla de Contenidos</b>
 		<br>&nbsp;
-		<br><div class="dos"><a href="index.php?menu=1">Inicio</a></div>
-		<br><div class="dos"><a href="index.php?menu=5">Actividad</a></div>
+		<br><div class="dos"><a href="index.php?num=1">Inicio</a></div>
+		<br>
+		<!--<br><div class="dos"><a href="index.php?menu=5">Actividad</a></div>
 		<div class="dos"><a href="index.php?menu=6">Actividad Casa</a></div>
 		<div class="dos"><a href="index.php?menu=2">Casa Veraneo</a></div>
 		<div class="dos"><a href="index.php?menu=3">Ciudad</a></div>
-		<div class="dos"><a href="index.php?menu=4">Ninio</a></div>
+		<div class="dos"><a href="index.php?menu=4">Ninio</a></div>-->
+		<?hiper_tablas();?>
 		</td>
 		<td>&nbsp;&nbsp;&nbsp;</td>
 		<td style="background-color:#fff;width:80%;" VALIGN=TOP>
 		<br>
 		
 		<?
-			$menu = array (1,2,3,4);
-			$valores = array (1,2,3,4);
-			if (!$enlace = mysql_connect('localhost', 'root', 'h3forever')) {
+			$password = 'h3forever';
+			$valores = array (2,3,4,5,6,7,8,9,10,11,12,13,14,15,16);
+			$num = array(2,3,4,5,6,7,8,9,10,11,12,13,14,15,16);
+			if (!$enlace = mysql_connect('localhost', 'root', $password)) {
 				echo 'No pudo conectarse a mysql';
 				exit;
 			}
 
-			if (!mysql_select_db('casaveraneo', $enlace)) {
+			if (!mysql_select_db('TERMINAL_DE_BUSES', $enlace)) {
 				echo 'No pudo seleccionar la base de datos';
 				exit;
 			}
 			
-			switch ($_GET["menu"]) {
+			switch ($_GET["num"]) {
 				case 1:
 					inicio();
 					break;
 				case 2:
 					echo('<table border="0" align="center" cellpadding="7" cellspacing="0" style="border:1px dashed #000000;">');
-					echo ('<caption align="center">CASA VERANEO</caption>');
+					echo ('<caption align="center">BUS</caption>');
 					echo ('<a href="eliminar.php?valores=2"><input type="submit" value="Eliminar" /></a><a href="ingreso.php?valores=2"><input type="submit" value="Nuevo" /></a>');
-					$sql1 = 'desc casa_veraneo';
-					$sql2 = 'SELECT * FROM casa_veraneo';
+					$sql1 = 'desc BUS';
+					$sql2 = 'SELECT * FROM BUS';
 					tablas($sql1,$sql2,$enlace);
 					echo ('</table>');
 					break;
 				case 3:
 					echo('<table border="0" align="center" cellpadding="7" cellspacing="0" style="border:1px dashed #000000;">');
-					echo ('<caption align="center">CIUDAD</caption>');
-					$sql1 = 'desc ciudad';
-					$sql2 = 'SELECT * FROM ciudad';
+					echo ('<caption align="center">COBRO SERVICIO</caption>');
+					echo ('<a href="eliminar.php?valores=3"><input type="submit" value="Eliminar" /></a><a href="ingreso.php?valores=3"><input type="submit" value="Nuevo" /></a>');
+					$sql1 = 'desc COBRO_SERVICIO';
+					$sql2 = 'SELECT * FROM COBRO_SERVICIO';
 					tablas($sql1,$sql2,$enlace);
 					echo ('</table>');
 					break;
 				case 4:
 					echo('<table border="0" align="center" cellpadding="7" cellspacing="0" style="border:1px dashed #000000;">');
-					echo ('<caption align="center">NINIO</caption>');
-					$sql1 = 'desc nino';
-					$sql2 = 'SELECT * FROM nino';
+					echo ('<caption align="center">CONTACTO</caption>');
+					echo ('<a href="eliminar.php?valores=4"><input type="submit" value="Eliminar" /></a><a href="ingreso.php?valores=4"><input type="submit" value="Nuevo" /></a>');
+					$sql1 = 'desc CONTACTO';
+					$sql2 = 'SELECT * FROM CONTACTO';
 					tablas($sql1,$sql2,$enlace);
 					echo ('</table>');
 					break;
 				case 5:
 					echo('<table border="0" align="center" cellpadding="7" cellspacing="0" style="border:1px dashed #000000;">');
-					echo ('<caption align="center">ACTIVIDAD</caption>');
+					echo ('<caption align="center">CONTRATO</caption>');
 					echo ('<a href="eliminar.php?valores=5"><input type="submit" value="Eliminar" /></a><a href="ingreso.php?valores=5"><input type="submit" value="Nuevo" /></a>');
-					$sql1 = 'desc actividad';
-					$sql2 = 'SELECT * FROM actividad';
+					$sql1 = 'desc CONTRATO';
+					$sql2 = 'SELECT * FROM CONTRATO';
 					tablas($sql1,$sql2,$enlace);
 					echo ('</table>');
 					break;
 				case 6:
 					echo('<table border="0" align="center" cellpadding="7" cellspacing="0" style="border:1px dashed #000000;">');
-					echo ('<caption align="center">ACTIVIDAD CASA</caption>');
-					$sql1 = 'desc actividad_casa';
-					$sql2 = 'SELECT * FROM actividad_casa';
+					echo ('<caption align="center">EMPRESA</caption>');
+					echo ('<a href="eliminar.php?valores=6"><input type="submit" value="Eliminar" /></a><a href="ingreso.php?valores=6"><input type="submit" value="Nuevo" /></a>');
+					$sql1 = 'desc EMPRESA';
+					$sql2 = 'SELECT * FROM EMPRESA';
+					tablas($sql1,$sql2,$enlace);
+					echo ('</table>');
+					break;
+				case 7:
+					echo('<table border="0" align="center" cellpadding="7" cellspacing="0" style="border:1px dashed #000000;">');
+					echo ('<caption align="center">FLUJO BUSES</caption>');
+					echo ('<a href="eliminar.php?valores=7"><input type="submit" value="Eliminar" /></a><a href="ingreso.php?valores=7"><input type="submit" value="Nuevo" /></a>');
+					$sql1 = 'desc FLUJO_BUSES';
+					$sql2 = 'SELECT * FROM FLUJO_BUSES';
+					tablas($sql1,$sql2,$enlace);
+					echo ('</table>');
+					break;
+				case 8:
+					echo('<table border="0" align="center" cellpadding="7" cellspacing="0" style="border:1px dashed #000000;">');
+					echo ('<caption align="center">GIRO</caption>');
+					echo ('<a href="eliminar.php?valores=8"><input type="submit" value="Eliminar" /></a><a href="ingreso.php?valores=8"><input type="submit" value="Nuevo" /></a>');
+					$sql1 = 'desc GIRO';
+					$sql2 = 'SELECT * FROM GIRO';
+					tablas($sql1,$sql2,$enlace);
+					echo ('</table>');
+					break;
+				case 9:
+					echo('<table border="0" align="center" cellpadding="7" cellspacing="0" style="border:1px dashed #000000;">');
+					echo ('<caption align="center">HORARIO</caption>');
+					echo ('<a href="eliminar.php?valores=9"><input type="submit" value="Eliminar" /></a><a href="ingreso.php?valores=9"><input type="submit" value="Nuevo" /></a>');
+					$sql1 = 'desc HORARIO';
+					$sql2 = 'SELECT * FROM HORARIO';
+					tablas($sql1,$sql2,$enlace);
+					echo ('</table>');
+					break;
+				case 10:
+					echo('<table border="0" align="center" cellpadding="7" cellspacing="0" style="border:1px dashed #000000;">');
+					echo ('<caption align="center">LOCAL</caption>');
+					echo ('<a href="eliminar.php?valores=10"><input type="submit" value="Eliminar" /></a><a href="ingreso.php?valores=10"><input type="submit" value="Nuevo" /></a>');
+					$sql1 = 'desc LOCAL';
+					$sql2 = 'SELECT * FROM LOCAL';
+					tablas($sql1,$sql2,$enlace);
+					echo ('</table>');
+					break;
+				case 11:
+					echo('<table border="0" align="center" cellpadding="7" cellspacing="0" style="border:1px dashed #000000;">');
+					echo ('<caption align="center">PAGO</caption>');
+					echo ('<a href="eliminar.php?valores=11"><input type="submit" value="Eliminar" /></a><a href="ingreso.php?valores=11"><input type="submit" value="Nuevo" /></a>');
+					$sql1 = 'desc PAGO';
+					$sql2 = 'SELECT * FROM PAGO';
+					tablas($sql1,$sql2,$enlace);
+					echo ('</table>');
+					break;
+				case 12:
+					echo('<table border="0" align="center" cellpadding="7" cellspacing="0" style="border:1px dashed #000000;">');
+					echo ('<caption align="center">PROFESION</caption>');
+					echo ('<a href="eliminar.php?valores=12"><input type="submit" value="Eliminar" /></a><a href="ingreso.php?valores=12"><input type="submit" value="Nuevo" /></a>');
+					$sql1 = 'desc PROFESION';
+					$sql2 = 'SELECT * FROM PROFESION';
+					tablas($sql1,$sql2,$enlace);
+					echo ('</table>');
+					break;
+				case 13:
+					echo('<table border="0" align="center" cellpadding="7" cellspacing="0" style="border:1px dashed #000000;">');
+					echo ('<caption align="center">REPRESENTANTE</caption>');
+					echo ('<a href="eliminar.php?valores=13"><input type="submit" value="Eliminar" /></a><a href="ingreso.php?valores=13"><input type="submit" value="Nuevo" /></a>');
+					$sql1 = 'desc REPRESENTANTE';
+					$sql2 = 'SELECT * FROM REPRESENTANTE';
+					tablas($sql1,$sql2,$enlace);
+					echo ('</table>');
+					break;
+				case 14:
+					echo('<table border="0" align="center" cellpadding="7" cellspacing="0" style="border:1px dashed #000000;">');
+					echo ('<caption align="center">REPRESENTANTE_PROFESIONAL</caption>');
+					echo ('<a href="eliminar.php?valores=14"><input type="submit" value="Eliminar" /></a><a href="ingreso.php?valores=14"><input type="submit" value="Nuevo" /></a>');
+					$sql1 = 'desc REPRESENTANTE_PROFESIONAL';
+					$sql2 = 'SELECT * FROM REPRESENTANTE_PROFESIONAL';
+					tablas($sql1,$sql2,$enlace);
+					echo ('</table>');
+					break;
+				case 15:
+					echo('<table border="0" align="center" cellpadding="7" cellspacing="0" style="border:1px dashed #000000;">');
+					echo ('<caption align="center">SECTOR</caption>');
+					echo ('<a href="eliminar.php?valores=15"><input type="submit" value="Eliminar" /></a><a href="ingreso.php?valores=15"><input type="submit" value="Nuevo" /></a>');
+					$sql1 = 'desc SECTOR';
+					$sql2 = 'SELECT * FROM SECTOR';
+					tablas($sql1,$sql2,$enlace);
+					echo ('</table>');
+					break;
+				case 16:
+					echo('<table border="0" align="center" cellpadding="7" cellspacing="0" style="border:1px dashed #000000;">');
+					echo ('<caption align="center">TIPO</caption>');
+					echo ('<a href="eliminar.php?valores=16"><input type="submit" value="Eliminar" /></a><a href="ingreso.php?valores=16"><input type="submit" value="Nuevo" /></a>');
+					$sql1 = 'desc TIPO';
+					$sql2 = 'SELECT * FROM TIPO';
 					tablas($sql1,$sql2,$enlace);
 					echo ('</table>');
 					break;
@@ -153,5 +249,31 @@
 			echo ('</tr>');
 		}
 		
+	}
+	
+	function hiper_tablas(){
+		if (!$enlace = mysql_connect('localhost', 'root', 'h3forever')) {
+			echo 'No pudo conectarse a mysql';
+			exit;
+		}
+
+		if (!mysql_select_db('TERMINAL_DE_BUSES', $enlace)) {
+			echo 'No pudo seleccionar la base de datos';
+			exit;
+		}
+		$show_tables = mysql_query('show tables', $enlace);
+		if (!$show_tables) {
+			echo "Error de BD, no se pudo consultar la base de datos\n";
+			#echo "Error MySQL: ' . mysql_error();
+			exit;
+		}
+		$i=1;
+		while ($fila = mysql_fetch_assoc($show_tables)) {
+			$i++;
+			echo ('<div class="dos"><a href=index.php?num='."$i".'>'); 
+			echo $fila['Tables_in_TERMINAL_DE_BUSES'];
+			echo ("</a></div>");
+			//echo $fila['cod_ong'] .'---';
+		}
 	}
 ?>

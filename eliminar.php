@@ -16,12 +16,13 @@
 		<td style="width:20%" VALIGN=TOP>
 		<b>Tabla de Contenidos</b>
 		<br>&nbsp;
-		<br><div class="dos"><a href="index.php?menu=1">Inicio</a></div>
-		<br><div class="dos"><a href="index.php?menu=5">Actividad</a></div>
+		<br><div class="dos"><a href="index.php?menu=1">Inicio</a></div><br>
+		<?hiper_tablas();?>
+		<!--<br><div class="dos"><a href="index.php?menu=5">Actividad</a></div>
 		<div class="dos"><a href="index.php?menu=6">Actividad Casa</a></div>
 		<div class="dos"><a href="index.php?menu=2">Casa Veraneo</a></div>
 		<div class="dos"><a href="index.php?menu=3">Ciudad</a></div>
-		<div class="dos"><a href="index.php?menu=4">Ninio</a></div>
+		<div class="dos"><a href="index.php?menu=4">Ninio</a></div>-->
 		</td>
 		<td>&nbsp;&nbsp;&nbsp;</td>
 		<td style="background-color:#fff;width:80%;" VALIGN=TOP>
@@ -126,3 +127,31 @@
 </div>
 </body>
 </html>
+
+<?
+	function hiper_tablas(){
+		if (!$enlace = mysql_connect('localhost', 'root', 'h3forever')) {
+			echo 'No pudo conectarse a mysql';
+			exit;
+		}
+
+		if (!mysql_select_db('TERMINAL_DE_BUSES', $enlace)) {
+			echo 'No pudo seleccionar la base de datos';
+			exit;
+		}
+		$show_tables = mysql_query('show tables', $enlace);
+		if (!$show_tables) {
+			echo "Error de BD, no se pudo consultar la base de datos\n";
+			#echo "Error MySQL: ' . mysql_error();
+			exit;
+		}
+		$i=1;
+		while ($fila = mysql_fetch_assoc($show_tables)) {
+			$i++;
+			echo ('<div class="dos"><a href=index.php?num='."$i".'>'); 
+			echo $fila['Tables_in_TERMINAL_DE_BUSES'];
+			echo ("</a></div>");
+			//echo $fila['cod_ong'] .'---';
+		}
+	}
+?>

@@ -4,8 +4,10 @@
 		<h1>Conectarse</h1>
 		<br>
 		<table border="1">
-		<?			
-		if (!$enlace = mysql_connect('localhost', 'root', 'h3forever')) {
+		<?
+		$password = 'h3forever';
+					
+		if (!$enlace = mysql_connect('localhost', 'root', $password)) {
 			echo 'No pudo conectarse a mysql';
 			exit;
 		}
@@ -35,7 +37,6 @@
 		
 		?>
 		</table><br><br>
-		<table border="1">
 		<b>Atributos</b>
 		<?
 			switch($_GET["num"]){
@@ -61,8 +62,9 @@
 					tablas($sql1,$sql2,$enlace);
 					break;
 				case 5:
-					$desc = mysql_query('desc EMPRESA', $enlace);
-					describir($desc);
+					$sql1 = 'desc EMPRESA';
+					$sql2 = 'SELECT * FROM EMPRESA';
+					tablas($sql1,$sql2,$enlace);
 					break;
 				case 6:
 					$desc = mysql_query('desc FLUJO_BUSES', $enlace);
@@ -77,12 +79,12 @@
 					describir($desc);
 					break;
 				case 9:
-					$desc = mysql_query('desc LOCAL', $enlace); 
-					describir($desc);
+					$sql1 = 'desc LOCAL';
+					$sql2 = 'SELECT * FROM LOCAL';
+					tablas($sql1,$sql2,$enlace);
 					break;
 			}
 		?>	
-		</table>
 	</body>
 	
 </html>
