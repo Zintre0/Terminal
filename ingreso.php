@@ -3,25 +3,20 @@
 	
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link href="css/mio.css" rel="stylesheet" type="text/css" />
-<title>Taller de Aplicaciones</title>
+<title>Administracion Terminal</title>
 </head>
 
 <body>
 <div style="height:auto;width:100%;">
   <div style="background-color:black;width:100%;">
-    <h3 style="color:#fff;text-align:center;"><br>TERMINAL</h3>
+    <h3 style="color:#fff;text-align:center;"><br>Administracion Terminal</h3>
   </div>
   <table>
 	<tr>
 		<td style="width:20%" VALIGN=TOP>
-		<b>Tabla de Contenidos</b>
+		<b style="color:#fff;">Tabla de Contenidos</b>
 		<br>&nbsp;
 		<br><div class="dos"><a href="index.php?menu=1">Inicio</a></div><br>
-		<!--<br><div class="dos"><a href="index.php?menu=5">Actividad</a></div>
-		<div class="dos"><a href="index.php?menu=6">Actividad Casa</a></div>
-		<div class="dos"><a href="index.php?menu=2">Casa Veraneo</a></div>
-		<div class="dos"><a href="index.php?menu=3">Ciudad</a></div>
-		<div class="dos"><a href="index.php?menu=4">Ninio</a></div>-->
 		<?hiper_tablas();?>
 		</td>
 		<td>&nbsp;&nbsp;&nbsp;</td>
@@ -29,7 +24,8 @@
 		<br>
 		
 		<?
-			if (!$enlace = mysql_connect('localhost', 'root', 'h3forever')) {
+			$password = 'h3forever';
+			if (!$enlace = mysql_connect('localhost', 'root', $password)) {
 				echo 'No pudo conectarse a mysql';
 				exit;
 			}
@@ -42,23 +38,21 @@
 				case 2:
 					echo('<form name="formulario" method="get" action="procesar.php">
 							<table summary="Submitted table designs" width="50" border="0" align="center" cellpadding="7" cellspacing="0" style="border:1px dashed #000000;">
-							<tr class="odd">
-							<td>Ingresa el nombre de la casa: <input name="nom_cas" type="text" value="Tu texto va aqui" id="consulta" /></td>
-							<td>Ingresa la capacidad de la casa: <input name="cap_cas" type="text" value="Tu texto va aqui" id="consulta" /></td>
-							<td>Selecciona la ciudad donde se encuentra
-							<select name="cod_ciu">
-							<optgroup label="Seleccione un ciudad">');
-							if (!$enlace = mysql_connect('localhost', 'root', 'h3forever')) {
+							<tr>
+							<td>Selecciona a la empresa que pertenece
+							<select name="id_empresa">
+							<optgroup label="Seleccione un id empresa">');
+							if (!$enlace = mysql_connect('localhost', 'root', $password)) {
 								echo 'No pudo conectarse a mysql';
 								exit;
 							}
 
-							if (!mysql_select_db('casaveraneo', $enlace)) {
+							if (!mysql_select_db('TERMINAL_DE_BUSES', $enlace)) {
 								echo 'No pudo seleccionar la base de datos';
 								exit;
 							}
 							
-							$sql1 = 'SELECT nom_ciu FROM ciudad';
+							$sql1 = 'SELECT idEMPRESA,NOMBRE_EMPRESA FROM EMPRESA where GIRO_idGIRO=3 order by idEMPRESA';
 							$sucu = mysql_query($sql1, $enlace);
 							if (!$sucu) {
 								echo "Error de BD, no se pudo consultar la base de datos\n";
@@ -67,13 +61,15 @@
 							}
 							//$fila = mysql_fetch_assoc($sucu);
 							while ($fil = mysql_fetch_assoc($sucu)) {
-								$emm = utf8_encode($fil['nom_ciu']);
-								echo ("<option value='$emm'>$emm</option>");
+								$emm = utf8_encode($fil['idEMPRESA']);
+								$em2 = utf8_encode($fil['NOMBRE_EMPRESA']);
+								echo ("<option value='$emm'>$emm ---> $em2 </option>");
 							}
 							echo ('</optgroup>');
-							echo ('</select>');
-							echo('</td>
-								<td><input type="submit" value="send"></td></tr>
+							echo ('</select></td>');
+							echo ('<td>Ingresa la patente: <input name="patente" type="text" value="Tu texto va aqui" id="consulta" /></td>
+							<td>Ingresa la capacidad del bus: <input name="capacidad" type="text" value="Tu texto va aqui" id="consulta" /></td>');
+							echo('<td><input type="submit" value="send"></td></tr>
 								</table>
 								</form>');
 					break;

@@ -29,15 +29,15 @@ thead th, tfoot th {
   
 .dos a {
 	font-family: Tahoma, Geneva, sans-serif;
-	font-size: 14px;
+	font-size: 20px;
 	font-weight: 900;
 	text-decoration: none;
-	color: #666666;
-	border: 1px solid #FFFFFF;	
+	color: #B40486;
+	border: 1px solid #B40486;	
 }
 .dos a:hover {
 	font-family: Tahoma, Geneva, sans-serif;
-	font-size: 14px;
+	font-size: 20px;
 	font-weight: 900;
 	background-color: #00FF00;
 	text-decoration: none;

@@ -3,27 +3,22 @@
 	
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link href="css/mio.css" rel="stylesheet" type="text/css" />
-<title>Taller de Aplicaciones</title>
+<title>Administracion Terminal</title>
 </head>
 
 
 <body>
 <div style="height:auto;width:100%;">
   <div style="background-color:black;width:100%;">
-    <h3 style="color:#fff;text-align:center;"><br>TERMINAL</h3>
+    <h3 style="color:#fff;text-align:center;"><br>Administracion Terminal</h3>
   </div>
   <table>
 	<tr>
 		<td style="width:20%" VALIGN=TOP>
-		<b>Tabla de Contenidos</b>
+		<b style="color:#fff;">Tabla de Contenidos</b>
 		<br>&nbsp;
 		<br><div class="dos"><a href="index.php?num=1">Inicio</a></div>
 		<br>
-		<!--<br><div class="dos"><a href="index.php?menu=5">Actividad</a></div>
-		<div class="dos"><a href="index.php?menu=6">Actividad Casa</a></div>
-		<div class="dos"><a href="index.php?menu=2">Casa Veraneo</a></div>
-		<div class="dos"><a href="index.php?menu=3">Ciudad</a></div>
-		<div class="dos"><a href="index.php?menu=4">Ninio</a></div>-->
 		<?hiper_tablas();?>
 		</td>
 		<td>&nbsp;&nbsp;&nbsp;</td>

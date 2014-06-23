@@ -3,18 +3,18 @@
 	
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link href="css/mio.css" rel="stylesheet" type="text/css" />
-<title>Taller de Aplicaciones</title>
+<title>Administracion Terminal</title>
 </head>
 
 <body>
 <div style="height:auto;width:100%;">
   <div style="background-color:black;width:100%;">
-    <h3 style="color:#fff;text-align:center;"><br>TERMINAL</h3>
+    <h3 style="color:#fff;text-align:center;"><br>Administracion Terminal</h3>
   </div>
   <table>
 	<tr>
 		<td style="width:20%" VALIGN=TOP>
-		<b>Tabla de Contenidos</b>
+		<b style="color:#fff;">Tabla de Contenidos</b>
 		<br>&nbsp;
 		<br><div class="dos"><a href="index.php?menu=1">Inicio</a></div><br>
 		<?hiper_tablas();?>
@@ -29,7 +29,8 @@
 		<br>
 		
 		<?
-			if (!$enlace = mysql_connect('localhost', 'root', 'h3forever')) {
+			$password = 'h3forever';
+			if (!$enlace = mysql_connect('localhost', 'root', $password)) {
 				echo 'No pudo conectarse a mysql';
 				exit;
 			}
@@ -42,28 +43,29 @@
 				case 2:
 					echo ('<form name="formulario" method="get" action="procesar.php">
 							<table summary="Submitted table designs" width="450" border="0" align="center" cellpadding="7" cellspacing="0" style="border:1px dashed #000000;">
-							<td>Selecciona la casa que quiere eliminar
-							<select name="nom_cas_elim">
-							<optgroup label="Selecciona una casa">');
-							if (!$enlace = mysql_connect('localhost', 'root', 'h3forever')) {
+							<td>Seleccione el bus que desea eliminar
+							<select name="idbus_elim">
+							<optgroup label="Selecciona un id bus">');
+							if (!$enlace = mysql_connect('localhost', 'root', $password)) {
 								echo 'No pudo conectarse a mysql';
 								exit;
 							}
 
-							if (!mysql_select_db('casaveraneo', $enlace)) {
+							if (!mysql_select_db('TERMINAL_DE_BUSES', $enlace)) {
 								echo 'No pudo seleccionar la base de datos';
 								exit;
 							}
 							
-							$sql1 = 'SELECT nom_cas FROM casa_veraneo';
+							$sql1 = 'SELECT idBUS,PATENTE FROM BUS';
 							$sucu = mysql_query($sql1, $enlace);
 							if (!$sucu) {
 								echo "Error de BD, no se pudo consultar la base de datos\n";
 								exit;
 							}
 							while ($fil = mysql_fetch_assoc($sucu)) {
-								$emm = utf8_encode($fil['nom_cas']);
-								echo ("<option value='$emm'>$emm</option>");
+								$emm = utf8_encode($fil['idBUS']);
+								$em2 = utf8_encode($fil['PATENTE']);
+								echo ("<option value='$emm'>$emm -> $em2 </option>");
 							}
 							echo ('</optgroup>');
 							echo ('</select></td><td><input type="submit" value="send"></td></table>
@@ -79,7 +81,7 @@
 							<td>Selecciona una actividad a eliminar
 							<select name="nom_act_elim">
 							<optgroup label="Selecciona acctividad">');
-							if (!$enlace = mysql_connect('localhost', 'root', 'h3forever')) {
+							if (!$enlace = mysql_connect('localhost', 'root', $password)) {
 								echo 'No pudo conectarse a mysql';
 								exit;
 							}
