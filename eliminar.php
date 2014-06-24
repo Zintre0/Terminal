@@ -25,7 +25,7 @@
 		<td style="background-color:#fff;width:80%;" VALIGN=TOP>
 		<br>
 		
-		<?
+		<?php
 			include './constantes.php';
 			if (!$enlace = mysql_connect('localhost', 'root', $password)) {
 				echo 'No pudo conectarse a mysql';
@@ -245,17 +245,136 @@
 							echo ('</select></td><td><input type="submit" value="send"></td></table>
 						</form>');
 					break;
-					break;
 				case 11:
+					
+					echo ('<form name="formulario" method="get" action="procesar.php">
+							<table summary="Submitted table designs" width=600 border="0" align="center" cellpadding="7" cellspacing="0" style="border:1px dashed #000000;">
+							<td style="color:#fff;">Seleccione el local que desea eliminar
+							<select name="id_pago_elim">
+							<optgroup label="_idPAGO || MONTO_PAGO || FECHA_PAGO">');
+							
+							$sql1 = 'SELECT * FROM PAGO';
+							$sucu = mysql_query($sql1, $enlace);
+							if (!$sucu) {
+								echo "Error de BD, no se pudo consultar la base de datos\n";
+								exit;
+							}
+							while ($fil = mysql_fetch_assoc($sucu)) {
+								$em1 = utf8_encode($fil['idPAGO']);
+								$em2 = utf8_encode($fil['MONTO_PAGO']);
+								$em3 = utf8_encode($fil['FECHA_PAGO']);
+								
+								echo ("<option value='$em1'>$em1 || $em2 || $em3</option>");
+							}
+							echo ('</optgroup>');
+							echo ('</select></td><td><input type="submit" value="send"></td></table>
+						</form>');
 					break;
 				case 12:
+				
+					echo ('<form name="formulario" method="get" action="procesar.php">
+							<table summary="Submitted table designs" width=600 border="0" align="center" cellpadding="7" cellspacing="0" style="border:1px dashed #000000;">
+							<td style="color:#fff;">Seleccione el local que desea eliminar
+							<select name="id_profesion_elim">
+							<optgroup label="_idPROFESION || NOMBRE_PROFESION">');
+							
+							$sql1 = 'SELECT * FROM PROFESION';
+							$sucu = mysql_query($sql1, $enlace);
+							if (!$sucu) {
+								echo "Error de BD, no se pudo consultar la base de datos\n";
+								exit;
+							}
+							while ($fil = mysql_fetch_assoc($sucu)) {
+								$em1 = utf8_encode($fil['idPROFESION']);
+								$em2 = utf8_encode($fil['NOMBRE_PROFESION']);
+								
+								echo ("<option value='$em1'>$em1 || $em2</option>");
+							}
+							echo ('</optgroup>');
+							echo ('</select></td><td><input type="submit" value="send"></td></table>
+						</form>');
 					break;
 				case 13:
+				
+					echo ('<form name="formulario" method="get" action="procesar.php">
+							<table summary="Submitted table designs" width=600 border="0" align="center" cellpadding="7" cellspacing="0" style="border:1px dashed #000000;">
+							<td style="color:#fff;">Seleccione el local que desea eliminar
+							<select name="id_representante_elim">
+							<optgroup label="_idREPRESENTANTE || EMPRESA_idEMPRESA || NOMBRE_REPRESENTANTE || APELLIDOS_REPRESENTANTE || RUT_REPRESENTANTE">');
+							
+							$sql1 = 'SELECT * FROM REPRESENTANTE';
+							$sucu = mysql_query($sql1, $enlace);
+							if (!$sucu) {
+								echo "Error de BD, no se pudo consultar la base de datos\n";
+								exit;
+							}
+							while ($fil = mysql_fetch_assoc($sucu)) {
+								$em1 = utf8_encode($fil['idREPRESENTANTE']);
+								$em2 = utf8_encode($fil['EMPRESA_idEMPRESA']);
+								$em3 = utf8_encode($fil['NOMBRE_REPRESENTANTE']);
+								$em4 = utf8_encode($fil['APELLIDOS_REPRESENTANTE']);
+								$em5 = utf8_encode($fil['RUT_REPRESENTANTE']);
+								
+								echo ("<option value='$em1'>$em1 || $em2 || $em3 || $em4 || $em5</option>");
+							}
+							echo ('</optgroup>');
+							echo ('</select></td><td><input type="submit" value="send"></td></table>
+						</form>');
 					break;
 				case 14:
+					
+						echo ('<form name="formulario" method="get" action="procesar.php">
+							<table summary="Submitted table designs" width=600 border="0" align="center" cellpadding="7" cellspacing="0" style="border:1px dashed #000000;">
+							<td style="color:#fff;">Seleccione el local que desea eliminar
+							<select name="id_REP_elim">
+							<optgroup label="_PROFESION_idPROFESION || REPRESENTANTE_idREPRESENTANTE || NOMBRE_REPRESENTANTE || APELLIDOS_REPRESENTANTE || RUT_REPRESENTANTE">');
+							
+							$sql1 = 'select * from REPRESENTANTE_PROFESIONAL INNER JOIN REPRESENTANTE ON REPRESENTANTE_PROFESIONAL.REPRESENTANTE_idREPRESENTANTE = REPRESENTANTE.idREPRESENTANTE';
+							$sucu = mysql_query($sql1, $enlace);
+							if (!$sucu) {
+								echo "Error de BD, no se pudo consultar la base de datos\n";
+								exit;
+							}
+							while ($fil = mysql_fetch_assoc($sucu)) {
+								$em1 = utf8_encode($fil['PROFESION_idPROFESION']);
+								$em2 = utf8_encode($fil['REPRESENTANTE_idREPRESENTANTE']);
+								$em3 = utf8_encode($fil['NOMBRE_REPRESENTANTE']);
+								$em4 = utf8_encode($fil['APELLIDOS_REPRESENTANTE']);
+								$em5 = utf8_encode($fil['RUT_REPRESENTANTE']);
+								
+								echo ("<option value='$em1'>$em1 || $em2 || $em3 || $em4 || $em5</option>");
+							}
+							echo ('</optgroup>');
+							echo ('</select></td><td><input type="submit" value="send"></td></table>
+						</form>');
+					
 					break;
+					
 				case 15:
+					
+					echo ('<form name="formulario" method="get" action="procesar.php">
+							<table summary="Submitted table designs" width=600 border="0" align="center" cellpadding="7" cellspacing="0" style="border:1px dashed #000000;">
+							<td style="color:#fff;">Seleccione el local que desea eliminar
+							<select name="id_sector_elim">
+							<optgroup label="_idSECTOR || NOMBRE_SECTOR">');
+							
+							$sql1 = 'SELECT * FROM SECTOR';
+							$sucu = mysql_query($sql1, $enlace);
+							if (!$sucu) {
+								echo "Error de BD, no se pudo consultar la base de datos\n";
+								exit;
+							}
+							while ($fil = mysql_fetch_assoc($sucu)) {
+								$em1 = utf8_encode($fil['idSECTOR']);
+								$em2 = utf8_encode($fil['NOMBRE_SECTOR']);
+																
+								echo ("<option value='$em1'>$em1 || $em2</option>");
+							}
+							echo ('</optgroup>');
+							echo ('</select></td><td><input type="submit" value="send"></td></table>
+						</form>');
 					break;
+					
 				case 16:
 					echo ('<form name="formulario" method="get" action="procesar.php">
 							<table summary="Submitted table designs" width="450" border="0" align="center" cellpadding="7" cellspacing="0" style="border:1px dashed #000000;">
