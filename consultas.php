@@ -24,6 +24,7 @@
 		<br><div class="dos"><a href="consultas.php?num=5">Contratos de Empresas Asociadas</a></div>
 		<br><div class="dos"><a href="consultas.php?num=6">Flujos Asociados a los Andénes</a></div>
 		<br><div class="dos"><a href="consultas.php?num=7">Representates de Empresas</a></div>
+		<br><div class="dos"><a href="estadisticas.php?num=8">Consultas Estadísticas</a></div>
 
 		</td>
 		<td>&nbsp;&nbsp;&nbsp;</td>
@@ -31,15 +32,18 @@
 		<br>
 		
 		<?php
+
 			include './constantes.php';
 			
 			$num = array(2,3,4,5,6);
+			$valores = array (2,3,4,5,6);
+
 			if (!$enlace = mysql_connect('localhost', 'root', $password)) {
 				echo 'No pudo conectarse a mysql';
 				exit;
 			}
 
-			if (!mysql_select_db('TERMINAL_DE_BUSES', $enlace)) {
+			if (!mysql_select_db($base_de_datos, $enlace)) {
 				echo 'No pudo seleccionar la base de datos';
 				exit;
 			}
@@ -51,6 +55,7 @@
 				case 2:
 					echo('<table border="0" align="center" cellpadding="7" cellspacing="0" style="border:1px dashed #000000;">');
 					echo ('<caption align="center">EMPRESAS ASOCIADAS Y SUS REPRESENTANTES</caption>');
+					echo ('<a href="filtros.php?valores=2"><input type="submit" value="Filtrar por Empresa" /></a>');
 					$sql1 = array ('NOMBRE_EMPRESA', 'RUT_EMPRESA','NOMBRE_REPRESENTANTE', 'APELLIDOS_REPRESENTANTE', 'NUMERO_TELEFONO', 'MAIL');
 					$sql2 = 'select EMPRESA.NOMBRE_EMPRESA, EMPRESA.RUT_EMPRESA, REPRESENTANTE.NOMBRE_REPRESENTANTE, REPRESENTANTE.APELLIDOS_REPRESENTANTE, CONTACTO.NUMERO_TELEFONO, CONTACTO.MAIL from EMPRESA INNER JOIN  REPRESENTANTE ON REPRESENTANTE.EMPRESA_idEMPRESA = EMPRESA.idEMPRESA INNER JOIN CONTACTO ON CONTACTO.REPRESENTANTE_idREPRESENTANTE = REPRESENTANTE.idREPRESENTANTE';
 					
@@ -61,6 +66,7 @@
 				case 3:
 					echo('<table border="0" align="center" cellpadding="7" cellspacing="0" style="border:1px dashed #000000;">');
 					echo ('<caption align="center">PAGOS HECHOS POR EMPRESA</caption>');
+					echo ('<a href="filtros.php?valores=3"><input type="submit" value="Filtrar por Empresa" /></a>');
 					$sql1 = array ('NOMBRE_EMPRESA', 'RUT_EMPRESA', 'MONTO_PAGO', 'FECHA_PAGO');
 					$sql2 = 'select EMPRESA.NOMBRE_EMPRESA, EMPRESA.RUT_EMPRESA, PAGO.MONTO_PAGO, PAGO.FECHA_PAGO from EMPRESA INNER JOIN PAGO ON EMPRESA.idEMPRESA = PAGO.EMPRESA_idEMPRESA' ;
 					tablas($sql1,$sql2,$enlace, 4);
@@ -71,6 +77,8 @@
 				case 4:
 					echo('<table border="0" align="center" cellpadding="7" cellspacing="0" style="border:1px dashed #000000;">');
 					echo ('<caption align="center">COBROS REALIZADOS POR EMPRESAS</caption>');
+					echo ('<a href="filtros.php?valores=4"><input type="submit" value="Filtrar por Empresa" /></a>');
+
 					$sql1 = array ('NOMBRE_EMPRESA', 'RUT_EMPRESA','PAGO_SERVICIO', 'FECHA_SERVICIO');
 					$sql2 = 'select EMPRESA.NOMBRE_EMPRESA, EMPRESA.RUT_EMPRESA, COBRO_SERVICIO.PAGO_SERVICIO, COBRO_SERVICIO.FECHA_SERVICIO from EMPRESA INNER JOIN COBRO_SERVICIO ON EMPRESA.idEMPRESA = COBRO_SERVICIO.EMPRESA_idEMPRESA';
 					tablas($sql1,$sql2,$enlace, 4);
@@ -79,6 +87,7 @@
 				case 5:
 					echo('<table border="0" align="center" cellpadding="7" cellspacing="0" style="border:1px dashed #000000;">');
 					echo ('<caption align="center">LOCALES ARRENDADOS</caption>');
+					echo ('<a href="filtros.php?valores=5"><input type="submit" value="Filtrar por Empresa" /></a>');
 					$sql1 = array('idCONTRATO', 'FECHA_INICIO', 'FECHA_TERMINO', 'MONTO_CONTRATO', 'TIPO_LOCAL', 'NOMBRE_SECTOR', 'NOMBRE_REPRESENTANTE','APELLIDOS_REPRESENTANTE', 'NOMBRE_EMPRESA');
 					$sql2 = 'select CONTRATO.idCONTRATO, CONTRATO.FECHA_INICIO, CONTRATO.FECHA_TERMINO, CONTRATO.MONTO_CONTRATO, TIPO.TIPO_LOCAL, SECTOR.NOMBRE_SECTOR, REPRESENTANTE.NOMBRE_REPRESENTANTE, REPRESENTANTE.APELLIDOS_REPRESENTANTE, EMPRESA.NOMBRE_EMPRESA from CONTRATO INNER JOIN LOCAL ON LOCAL.CONTRATO_idCONTRATO = CONTRATO.idCONTRATO inner join TIPO ON TIPO.idTIPO = LOCAL.TIPO_idTIPO INNER JOIN SECTOR ON SECTOR.idSECTOR = LOCAL.SECTOR_idSECTOR INNER JOIN REPRESENTANTE ON REPRESENTANTE.idREPRESENTANTE = CONTRATO.REPRESENTANTE_idREPRESENTANTE INNER JOIN EMPRESA ON EMPRESA.idEMPRESA = REPRESENTANTE.EMPRESA_idEMPRESA';
 					tablas($sql1, $sql2, $enlace, 9);
@@ -87,6 +96,8 @@
 				case 6:
 					echo('<table border="0" align="center" cellpadding="7" cellspacing="0" style="border:1px dashed #000000;">');
 					echo ('<caption align="center">HISTORIAL DE FLUJO DE BUSES EN ANDENES</caption>');
+					echo ('<a href="filtros.php?valores=6"><input type="submit" value="Filtrar por Empresa" /></a>');
+
 					$sql1 = array('PATENTE', 'NOMBRE_EMPRESA', 'FECHA_ARRIVO', 'ENTRADA', 'SALIDA');
 					$sql2 = 'select BUS.PATENTE, EMPRESA.NOMBRE_EMPRESA, FLUJO_BUSES.FECHA_ARRIVO, HORARIO.ENTRADA, HORARIO.SALIDA from BUS INNER JOIN EMPRESA ON EMPRESA.idEMPRESA = BUS.EMPRESA_idEMPRESA INNER JOIN FLUJO_BUSES ON FLUJO_BUSES.BUS_idBUS = BUS.idBUS inner join HORARIO ON HORARIO.idHORARIO = FLUJO_BUSES.HORARIO_idHORARIO';
 					tablas($sql1,$sql2,$enlace, 5);
@@ -96,6 +107,8 @@
 				case 7:
 					echo('<table border="0" align="center" cellpadding="7" cellspacing="0" style="border:1px dashed #000000;">');
 					echo ('<caption align="center">REPRESENTANTES DE EMPRESAS</caption>');
+					echo ('<a href="filtros.php?valores=7"><input type="submit" value="Filtrar por Empresa" /></a>');
+
 					$sql1 = array('NOMBRE_REPRESENTANTE', 'APELLIDOS_REPRESENTANTE', 'RUT_REPRESENTANTE', 'NOMBRE_EMPRESA', 'NOMBRE_PROFESION', 'NUMERO_TELEFONO', 'MAIL');
 					$sql2 = 'SELECT REPRESENTANTE.NOMBRE_REPRESENTANTE, REPRESENTANTE.APELLIDOS_REPRESENTANTE, REPRESENTANTE.RUT_REPRESENTANTE, EMPRESA.NOMBRE_EMPRESA, PROFESION.NOMBRE_PROFESION, CONTACTO.NUMERO_TELEFONO, CONTACTO.MAIL FROM REPRESENTANTE INNER JOIN EMPRESA ON REPRESENTANTE.EMPRESA_idEMPRESA = EMPRESA.idEMPRESA INNER JOIN REPRESENTANTE_PROFESIONAL ON REPRESENTANTE.idREPRESENTANTE =REPRESENTANTE_PROFESIONAL.REPRESENTANTE_idREPRESENTANTE INNER JOIN PROFESION ON REPRESENTANTE_PROFESIONAL.PROFESION_idPROFESION = PROFESION.idPROFESION INNER JOIN CONTACTO ON REPRESENTANTE.idREPRESENTANTE = CONTACTO.REPRESENTANTE_idREPRESENTANTE';
 					tablas($sql1,$sql2,$enlace, 7);

@@ -125,23 +125,23 @@
 						$valor=110;
 						break;
 					}
-					else if ($R=="111"){
+					else if ($R=="id_pago_elim"){
 						$valor=111;
 						break;
 					}
-					else if ($R=="112"){
+					else if ($R=="id_profesion_elim"){
 						$valor=112;
 						break;
 					}
-					else if ($R=="113"){
+					else if ($R=="id_representante_elim"){
 						$valor=113;
 						break;
 					}
-					else if ($R=="114"){
+					else if ($R=="id_REP_elim"){
 						$valor=114;
 						break;
 					}
-					else if ($R=="115"){
+					else if ($R=="id_sector_elim"){
 						$valor=115;
 						break;
 					}
@@ -606,7 +606,70 @@
 				echo ('<a href="eliminar.php?valores=10"><input type="submit" value="Eliminar" /></a><a href="ingreso.php?valores=10"><input type="submit" value="Nuevo" /></a>');
 				echo ('<h1>ELIMINADO CORRECTAMENTE</h1>');
 			}
+			if ($valor==111){
+				$elim= "'".$_GET['id_pago_elim']."'";
+				$ingreso = "DELETE FROM PAGO WHERE idPAGO=$elim";
+				$ingresar = mysql_query($ingreso, $enlace);
+				if (!$ingresar) {
+					//echo "Error de BD, no se pudo consultar la base de datos\n";
+					echo 'Error MySQL: ' . mysql_error();
+					exit;
+				}
+				echo ('<a href="eliminar.php?valores=11"><input type="submit" value="Eliminar" /></a><a href="ingreso.php?valores=11"><input type="submit" value="Nuevo" /></a>');
+				echo ('<h1>ELIMINADO CORRECTAMENTE</h1>');
+			}
 			
+			if ($valor==112){
+				$elim= "'".$_GET['id_profesion_elim']."'";
+				$ingreso = "DELETE FROM PROFESION WHERE idPROFESION=$elim";
+				$ingresar = mysql_query($ingreso, $enlace);
+				if (!$ingresar) {
+					//echo "Error de BD, no se pudo consultar la base de datos\n";
+					echo 'Error MySQL: ' . mysql_error();
+					exit;
+				}
+				echo ('<a href="eliminar.php?valores=12"><input type="submit" value="Eliminar" /></a><a href="ingreso.php?valores=11"><input type="submit" value="Nuevo" /></a>');
+				echo ('<h1>ELIMINADO CORRECTAMENTE</h1>');
+			}
+			
+			if ($valor==113){
+				$elim= "'".$_GET['id_representante_elim']."'";
+				$ingreso = "DELETE FROM REPRESENTANTE WHERE idREPRESENTANTE=$elim";
+				$ingresar = mysql_query($ingreso, $enlace);
+				if (!$ingresar) {
+					//echo "Error de BD, no se pudo consultar la base de datos\n";
+					echo 'Error MySQL: ' . mysql_error();
+					exit;
+				}
+				echo ('<a href="eliminar.php?valores=13"><input type="submit" value="Eliminar" /></a><a href="ingreso.php?valores=11"><input type="submit" value="Nuevo" /></a>');
+				echo ('<h1>ELIMINADO CORRECTAMENTE</h1>');
+			}
+			
+			if ($valor==114){
+				$elim= "'".$_GET['id_REP_elim']."'";
+				$ingreso = "DELETE FROM REPRESENTANTE_PROFESIONAL WHERE PROFESION_idPROFESION=$elim";
+				$ingresar = mysql_query($ingreso, $enlace);
+				if (!$ingresar) {
+					//echo "Error de BD, no se pudo consultar la base de datos\n";
+					echo 'Error MySQL: ' . mysql_error();
+					exit;
+				}
+				echo ('<a href="eliminar.php?valores=14"><input type="submit" value="Eliminar" /></a><a href="ingreso.php?valores=11"><input type="submit" value="Nuevo" /></a>');
+				echo ('<h1>ELIMINADO CORRECTAMENTE</h1>');
+			}
+			
+			if ($valor==115){
+				$elim= "'".$_GET['id_sector_elim']."'";
+				$ingreso = "DELETE FROM SECTOR WHERE idSECTOR=$elim";
+				$ingresar = mysql_query($ingreso, $enlace);
+				if (!$ingresar) {
+					//echo "Error de BD, no se pudo consultar la base de datos\n";
+					echo 'Error MySQL: ' . mysql_error();
+					exit;
+				}
+				echo ('<a href="eliminar.php?valores=15"><input type="submit" value="Eliminar" /></a><a href="ingreso.php?valores=11"><input type="submit" value="Nuevo" /></a>');
+				echo ('<h1>ELIMINADO CORRECTAMENTE</h1>');
+			}
 			
 			if ($valor==116){
 				$elim= "'".$_GET['id_tipo_elim']."'";
