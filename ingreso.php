@@ -335,12 +335,137 @@
 								</form>');
 					break;
 				case 11:
+					echo('<form name="formulario" method="get" action="procesar.php">
+							<table summary="Submitted table designs" width="50" border="0" align="center" cellpadding="7" cellspacing="0" style="border:1px dashed #000000;">
+							<tr>');
+					echo ('<td style="color:#fff;">Ingresa el monto del pago: <input name="monto_pago" type="text" id="consulta" required/></td>
+							<td style="color:#fff;">Ingresa la fecha del pago: <input name="fecha_pago" type="text" id="consulta" required/></td>');
+					echo('<td style="color:#fff;">Selecciona a la empresa que pertenece
+							<select name="id_empresa">
+							<optgroup label="Seleccione un id empresa">');
+							
+							$sql1 = 'SELECT idEMPRESA,NOMBRE_EMPRESA FROM EMPRESA where GIRO_idGIRO!=1 and GIRO_idGIRO!=2 order by idEMPRESA';
+							$sucu = mysql_query($sql1, $enlace);
+							if (!$sucu) {
+								echo "Error de BD, no se pudo consultar la base de datos\n";
+								#echo "Error MySQL: ' . mysql_error();
+								exit;
+							}
+							//$fila = mysql_fetch_assoc($sucu);
+							while ($fil = mysql_fetch_assoc($sucu)) {
+								$emm = utf8_encode($fil['idEMPRESA']);
+								$em2 = utf8_encode($fil['NOMBRE_EMPRESA']);
+								echo ("<option value='$emm'>$emm ---> $em2 </option>");
+							}
+							echo ('</optgroup>');
+							echo ('</select></td>');
+							echo('<td><input type="submit" value="send"></td></tr>
+								</table>
+								</form>');
 					break;
 				case 12:
+					echo('<form name="formulario" method="get" action="procesar.php">
+							<table summary="Submitted table designs" width="50" border="0" align="center" cellpadding="7" cellspacing="0" style="border:1px dashed #000000;">
+							<tr>');
+					echo ('<td style="color:#fff;">Ingresa el nombre de la profesion: <input name="nom_profesion" type="text" id="consulta" required/></td>');
+							echo('<td><input type="submit" value="send"></td></tr>
+								</table>
+								</form>');
 					break;
 				case 13:
+					echo('<form name="formulario" method="get" action="procesar.php">
+							<table summary="Submitted table designs" width="50" border="0" align="center" cellpadding="7" cellspacing="0" style="border:1px dashed #000000;">
+							<tr>');
+					echo('<td style="color:#fff;">Selecciona a la empresa que pertenece
+							<select name="id_empresa_representante">
+							<optgroup label="Seleccione un id empresa">');
+							
+							$sql1 = 'SELECT idEMPRESA,NOMBRE_EMPRESA FROM EMPRESA order by idEMPRESA';
+							$sucu = mysql_query($sql1, $enlace);
+							if (!$sucu) {
+								echo "Error de BD, no se pudo consultar la base de datos\n";
+								#echo "Error MySQL: ' . mysql_error();
+								exit;
+							}
+							//$fila = mysql_fetch_assoc($sucu);
+							while ($fil = mysql_fetch_assoc($sucu)) {
+								$emm = utf8_encode($fil['idEMPRESA']);
+								$em2 = utf8_encode($fil['NOMBRE_EMPRESA']);
+								echo ("<option value='$emm'>$emm ---> $em2 </option>");
+							}
+							echo ('</optgroup>');
+							echo ('</select></td>');
+							echo ('<td style="color:#fff;">Ingresa el nombre: <input name="nombre" type="text" id="consulta" required/></td>
+							<td style="color:#fff;">Ingresa los apellidos: <input name="apellidos" type="text" id="consulta" required/></td>
+							<td style="color:#fff;">Ingresa lel rut: <input name="rut_repre" type="text" id="consulta" required/></td>');
+							echo('<td><input type="submit" value="send"></td></tr>
+								</table>
+								</form>');
 					break;
 				case 14:
+					echo('<form name="formulario" method="get" action="procesar.php">
+							<table summary="Submitted table designs" width="50" border="0" align="center" cellpadding="7" cellspacing="0" style="border:1px dashed #000000;">
+							<tr>');
+						echo('<td style="color:#fff;">Selecciona profesion
+							<select name="id_profesion">
+							<optgroup label="Seleccione un id de profesion">');
+							
+							$sql1 = 'SELECT * FROM PROFESION order by idPROFESION';
+							$sucu = mysql_query($sql1, $enlace);
+							if (!$sucu) {
+								echo "Error de BD, no se pudo consultar la base de datos\n";
+								#echo "Error MySQL: ' . mysql_error();
+								exit;
+							}
+							//$fila = mysql_fetch_assoc($sucu);
+							while ($fil = mysql_fetch_assoc($sucu)) {
+								$emm = utf8_encode($fil['idPROFESION']);
+								$em2 = utf8_encode($fil['NOMBRE_PROFESION']);
+								echo ("<option value='$emm'>$emm ---> $em2</option>");
+							}
+							echo ('</optgroup>');
+							echo ('</select></td>');
+					echo('<td style="color:#fff;">Selecciona representante
+							<select name="id_representante_profesional">
+							<optgroup label="Seleccione un id de representante">');
+							
+							$sql1 = 'SELECT idREPRESENTANTE,NOMBRE_REPRESENTANTE,APELLIDOS_REPRESENTANTE FROM REPRESENTANTE order by idREPRESENTANTE';
+							$sucu = mysql_query($sql1, $enlace);
+							if (!$sucu) {
+								echo "Error de BD, no se pudo consultar la base de datos\n";
+								#echo "Error MySQL: ' . mysql_error();
+								exit;
+							}
+							//$fila = mysql_fetch_assoc($sucu);
+							while ($fil = mysql_fetch_assoc($sucu)) {
+								$emm = utf8_encode($fil['idREPRESENTANTE']);
+								$em2 = utf8_encode($fil['NOMBRE_REPRESENTANTE']);
+								$em3 = utf8_encode($fil['APELLIDOS_REPRESENTANTE']);
+								echo ("<option value='$emm'>$emm ---> $em2 $em3 </option>");
+							}
+							echo ('</optgroup>');
+							echo ('</select></td>');
+							echo('<td><input type="submit" value="send"></td></tr>
+								</table>
+								</form>');
+					break;
+				case 15:
+					echo('<form name="formulario" method="get" action="procesar.php">
+							<table summary="Submitted table designs" width="50" border="0" align="center" cellpadding="7" cellspacing="0" style="border:1px dashed #000000;">
+							<tr>');
+					echo ('<td style="color:#fff;">Ingresa el nombre del sector: <input name="nom_sector" type="text" id="consulta" required/></td>');
+							echo('<td><input type="submit" value="send"></td></tr>
+								</table>
+								</form>');
+					break;
+				case 16:
+					echo('<form name="formulario" method="get" action="procesar.php">
+							<table summary="Submitted table designs" width="50" border="0" align="center" cellpadding="7" cellspacing="0" style="border:1px dashed #000000;">
+							<tr>');
+					echo ('<td style="color:#fff;">Ingresa el nombre del tipo: <input name="nom_tipo" type="text" id="consulta" required/></td>');
+							echo('<td><input type="submit" value="send"></td></tr>
+								</table>
+								</form>');
 					break;
 				default:
 					break;

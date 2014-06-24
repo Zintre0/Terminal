@@ -222,6 +222,29 @@
 						</form>');
 					break;
 				case 10:
+					echo ('<form name="formulario" method="get" action="procesar.php">
+							<table summary="Submitted table designs" width=600 border="0" align="center" cellpadding="7" cellspacing="0" style="border:1px dashed #000000;">
+							<td style="color:#fff;">Seleccione el local que desea eliminar
+							<select name="id_local_elim">
+							<optgroup label="_idLOCAL || idCONTRATO || idTIPO || idSECTOR">');
+							
+							$sql1 = 'SELECT * FROM LOCAL';
+							$sucu = mysql_query($sql1, $enlace);
+							if (!$sucu) {
+								echo "Error de BD, no se pudo consultar la base de datos\n";
+								exit;
+							}
+							while ($fil = mysql_fetch_assoc($sucu)) {
+								$em1 = utf8_encode($fil['idLOCAL']);
+								$em2 = utf8_encode($fil['CONTRATO_idCONTRATO']);
+								$em3 = utf8_encode($fil['TIPO_idTIPO']);
+								$em4 = utf8_encode($fil['SECTOR_idSECTOR']);
+								echo ("<option value='$em1'>$em1 || $em2 || $em3 || $em4</option>");
+							}
+							echo ('</optgroup>');
+							echo ('</select></td><td><input type="submit" value="send"></td></table>
+						</form>');
+					break;
 					break;
 				case 11:
 					break;
@@ -232,6 +255,28 @@
 				case 14:
 					break;
 				case 15:
+					break;
+				case 16:
+					echo ('<form name="formulario" method="get" action="procesar.php">
+							<table summary="Submitted table designs" width="450" border="0" align="center" cellpadding="7" cellspacing="0" style="border:1px dashed #000000;">
+							<td style="color:#fff;">Seleccione el tipo
+							<select name="id_tipo_elim">
+							<optgroup label="_ID --> TIPO_LOCAL">');
+							
+							$sql1 = 'SELECT * FROM TIPO';
+							$sucu = mysql_query($sql1, $enlace);
+							if (!$sucu) {
+								echo "Error de BD, no se pudo consultar la base de datos\n";
+								exit;
+							}
+							while ($fil = mysql_fetch_assoc($sucu)) {
+								$em1 = utf8_encode($fil['idTIPO']);
+								$em2 = utf8_encode($fil['TIPO_LOCAL']);
+								echo ("<option value='$em1'>$em1 --> $em2 </option>");
+							}
+							echo ('</optgroup>');
+							echo ('</select></td><td><input type="submit" value="send"></td></table>
+						</form>');
 					break;
 				default:
 					break;

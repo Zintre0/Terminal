@@ -65,6 +65,30 @@
 						$valor=10;
 						break;
 					}
+					else if ($R=="monto_pago"){
+						$valor=11;
+						break;
+					}
+					else if ($R=="nom_profesion"){
+						$valor=12;
+						break;
+					}
+					else if ($R=="id_empresa_representante"){
+						$valor=13;
+						break;
+					}
+					else if ($R=="id_representante_profesional"){
+						$valor=14;
+						break;
+					}
+					else if ($R=="nom_sector"){
+						$valor=15;
+						break;
+					}
+					else if ($R=="nom_tipo"){
+						$valor=16;
+						break;
+					}
 					else if ($R=="idbus_elim"){
 						$valor=102;
 						break;
@@ -95,6 +119,34 @@
 					}
 					else if ($R=="id_horario_elim"){
 						$valor=109;
+						break;
+					}
+					else if ($R=="id_local_elim"){
+						$valor=110;
+						break;
+					}
+					else if ($R=="111"){
+						$valor=111;
+						break;
+					}
+					else if ($R=="112"){
+						$valor=112;
+						break;
+					}
+					else if ($R=="113"){
+						$valor=113;
+						break;
+					}
+					else if ($R=="114"){
+						$valor=114;
+						break;
+					}
+					else if ($R=="115"){
+						$valor=115;
+						break;
+					}
+					else if ($R=="id_tipo_elim"){
+						$valor=116;
 						break;
 					}
 					
@@ -321,6 +373,130 @@
 				echo ('<h1>INGRESADO CORRECTAMENTE</h1>');
 			}
 			
+			if ($valor==11){
+				$sql1 = 'SELECT MAX(idPAGO) FROM PAGO';
+				$cantidad = mysql_query($sql1, $enlace);
+				if (!$cantidad) {
+					echo "Error de BD, no se pudo consultar la base de datos\n";
+					echo 'Error MySQL: ' . mysql_error();
+					exit;
+				}
+				$fila = mysql_fetch_assoc($cantidad);
+				$num = $fila['MAX(idPAGO)'] + 1;
+				$monto_pago= "'".$_GET['monto_pago']."'";
+				$fecha_pago= "'".$_GET['fecha_pago']."'";
+				$id_empresa= "'".$_GET['id_empresa']."'";
+				
+				$ingreso = "INSERT INTO PAGO values($num,$monto_pago,$fecha_pago,$id_empresa)";
+				$ingresar = mysql_query($ingreso, $enlace);
+				if (!$ingresar) {
+					echo "Error de BD, no se pudo consultar la base de datos\n";
+					exit;
+				}
+				echo ('<a href="eliminar.php?valores=11"><input type="submit" value="Eliminar" /></a><a href="ingreso.php?valores=11"><input type="submit" value="Nuevo" /></a>');
+				echo ('<h1>INGRESADO CORRECTAMENTE</h1>');
+			}
+			
+			if ($valor==12){
+				$sql1 = 'SELECT MAX(idPROFESION) FROM PROFESION';
+				$cantidad = mysql_query($sql1, $enlace);
+				if (!$cantidad) {
+					echo "Error de BD, no se pudo consultar la base de datos\n";
+					echo 'Error MySQL: ' . mysql_error();
+					exit;
+				}
+				$fila = mysql_fetch_assoc($cantidad);
+				$num = $fila['MAX(idPROFESION)'] + 1;
+				$nom_profesion= "'".$_GET['nom_profesion']."'";			
+				$ingreso = "INSERT INTO PROFESION values($num,$nom_profesion)";
+				$ingresar = mysql_query($ingreso, $enlace);
+				if (!$ingresar) {
+					echo "Error de BD, no se pudo consultar la base de datos\n";
+					exit;
+				}
+				echo ('<a href="eliminar.php?valores=12"><input type="submit" value="Eliminar" /></a><a href="ingreso.php?valores=12"><input type="submit" value="Nuevo" /></a>');
+				echo ('<h1>INGRESADO CORRECTAMENTE</h1>');
+			}
+			
+			if ($valor==13){
+				$sql1 = 'SELECT MAX(idREPRESENTANTE) FROM REPRESENTANTE';
+				$cantidad = mysql_query($sql1, $enlace);
+				if (!$cantidad) {
+					echo "Error de BD, no se pudo consultar la base de datos\n";
+					echo 'Error MySQL: ' . mysql_error();
+					exit;
+				}
+				$fila = mysql_fetch_assoc($cantidad);
+				$num = $fila['MAX(idREPRESENTANTE)'] + 1;
+				$id_empresa_representante= "'".$_GET['id_empresa_representante']."'";
+				$nombre= "'".$_GET['nombre']."'";
+				$apellidos= "'".$_GET['apellidos']."'";
+				$rut_repre= "'".$_GET['rut_repre']."'";			
+				$ingreso = "INSERT INTO REPRESENTANTE values($num,$id_empresa_representante,$nombre,$apellidos,$rut_repre)";
+				$ingresar = mysql_query($ingreso, $enlace);
+				if (!$ingresar) {
+					echo "Error de BD, no se pudo consultar la base de datos\n";
+					exit;
+				}
+				echo ('<a href="eliminar.php?valores=13"><input type="submit" value="Eliminar" /></a><a href="ingreso.php?valores=13"><input type="submit" value="Nuevo" /></a>');
+				echo ('<h1>INGRESADO CORRECTAMENTE</h1>');
+			}
+			
+			if ($valor==14){
+				$id_representante_profesional= "'".$_GET['id_representante_profesional']."'";
+				$id_profesion= "'".$_GET['id_profesion']."'";		
+				$ingreso = "INSERT INTO REPRESENTANTE_PROFESIONAL values($id_profesion,$id_representante_profesional)";
+				$ingresar = mysql_query($ingreso, $enlace);
+				if (!$ingresar) {
+					echo "Error de BD, no se pudo consultar la base de datos\n";
+					exit;
+				}
+				echo ('<a href="eliminar.php?valores=14"><input type="submit" value="Eliminar" /></a><a href="ingreso.php?valores=14"><input type="submit" value="Nuevo" /></a>');
+				echo ('<h1>INGRESADO CORRECTAMENTE</h1>');
+			}
+			
+			if ($valor==15){
+				$sql1 = 'SELECT MAX(idSECTOR) FROM SECTOR';
+				$cantidad = mysql_query($sql1, $enlace);
+				if (!$cantidad) {
+					echo "Error de BD, no se pudo consultar la base de datos\n";
+					echo 'Error MySQL: ' . mysql_error();
+					exit;
+				}
+				$fila = mysql_fetch_assoc($cantidad);
+				$num = $fila['MAX(idSECTOR)'] + 1;
+				$nom_sector= "'".$_GET['nom_sector']."'";			
+				$ingreso = "INSERT INTO SECTOR values($num,$nom_sector)";
+				$ingresar = mysql_query($ingreso, $enlace);
+				if (!$ingresar) {
+					echo "Error de BD, no se pudo consultar la base de datos\n";
+					exit;
+				}
+				echo ('<a href="eliminar.php?valores=15"><input type="submit" value="Eliminar" /></a><a href="ingreso.php?valores=15"><input type="submit" value="Nuevo" /></a>');
+				echo ('<h1>INGRESADO CORRECTAMENTE</h1>');
+			}
+			
+			if ($valor==16){
+				$sql1 = 'SELECT MAX(idTIPO) FROM TIPO';
+				$cantidad = mysql_query($sql1, $enlace);
+				if (!$cantidad) {
+					echo "Error de BD, no se pudo consultar la base de datos\n";
+					echo 'Error MySQL: ' . mysql_error();
+					exit;
+				}
+				$fila = mysql_fetch_assoc($cantidad);
+				$num = $fila['MAX(idTIPO)'] + 1;
+				$nom_tipo= "'".$_GET['nom_tipo']."'";			
+				$ingreso = "INSERT INTO TIPO values($num,$nom_tipo)";
+				$ingresar = mysql_query($ingreso, $enlace);
+				if (!$ingresar) {
+					echo "Error de BD, no se pudo consultar la base de datos\n";
+					exit;
+				}
+				echo ('<a href="eliminar.php?valores=16"><input type="submit" value="Eliminar" /></a><a href="ingreso.php?valores=16"><input type="submit" value="Nuevo" /></a>');
+				echo ('<h1>INGRESADO CORRECTAMENTE</h1>');
+			}
+			
 			if ($valor==102){
 				$elim= "'".$_GET['idbus_elim']."'";
 				$ingreso = "DELETE FROM BUS WHERE idBUS=$elim";
@@ -418,7 +594,32 @@
 				echo ('<a href="eliminar.php?valores=9"><input type="submit" value="Eliminar" /></a><a href="ingreso.php?valores=9"><input type="submit" value="Nuevo" /></a>');
 				echo ('<h1>ELIMINADO CORRECTAMENTE</h1>');
 			}
-		
+			if ($valor==110){
+				$elim= "'".$_GET['id_local_elim']."'";
+				$ingreso = "DELETE FROM LOCAL WHERE idLOCAL=$elim";
+				$ingresar = mysql_query($ingreso, $enlace);
+				if (!$ingresar) {
+					//echo "Error de BD, no se pudo consultar la base de datos\n";
+					echo 'Error MySQL: ' . mysql_error();
+					exit;
+				}
+				echo ('<a href="eliminar.php?valores=10"><input type="submit" value="Eliminar" /></a><a href="ingreso.php?valores=10"><input type="submit" value="Nuevo" /></a>');
+				echo ('<h1>ELIMINADO CORRECTAMENTE</h1>');
+			}
+			
+			
+			if ($valor==116){
+				$elim= "'".$_GET['id_tipo_elim']."'";
+				$ingreso = "DELETE FROM TIPO WHERE idTIPO=$elim";
+				$ingresar = mysql_query($ingreso, $enlace);
+				if (!$ingresar) {
+					//echo "Error de BD, no se pudo consultar la base de datos\n";
+					echo 'Error MySQL: ' . mysql_error();
+					exit;
+				}
+				echo ('<a href="eliminar.php?valores=16"><input type="submit" value="Eliminar" /></a><a href="ingreso.php?valores=16"><input type="submit" value="Nuevo" /></a>');
+				echo ('<h1>ELIMINADO CORRECTAMENTE</h1>');
+			}
 		?>
 				
 	</table>
