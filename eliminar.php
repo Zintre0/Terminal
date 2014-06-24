@@ -25,7 +25,7 @@
 		<td style="background-color:#fff;width:80%;" VALIGN=TOP>
 		<br>
 		
-		<?
+		<?php
 			include './constantes.php';
 			if (!$enlace = mysql_connect('localhost', 'root', $password)) {
 				echo 'No pudo conectarse a mysql';

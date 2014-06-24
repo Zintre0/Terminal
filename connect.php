@@ -4,7 +4,7 @@
 		<h1>Conectarse</h1>
 		<br>
 		<table border="1">
-		<?
+		<?php
 		$password = 'h3forever';
 					
 		if (!$enlace = mysql_connect('localhost', 'root', $password)) {

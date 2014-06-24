@@ -27,7 +27,7 @@
 		<td style="background-color:#fff;width:80%;" VALIGN=TOP>
 		<br>
 		
-		<?
+		<?php
 			include './constantes.php';
 
 			$valores = array (2,3,4,5,6,7,8,9,10,11,12,13,14,15,16);
@@ -203,7 +203,7 @@
 </body>
 </html>
 
-<?
+<?php
 	function inicio(){
 		echo ('<h1>Pagina web del terminal</h1>');
 		echo ('<p>Los formularios y botones son una herramienta estándar HTML que recolectan información. Estos pueden resultar útiles para reunir cualquier tipo de información que pueda ser almacenada en formato de texto.
