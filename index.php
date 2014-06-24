@@ -22,6 +22,7 @@
 		<?php
 			include './funciones.php';
 			hiper_tablas();?>
+		<br><div class="dos"><a href="consultas.php?num=17">Consultas</a></div>
 		</td>
 		<td>&nbsp;&nbsp;&nbsp;</td>
 		<td style="background-color:#fff;width:80%;" VALIGN=TOP>
@@ -52,7 +53,7 @@
 					echo ('<a href="eliminar.php?valores=2"><input type="submit" value="Eliminar" /></a><a href="ingreso.php?valores=2"><input type="submit" value="Nuevo" /></a>');
 					$sql1 = 'desc BUS';
 					$sql2 = 'SELECT * FROM BUS';
-					tablas($sql1,$sql2,$enlace);
+					tablas($sql1,$sql2,$enlace, 'BUS');
 					echo ('</table>');
 					break;
 				case 3:
@@ -61,7 +62,7 @@
 					echo ('<a href="eliminar.php?valores=3"><input type="submit" value="Eliminar" /></a><a href="ingreso.php?valores=3"><input type="submit" value="Nuevo" /></a>');
 					$sql1 = 'desc COBRO_SERVICIO';
 					$sql2 = 'SELECT * FROM COBRO_SERVICIO';
-					tablas($sql1,$sql2,$enlace);
+					tablas($sql1,$sql2,$enlace, 'COBRO_SERVICIO');
 					echo ('</table>');
 					break;
 				case 4:
@@ -70,7 +71,7 @@
 					echo ('<a href="eliminar.php?valores=4"><input type="submit" value="Eliminar" /></a><a href="ingreso.php?valores=4"><input type="submit" value="Nuevo" /></a>');
 					$sql1 = 'desc CONTACTO';
 					$sql2 = 'SELECT * FROM CONTACTO';
-					tablas($sql1,$sql2,$enlace);
+					tablas($sql1,$sql2,$enlace, 'CONTACTO');
 					echo ('</table>');
 					break;
 				case 5:
@@ -79,7 +80,7 @@
 					echo ('<a href="eliminar.php?valores=5"><input type="submit" value="Eliminar" /></a><a href="ingreso.php?valores=5"><input type="submit" value="Nuevo" /></a>');
 					$sql1 = 'desc CONTRATO';
 					$sql2 = 'SELECT * FROM CONTRATO';
-					tablas($sql1,$sql2,$enlace);
+					tablas($sql1,$sql2,$enlace, 'CONTRATO');
 					echo ('</table>');
 					break;
 				case 6:
@@ -88,7 +89,7 @@
 					echo ('<a href="eliminar.php?valores=6"><input type="submit" value="Eliminar" /></a><a href="ingreso.php?valores=6"><input type="submit" value="Nuevo" /></a>');
 					$sql1 = 'desc EMPRESA';
 					$sql2 = 'SELECT * FROM EMPRESA';
-					tablas($sql1,$sql2,$enlace);
+					tablas($sql1,$sql2,$enlace, 'EMPRESA');
 					echo ('</table>');
 					break;
 				case 7:
@@ -97,7 +98,7 @@
 					echo ('<a href="eliminar.php?valores=7"><input type="submit" value="Eliminar" /></a><a href="ingreso.php?valores=7"><input type="submit" value="Nuevo" /></a>');
 					$sql1 = 'desc FLUJO_BUSES';
 					$sql2 = 'SELECT * FROM FLUJO_BUSES';
-					tablas($sql1,$sql2,$enlace);
+					tablas($sql1,$sql2,$enlace, 'FLUJO_BUSES');
 					echo ('</table>');
 					break;
 				case 8:
@@ -106,7 +107,7 @@
 					echo ('<a href="eliminar.php?valores=8"><input type="submit" value="Eliminar" /></a><a href="ingreso.php?valores=8"><input type="submit" value="Nuevo" /></a>');
 					$sql1 = 'desc GIRO';
 					$sql2 = 'SELECT * FROM GIRO';
-					tablas($sql1,$sql2,$enlace);
+					tablas($sql1,$sql2,$enlace, 'GIRO');
 					echo ('</table>');
 					break;
 				case 9:
@@ -115,7 +116,7 @@
 					echo ('<a href="eliminar.php?valores=9"><input type="submit" value="Eliminar" /></a><a href="ingreso.php?valores=9"><input type="submit" value="Nuevo" /></a>');
 					$sql1 = 'desc HORARIO';
 					$sql2 = 'SELECT * FROM HORARIO';
-					tablas($sql1,$sql2,$enlace);
+					tablas($sql1,$sql2,$enlace, 'HORARIO');
 					echo ('</table>');
 					break;
 				case 10:
@@ -124,7 +125,7 @@
 					echo ('<a href="eliminar.php?valores=10"><input type="submit" value="Eliminar" /></a><a href="ingreso.php?valores=10"><input type="submit" value="Nuevo" /></a>');
 					$sql1 = 'desc LOCAL';
 					$sql2 = 'SELECT * FROM LOCAL';
-					tablas($sql1,$sql2,$enlace);
+					tablas($sql1,$sql2,$enlace, 'LOCAL');
 					echo ('</table>');
 					break;
 				case 11:
@@ -133,7 +134,7 @@
 					echo ('<a href="eliminar.php?valores=11"><input type="submit" value="Eliminar" /></a><a href="ingreso.php?valores=11"><input type="submit" value="Nuevo" /></a>');
 					$sql1 = 'desc PAGO';
 					$sql2 = 'SELECT * FROM PAGO';
-					tablas($sql1,$sql2,$enlace);
+					tablas($sql1,$sql2,$enlace, 'PAGO');
 					echo ('</table>');
 					break;
 				case 12:
@@ -142,7 +143,7 @@
 					echo ('<a href="eliminar.php?valores=12"><input type="submit" value="Eliminar" /></a><a href="ingreso.php?valores=12"><input type="submit" value="Nuevo" /></a>');
 					$sql1 = 'desc PROFESION';
 					$sql2 = 'SELECT * FROM PROFESION';
-					tablas($sql1,$sql2,$enlace);
+					tablas($sql1,$sql2,$enlace, 'PROFESION');
 					echo ('</table>');
 					break;
 				case 13:
@@ -151,7 +152,7 @@
 					echo ('<a href="eliminar.php?valores=13"><input type="submit" value="Eliminar" /></a><a href="ingreso.php?valores=13"><input type="submit" value="Nuevo" /></a>');
 					$sql1 = 'desc REPRESENTANTE';
 					$sql2 = 'SELECT * FROM REPRESENTANTE';
-					tablas($sql1,$sql2,$enlace);
+					tablas($sql1,$sql2,$enlace, 'REPRESENTANTE');
 					echo ('</table>');
 					break;
 				case 14:
@@ -160,7 +161,7 @@
 					echo ('<a href="eliminar.php?valores=14"><input type="submit" value="Eliminar" /></a><a href="ingreso.php?valores=14"><input type="submit" value="Nuevo" /></a>');
 					$sql1 = 'desc REPRESENTANTE_PROFESIONAL';
 					$sql2 = 'SELECT * FROM REPRESENTANTE_PROFESIONAL';
-					tablas($sql1,$sql2,$enlace);
+					tablas($sql1,$sql2,$enlace, 'REPRESENTANTE_PROFESIONAL');
 					echo ('</table>');
 					break;
 				case 15:
@@ -169,7 +170,7 @@
 					echo ('<a href="eliminar.php?valores=15"><input type="submit" value="Eliminar" /></a><a href="ingreso.php?valores=15"><input type="submit" value="Nuevo" /></a>');
 					$sql1 = 'desc SECTOR';
 					$sql2 = 'SELECT * FROM SECTOR';
-					tablas($sql1,$sql2,$enlace);
+					tablas($sql1,$sql2,$enlace, 'SECTOR');
 					echo ('</table>');
 					break;
 				case 16:
@@ -178,7 +179,7 @@
 					echo ('<a href="eliminar.php?valores=16"><input type="submit" value="Eliminar" /></a><a href="ingreso.php?valores=16"><input type="submit" value="Nuevo" /></a>');
 					$sql1 = 'desc TIPO';
 					$sql2 = 'SELECT * FROM TIPO';
-					tablas($sql1,$sql2,$enlace);
+					tablas($sql1,$sql2,$enlace, 'TIPO');
 					echo ('</table>');
 					break;
 				default:
@@ -219,7 +220,7 @@
 		</td>');
 		}
 		
-	function tablas($sql1,$sql2,$enlace){
+	function tablas($sql1,$sql2,$enlace, $tabla){
 		$nom_col = mysql_query($sql1, $enlace);
 		$fields = mysql_query($sql2, $enlace);
 		echo ('<thead>');
@@ -241,7 +242,8 @@
 				echo utf8_encode($fila2[$fila['Field']]); 
 				echo ('</td>'); 
 			}
-			//echo('<td><div class="dos"><a href="#">Eliminar</a><a href="#">Modificar</a></div></td>');
+			
+			echo('<td><div class="dos"><a href="modificar.php?valores=$tabla."">Modificar</a></div></td>');
 			echo ('</tr>');
 		}
 		

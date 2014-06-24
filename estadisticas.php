@@ -32,8 +32,8 @@
 		<br>
 		
 		<?php
-		
-			$password = 'david';
+			include './constantes.php';
+			
 			
 			$num = array(2,3,4,5,6,7,8);
 			$valores = array (2,3,4,5,6,7,8);
