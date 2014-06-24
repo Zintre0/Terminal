@@ -17,87 +17,120 @@
 		<b style="color:#fff;">Tabla de Contenidos</b>
 		<br>&nbsp;
 		<br><div class="dos"><a href="index.php?menu=1">Inicio</a></div><br>
-		<?hiper_tablas();?>
-		<!--<br><div class="dos"><a href="index.php?menu=5">Actividad</a></div>
-		<div class="dos"><a href="index.php?menu=6">Actividad Casa</a></div>
-		<div class="dos"><a href="index.php?menu=2">Casa Veraneo</a></div>
-		<div class="dos"><a href="index.php?menu=3">Ciudad</a></div>
-		<div class="dos"><a href="index.php?menu=4">Ninio</a></div>-->
+		<?php
+			include 'funciones.php';
+			hiper_tablas();?>
 		</td>
 		<td>&nbsp;&nbsp;&nbsp;</td>
 		<td style="background-color:#fff;width:80%;" VALIGN=TOP>
 		<br>
 		
-		<?
-			$password = 'h3forever';
+		<?php
+			include 'constantes.php';
 			$valor = 0;
 			foreach ($_GET as $R => $V){
 					if ($R=="id_empresa"){
 						$valor=2;
 						break;
 					}
-					else if ($R=="nom_cas22"){
+					else if ($R=="cobro_servicio"){
 						$valor=3;
+						break;
+					}
+					else if ($R=="contacto"){
+						$valor=4;
 						break;
 					}
 					else if ($R=="idbus_elim"){
 						$valor=102;
 						break;
 					}
-					else if ($R=="nom_cas_elim"){
-						$valor=11;
+					else if ($R=="id_cobro_serv_elim"){
+						$valor=103;
 						break;
 					}
 			}
-			
-			if ($valor==2){
-				if (!$enlace = mysql_connect('localhost', 'root', $password)) {
+			if (!$enlace = mysql_connect('localhost', 'root', $password)) {
 						echo 'No pudo conectarse a mysql';
 						exit;
-					}
+				}
 
-					if (!mysql_select_db('TERMINAL_DE_BUSES', $enlace)) {
-						echo 'No pudo seleccionar la base de datos';
-						exit;
-					}
-					$sql1 = 'SELECT COUNT(*) FROM BUS';
-					$cantidad = mysql_query($sql1, $enlace);
-					if (!$cantidad) {
-						echo "Error de BD, no se pudo consultar la base de datos\n";
-						#echo "Error MySQL: ' . mysql_error();
-						exit;
-					}
-					$fila = mysql_fetch_assoc($cantidad);
-					$num = $fila['COUNT(*)'] + 1;
-					$id_empresa= "'".$_GET['id_empresa']."'";
-					$patente= "'".$_GET['patente']."'";
-					$capacidad= "'".$_GET['capacidad']."'";
-					
-					$ingreso = "INSERT INTO BUS values($num,$id_empresa,$patente,$capacidad)";
-					$ingresar = mysql_query($ingreso, $enlace);
-					if (!$ingresar) {
-						echo "Error de BD, no se pudo consultar la base de datos\n";
-						exit;
-					}
-					echo ('<h1>INGRESADO CORRECTAMENTE</h1>');
+			if (!mysql_select_db($base_de_datos, $enlace)) {
+				echo 'No pudo seleccionar la base de datos';
+				exit;
 			}
-			if ($valor==102){
-				if (!$enlace = mysql_connect('localhost', 'root', $password)) {
-					echo 'No pudo conectarse a mysql';
+			
+			if ($valor==2){
+				$sql1 = 'SELECT MAX(idBUS) FROM BUS';
+				$cantidad = mysql_query($sql1, $enlace);
+				if (!$cantidad) {
+					echo "Error de BD, no se pudo consultar la base de datos\n";
+					#echo "Error MySQL: ' . mysql_error();
 					exit;
 				}
-
-				if (!mysql_select_db('TERMINAL_DE_BUSES', $enlace)) {
-					echo 'No pudo seleccionar la base de datos';
-					exit;
-				}
-				$elim= "'".$_GET['idbus_elim']."'";
-				$ingreso = "DELETE FROM BUS WHERE idBUS=$elim";
+				$fila = mysql_fetch_assoc($cantidad);
+				$num = $fila['MAX(idBUS)'] + 1;
+				$id_empresa= "'".$_GET['id_empresa']."'";
+				$patente= "'".$_GET['patente']."'";
+				$capacidad= "'".$_GET['capacidad']."'";
+				
+				$ingreso = "INSERT INTO BUS values($num,$id_empresa,$patente,$capacidad)";
 				$ingresar = mysql_query($ingreso, $enlace);
 				if (!$ingresar) {
 					echo "Error de BD, no se pudo consultar la base de datos\n";
 					exit;
 				}
+				echo ('<a href="eliminar.php?valores=2"><input type="submit" value="Eliminar" /></a><a href="ingreso.php?valores=2"><input type="submit" value="Nuevo" /></a>');
+				echo ('<h1>INGRESADO CORRECTAMENTE</h1>');
+			}
+			
+			if ($valor==3){
+				$sql1 = 'SELECT MAX(idCOBRO_SERVICIO) FROM COBRO_SERVICIO';
+				$cantidad = mysql_query($sql1, $enlace);
+				if (!$cantidad) {
+					echo "Error de BD, no se pudo consultar la base de datos\n";
+					#echo "Error MySQL: ' . mysql_error();
+					exit;
+				}
+				$fila = mysql_fetch_assoc($cantidad);
+				$num = $fila['MAX(idCOBRO_SERVICIO)'] + 1;
+				$cobro_servicio= "'".$_GET['cobro_servicio']."'";
+				$fecha= "'".$_GET['fecha']."'";
+				$id_empresa= "'".$_GET['id_empresa']."'";
+				
+				$ingreso = "INSERT INTO COBRO_SERVICIO values($num,$cobro_servicio,$fecha,$id_empresa)";
+				$ingresar = mysql_query($ingreso, $enlace);
+				if (!$ingresar) {
+					echo "Error de BD, no se pudo consultar la base de datos\n";
+					exit;
+				}
+				echo ('<a href="eliminar.php?valores=3"><input type="submit" value="Eliminar" /></a><a href="ingreso.php?valores=3"><input type="submit" value="Nuevo" /></a>');
+				echo ('<h1>INGRESADO CORRECTAMENTE</h1>');
+			}
+			
+			if ($valor==102){
+				$elim= "'".$_GET['idbus_elim']."'";
+				$ingreso = "DELETE FROM BUS WHERE idBUS=$elim";
+				$ingresar = mysql_query($ingreso, $enlace);
+				if (!$ingresar) {
+					//echo "Error de BD, no se pudo consultar la base de datos\n";
+					echo 'Error MySQL: ' . mysql_error();
+					exit;
+				}
+				echo ('<a href="eliminar.php?valores=2"><input type="submit" value="Eliminar" /></a><a href="ingreso.php?valores=2"><input type="submit" value="Nuevo" /></a>');
+				echo ('<h1>ELIMINADO CORRECTAMENTE</h1>');
+			}
+			
+			if ($valor==103){
+				$elim= "'".$_GET['id_cobro_serv_elim']."'";
+				$ingreso = "DELETE FROM COBRO_SERVICIO WHERE idCOBRO_SERVICIO=$elim";
+				$ingresar = mysql_query($ingreso, $enlace);
+				if (!$ingresar) {
+					//echo "Error de BD, no se pudo consultar la base de datos\n";
+					echo 'Error MySQL: ' . mysql_error();
+					exit;
+				}
+				echo ('<a href="eliminar.php?valores=3"><input type="submit" value="Eliminar" /></a><a href="ingreso.php?valores=3"><input type="submit" value="Nuevo" /></a>');
 				echo ('<h1>ELIMINADO CORRECTAMENTE</h1>');
 			}
 		
@@ -118,32 +151,3 @@
 </div>
 </body>
 </html>
-
-
-<?
-	function hiper_tablas(){
-		if (!$enlace = mysql_connect('localhost', 'root', 'h3forever')) {
-			echo 'No pudo conectarse a mysql';
-			exit;
-		}
-
-		if (!mysql_select_db('TERMINAL_DE_BUSES', $enlace)) {
-			echo 'No pudo seleccionar la base de datos';
-			exit;
-		}
-		$show_tables = mysql_query('show tables', $enlace);
-		if (!$show_tables) {
-			echo "Error de BD, no se pudo consultar la base de datos\n";
-			#echo "Error MySQL: ' . mysql_error();
-			exit;
-		}
-		$i=1;
-		while ($fila = mysql_fetch_assoc($show_tables)) {
-			$i++;
-			echo ('<div class="dos"><a href=index.php?num='."$i".'>'); 
-			echo $fila['Tables_in_TERMINAL_DE_BUSES'];
-			echo ("</a></div>");
-			//echo $fila['cod_ong'] .'---';
-		}
-	}
-?>

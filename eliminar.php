@@ -17,19 +17,16 @@
 		<b style="color:#fff;">Tabla de Contenidos</b>
 		<br>&nbsp;
 		<br><div class="dos"><a href="index.php?menu=1">Inicio</a></div><br>
-		<?hiper_tablas();?>
-		<!--<br><div class="dos"><a href="index.php?menu=5">Actividad</a></div>
-		<div class="dos"><a href="index.php?menu=6">Actividad Casa</a></div>
-		<div class="dos"><a href="index.php?menu=2">Casa Veraneo</a></div>
-		<div class="dos"><a href="index.php?menu=3">Ciudad</a></div>
-		<div class="dos"><a href="index.php?menu=4">Ninio</a></div>-->
+		<?php
+			include 'funciones.php';
+			hiper_tablas();?>
 		</td>
 		<td>&nbsp;&nbsp;&nbsp;</td>
 		<td style="background-color:#fff;width:80%;" VALIGN=TOP>
 		<br>
 		
 		<?
-			$password = 'h3forever';
+			include 'constantes.php';
 			if (!$enlace = mysql_connect('localhost', 'root', $password)) {
 				echo 'No pudo conectarse a mysql';
 				exit;
@@ -51,7 +48,7 @@
 								exit;
 							}
 
-							if (!mysql_select_db('TERMINAL_DE_BUSES', $enlace)) {
+							if (!mysql_select_db($base_de_datos, $enlace)) {
 								echo 'No pudo seleccionar la base de datos';
 								exit;
 							}
@@ -72,6 +69,37 @@
 						</form>');
 					break;
 				case 3:
+					echo ('<form name="formulario" method="get" action="procesar.php">
+							<table summary="Submitted table designs" width="450" border="0" align="center" cellpadding="7" cellspacing="0" style="border:1px dashed #000000;">
+							<td>Seleccione el cobro que desea eliminar
+							<select name="id_cobro_serv_elim">
+							<optgroup label="___ID || MONTO || FECHA || EMPRESA">');
+							if (!$enlace = mysql_connect('localhost', 'root', $password)) {
+								echo 'No pudo conectarse a mysql';
+								exit;
+							}
+
+							if (!mysql_select_db($base_de_datos, $enlace)) {
+								echo 'No pudo seleccionar la base de datos';
+								exit;
+							}
+							
+							$sql1 = 'SELECT * FROM COBRO_SERVICIO';
+							$sucu = mysql_query($sql1, $enlace);
+							if (!$sucu) {
+								echo "Error de BD, no se pudo consultar la base de datos\n";
+								exit;
+							}
+							while ($fil = mysql_fetch_assoc($sucu)) {
+								$emm = utf8_encode($fil['idCOBRO_SERVICIO']);
+								$em2 = utf8_encode($fil['PAGO_SERVICIO']);
+								$em3 = utf8_encode($fil['FECHA_SERVICIO']);
+								$em4 = utf8_encode($fil['EMPRESA_idEMPRESA']);
+								echo ("<option value='$emm'>$emm || $em2 || $em3 || $em4</option>");
+							}
+							echo ('</optgroup>');
+							echo ('</select></td><td><input type="submit" value="send"></td></table>
+						</form>');
 					break;
 				case 4:
 					break;
@@ -129,31 +157,3 @@
 </div>
 </body>
 </html>
-
-<?
-	function hiper_tablas(){
-		if (!$enlace = mysql_connect('localhost', 'root', 'h3forever')) {
-			echo 'No pudo conectarse a mysql';
-			exit;
-		}
-
-		if (!mysql_select_db('TERMINAL_DE_BUSES', $enlace)) {
-			echo 'No pudo seleccionar la base de datos';
-			exit;
-		}
-		$show_tables = mysql_query('show tables', $enlace);
-		if (!$show_tables) {
-			echo "Error de BD, no se pudo consultar la base de datos\n";
-			#echo "Error MySQL: ' . mysql_error();
-			exit;
-		}
-		$i=1;
-		while ($fila = mysql_fetch_assoc($show_tables)) {
-			$i++;
-			echo ('<div class="dos"><a href=index.php?num='."$i".'>'); 
-			echo $fila['Tables_in_TERMINAL_DE_BUSES'];
-			echo ("</a></div>");
-			//echo $fila['cod_ong'] .'---';
-		}
-	}
-?>
