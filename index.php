@@ -20,7 +20,7 @@
 		<br><div class="dos"><a href="index.php?num=1">Inicio</a></div>
 		<br>
 		<?php
-			include 'funciones.php';
+			include './funciones.php';
 			hiper_tablas();?>
 		</td>
 		<td>&nbsp;&nbsp;&nbsp;</td>
@@ -28,7 +28,7 @@
 		<br>
 		
 		<?
-			include 'constantes.php';
+			include './constantes.php';
 
 			$valores = array (2,3,4,5,6,7,8,9,10,11,12,13,14,15,16);
 			$num = array(2,3,4,5,6,7,8,9,10,11,12,13,14,15,16);
@@ -229,8 +229,6 @@
 			echo $fila['Field'];
 			echo ('</th>');
 		}
-		//echo('<th>ACCION</th>');
-		//echo ('<th><a href="eliminar.php?mer=1"><input type="submit" value="Eliminar" /></a><a href="eliminar.php?mer=1"><input type="submit" value="Nuevo" /></a></th>');
 		echo ('</tr>');
 		echo('</thead>');
 		$fields = mysql_query($sql2, $enlace);

@@ -31,7 +31,7 @@
 		<br>
 		
 		<?php
-			$password = 'david';
+			include 'constantes.php';
 			
 			$num = array(2,3,4,5,6);
 			if (!$enlace = mysql_connect('localhost', 'root', $password)) {

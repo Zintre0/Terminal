@@ -1,7 +1,7 @@
 <?php
 
 	function hiper_tablas(){
-		include 'constantes.php';
+		include './constantes.php';
 		if (!$enlace = mysql_connect('localhost', 'root', $password)) {
 			echo 'No pudo conectarse a mysql';
 			exit;
