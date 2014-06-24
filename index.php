@@ -32,6 +32,7 @@
 
 			$valores = array (2,3,4,5,6,7,8,9,10,11,12,13,14,15,16);
 			$num = array(2,3,4,5,6,7,8,9,10,11,12,13,14,15,16);
+			$nombre_tabla = array ('BUS','COBRO_SERVICIO');
 			if (!$enlace = mysql_connect('localhost', 'root', $password)) {
 				echo 'No pudo conectarse a mysql';
 				exit;
@@ -52,7 +53,7 @@
 					echo ('<a href="eliminar.php?valores=2"><input type="submit" value="Eliminar" /></a><a href="ingreso.php?valores=2"><input type="submit" value="Nuevo" /></a>');
 					$sql1 = 'desc BUS';
 					$sql2 = 'SELECT * FROM BUS';
-					tablas($sql1,$sql2,$enlace);
+					tablas($sql1,$sql2,$enlace,'BUS');
 					echo ('</table>');
 					break;
 				case 3:
@@ -61,7 +62,7 @@
 					echo ('<a href="eliminar.php?valores=3"><input type="submit" value="Eliminar" /></a><a href="ingreso.php?valores=3"><input type="submit" value="Nuevo" /></a>');
 					$sql1 = 'desc COBRO_SERVICIO';
 					$sql2 = 'SELECT * FROM COBRO_SERVICIO';
-					tablas($sql1,$sql2,$enlace);
+					tablas($sql1,$sql2,$enlace,'COBRO_SERVICIO');
 					echo ('</table>');
 					break;
 				case 4:
@@ -219,7 +220,7 @@
 		</td>');
 		}
 		
-	function tablas($sql1,$sql2,$enlace){
+	function tablas($sql1,$sql2,$enlace,$nombre){
 		$nom_col = mysql_query($sql1, $enlace);
 		$fields = mysql_query($sql2, $enlace);
 		echo ('<thead>');
@@ -242,6 +243,7 @@
 				echo ('</td>'); 
 			}
 			//echo('<td><div class="dos"><a href="#">Eliminar</a><a href="#">Modificar</a></div></td>');
+			echo('<td><div class="dos"><a href="editar.php?nombre_tabla='."$nombre".'">Editar</a></div></td>');
 			echo ('</tr>');
 		}
 		
