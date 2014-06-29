@@ -20,6 +20,7 @@
 		<br>&nbsp;
 		<br><div class="dos"><a href="index.php?menu=1">Inicio</a></div><br>
 		<br><div class="dos"><a href="consultas.php?menu=2">Volver a Consultas</a></div><br>
+		
 		</td>
 		<td>&nbsp;&nbsp;&nbsp;</td>
 		<td style="background-color:#fff;width:80%;" VALIGN=TOP>
@@ -182,6 +183,35 @@
 				
 	</table>
 	
+	<?php
+		include './pruebaPDF1.php';
+	?>
+	
+	<?php
+		
+		function escribir($x){
+		echo $x;
+		echo '<script> alert("Se esta procesando su archivo"); </script>';
+		Generar();
+		}
+
+		//un poco de java script...
+		//function msg($x){
+			//echo '<script> alert("' . $x . '"); </script>';
+		//}
+	?>
+
+	<form method="post">
+	<input name="Button1" type="submit" value="Generar PDF"  />&nbsp;
+	
+	</form>
+
+<?php
+
+	if(isset($_POST["Button1"])){
+	     escribir($base_de_datos);
+	}
+?>
 
   <div style="background-color:black; height:auto;width:100%;clear:both;">
 	<table style="width:100%; color:#fff;">

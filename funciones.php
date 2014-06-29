@@ -51,5 +51,44 @@
 		<br>
 		</td>');
 	}
+	
+	function EscrituraConsulta (){
+		
+		echo ('<h1>Sección Consultas</h1>');
+		echo ('<p>Sección que permite poder obtener información sobre los datos almacenados en la base de datos, basta con hacer click en alguna de las 
+		opciones que aparecen en el sector derecho y aparecerá un muestreo general de datos, se puede aplicar filtros para obtener información deseada
+		por empresa</p>
+		<p>La información que se entrega hace referencia a Empresas Asociadas con sus representantes, los Ingresos y Egresos, Contratos, entre las principales</p>
+		<p>Se cuenta también con una sección de <a href="estadisticas.php?num=8">Consultas Estadísticas</a> bajo la cual se puede obtener información de interés para 
+		apoyarse en la toma de decisiones</p>
+		<p>Le recomendamos que ante cualquier consulta revise el Manual de Usuario y README</p>
+		<p>Para mayor información enviar mail a:</p>
+		<p>faramirez12@alumnos.utalca.cl</p>
+		<p>dmedina11@alumnos.utalca.cl</p>
+		<p>earancibia12@alumnos.utalca.cl</p>		
+		<br>
+		<br>
+		</td>');
+	}
+	
+	function EscrituraConsultaEstadisticas (){
+		
+		echo ('<h1>Sección Consultas Estadísticas</h1>');
+		echo ('<p>Sección que permite poder obtener información estadística sobre los datos almacenados en la base de datos, basta con hacer click en alguna de las 
+		opciones que aparecen en el sector derecho y aparecerá un muestreo general de datos, se puede aplicar filtros para obtener información deseada
+		por empresa</p>
+		<p>La información que se entrega hace referencia a los estados de los Locales (arrendados o no), los Buses por empresa, Contabilidad, es decir, ingresos y egresos,
+		Empresas Morosas, Historiales de comportamiento de Empresas, Uso de Andenes, etc.</p>
+		<p>Se cuenta también con una sección de <a href="consultas.php?num=13">Volver a Consultas</a> bajo la cual se puede acceder a la sección de Consultas</p>
+		<p>Le recomendamos que ante cualquier consulta revise el Manual de Usuario y README</p>
+		<p>Para mayor información enviar mail a:</p>
+		<p>faramirez12@alumnos.utalca.cl</p>
+		<p>dmedina11@alumnos.utalca.cl</p>
+		<p>earancibia12@alumnos.utalca.cl</p>		
+		<br>
+		<br>
+		</td>');
+	}
+
 
 ?>

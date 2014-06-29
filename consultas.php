@@ -34,6 +34,7 @@
 		<?php
 
 			include './constantes.php';
+			include './funciones.php';
 			
 			$num = array(2,3,4,5,6);
 			$valores = array (2,3,4,5,6);
@@ -50,7 +51,7 @@
 			
 			switch ($_GET["num"]) {
 				case 1:
-					inicio();
+					EscrituraConsulta();
 					break;
 				case 2:
 					echo('<table border="0" align="center" cellpadding="7" cellspacing="0" style="border:1px dashed #000000;">');
@@ -117,7 +118,7 @@
 
 				
 				default:
-					inicio();
+					EscrituraConsulta();
 					break;
 			}
 		
@@ -139,21 +140,7 @@
 </html>
 
 <?php
-	function inicio(){
-		echo ('<h1>Pagina web del terminal</h1>');
-		echo ('<p>Los formularios y botones son una herramienta estándar HTML que recolectan información. Estos pueden resultar útiles para reunir cualquier tipo de información que pueda ser almacenada en formato de texto.
-		En este tutorial exploraremos todas las herramientas disponibles para construir correctamente formularios y botones en HTML.</p>
-
-		<p>Un formulario puede insertarse en un documento HTML a través del elemento HTML "form" que actuará como contenedor para todos los elementos de entrada. Usualmente el script que procesa estos datos va especificado en el atributos "action". Lo que "action" haga con la información y cómo la maneje es un tema que no será tratado en este laboratorio ya que no pertenece al estándar HTML.</p>
-
-		<p>También se debe especificar cómo la información será enviada en el valor del atributo "method": "post" (los datos del formulario son adjuntados al cuerpo del mismo) ó "get" (los datos del formulario son adjuntados a la URL).</p>
-
-		<p>De este modo, un formulario simple puede tener la siguiente declaración:</p>
-		<br>
-		<br>
-		</td>');
-		}
-		
+	
 	function tablas($sql1, $sql2, $enlace, $tamano){
 		
 		$nom_col = $sql1;

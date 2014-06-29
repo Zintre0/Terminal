@@ -324,6 +324,8 @@
 					echo('<td><input type="submit" value="send"></td></tr></table></form>');
 					break;
 				case 'REPRESENTANTE'://13
+					echo ('* Si no aparecen empresas es por que todas ya tienen su respectivo representante');
+					echo ('<br>* Para ingresar uno nuevo debe ingresar una nueva empresa');
 					echo('<form name="formulario" method="get" action="ingresarEdicion.php">
 							<table summary="Submitted table designs" width="50" border="0" align="center" cellpadding="7" cellspacing="0" style="border:1px dashed #000000;">
 							<tr>');
@@ -331,7 +333,7 @@
 							<select name="id_empresa_representante">
 							<optgroup label="Seleccione un id empresa">');
 							
-							$sql1 = 'SELECT idEMPRESA,NOMBRE_EMPRESA FROM EMPRESA order by idEMPRESA';
+							$sql1 ='select * from EMPRESA where idEMPRESA not in (select EMPRESA_idEMPRESA from REPRESENTANTE)';
 							$sucu = mysql_query($sql1, $enlace);
 							if (!$sucu) {
 								echo "Error de BD, no se pudo consultar la base de datos\n";
