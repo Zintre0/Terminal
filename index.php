@@ -22,6 +22,7 @@
 		<?php
 			include './funciones.php';
 			hiper_tablas();?>
+		<br><div class="dos"><a href="consultas.php">Consultas</a></div>
 		</td>
 		<td>&nbsp;&nbsp;&nbsp;</td>
 		<td style="background-color:#fff;width:80%;" VALIGN=TOP>
@@ -71,7 +72,6 @@
 					$sql1 = 'desc CONTACTO';
 					$sql2 = 'SELECT * FROM CONTACTO';
 					tablas($sql1,$sql2,$enlace,'CONTACTO','idCONTACTO');
-					echo ('</table>');
 					break;
 				case 5:
 					echo('<table border="0" align="center" cellpadding="7" cellspacing="0" style="border:1px dashed #000000;">');

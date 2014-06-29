@@ -1,6 +1,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es" lang="es">
 <head>
 	
+	
+	
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link href="./css/mio.css" rel="stylesheet" type="text/css" />
 <title>Administracion Terminal</title>
@@ -66,6 +68,7 @@
 						echo 'No pudo seleccionar la base de datos';
 						exit;
 					}
+					
 					
 					$sql1 = array ('NOMBRE_EMPRESA', 'RUT_EMPRESA','NOMBRE_REPRESENTANTE', 'APELLIDOS_REPRESENTANTE', 'NUMERO_TELEFONO', 'MAIL');
 					$global = 'select EMPRESA.NOMBRE_EMPRESA, EMPRESA.RUT_EMPRESA, REPRESENTANTE.NOMBRE_REPRESENTANTE, REPRESENTANTE.APELLIDOS_REPRESENTANTE, CONTACTO.NUMERO_TELEFONO, CONTACTO.MAIL from EMPRESA INNER JOIN  REPRESENTANTE ON REPRESENTANTE.EMPRESA_idEMPRESA = EMPRESA.idEMPRESA INNER JOIN CONTACTO ON CONTACTO.REPRESENTANTE_idREPRESENTANTE = REPRESENTANTE.idREPRESENTANTE where EMPRESA.idEMPRESA = ';
@@ -198,6 +201,7 @@
 
 	function tablas($sql1, $sql2, $enlace, $tamano){
 		
+		echo('<table border="0" align="center" cellpadding="7" cellspacing="0" style="border:1px dashed #000000;">');
 		$nom_col = $sql1;
 		
 		echo ('<thead>');
