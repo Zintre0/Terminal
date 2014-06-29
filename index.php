@@ -32,7 +32,6 @@
 
 			$valores = array (2,3,4,5,6,7,8,9,10,11,12,13,14,15,16);
 			$num = array(2,3,4,5,6,7,8,9,10,11,12,13,14,15,16);
-			$nombre_tabla = array ('BUS','COBRO_SERVICIO');
 			if (!$enlace = mysql_connect('localhost', 'root', $password)) {
 				echo 'No pudo conectarse a mysql';
 				exit;
@@ -45,7 +44,7 @@
 			
 			switch ($_GET["num"]) {
 				case 1:
-					inicio();
+					EscrituraIndex();
 					break;
 				case 2:
 					echo('<table border="0" align="center" cellpadding="7" cellspacing="0" style="border:1px dashed #000000;">');
@@ -53,7 +52,7 @@
 					echo ('<a href="eliminar.php?valores=2"><input type="submit" value="Eliminar" /></a><a href="ingreso.php?valores=2"><input type="submit" value="Nuevo" /></a>');
 					$sql1 = 'desc BUS';
 					$sql2 = 'SELECT * FROM BUS';
-					tablas($sql1,$sql2,$enlace,'BUS');
+					tablas($sql1,$sql2,$enlace,'BUS','idBUS');
 					echo ('</table>');
 					break;
 				case 3:
@@ -62,7 +61,7 @@
 					echo ('<a href="eliminar.php?valores=3"><input type="submit" value="Eliminar" /></a><a href="ingreso.php?valores=3"><input type="submit" value="Nuevo" /></a>');
 					$sql1 = 'desc COBRO_SERVICIO';
 					$sql2 = 'SELECT * FROM COBRO_SERVICIO';
-					tablas($sql1,$sql2,$enlace,'COBRO_SERVICIO');
+					tablas($sql1,$sql2,$enlace,'COBRO_SERVICIO','idCOBRO_SERVICIO');
 					echo ('</table>');
 					break;
 				case 4:
@@ -71,7 +70,7 @@
 					echo ('<a href="eliminar.php?valores=4"><input type="submit" value="Eliminar" /></a><a href="ingreso.php?valores=4"><input type="submit" value="Nuevo" /></a>');
 					$sql1 = 'desc CONTACTO';
 					$sql2 = 'SELECT * FROM CONTACTO';
-					tablas($sql1,$sql2,$enlace);
+					tablas($sql1,$sql2,$enlace,'CONTACTO','idCONTACTO');
 					echo ('</table>');
 					break;
 				case 5:
@@ -80,7 +79,7 @@
 					echo ('<a href="eliminar.php?valores=5"><input type="submit" value="Eliminar" /></a><a href="ingreso.php?valores=5"><input type="submit" value="Nuevo" /></a>');
 					$sql1 = 'desc CONTRATO';
 					$sql2 = 'SELECT * FROM CONTRATO';
-					tablas($sql1,$sql2,$enlace);
+					tablas($sql1,$sql2,$enlace,'CONTRATO','idCONTRATO');
 					echo ('</table>');
 					break;
 				case 6:
@@ -89,16 +88,18 @@
 					echo ('<a href="eliminar.php?valores=6"><input type="submit" value="Eliminar" /></a><a href="ingreso.php?valores=6"><input type="submit" value="Nuevo" /></a>');
 					$sql1 = 'desc EMPRESA';
 					$sql2 = 'SELECT * FROM EMPRESA';
-					tablas($sql1,$sql2,$enlace);
+					tablas($sql1,$sql2,$enlace,'EMPRESA','idEMPRESA');
 					echo ('</table>');
 					break;
 				case 7:
 					echo('<table border="0" align="center" cellpadding="7" cellspacing="0" style="border:1px dashed #000000;">');
 					echo ('<caption align="center">FLUJO BUSES</caption>');
-					echo ('<a href="eliminar.php?valores=7"><input type="submit" value="Eliminar" /></a><a href="ingreso.php?valores=7"><input type="submit" value="Nuevo" /></a>');
+					//echo ('<a href="eliminar.php?valores=7"><input type="submit" value="Eliminar" /></a><a href="ingreso.php?valores=7"><input type="submit" value="Nuevo" /></a>');
+					//echo ('<a href="ingreso.php?valores=7"><input type="submit" value="Nuevo" /></a>');
+					echo ('<div class="btn_new"><a href="ingreso.php?valores=7"></a></div>');
 					$sql1 = 'desc FLUJO_BUSES';
 					$sql2 = 'SELECT * FROM FLUJO_BUSES';
-					tablas($sql1,$sql2,$enlace);
+					tablas($sql1,$sql2,$enlace,'FLUJO_BUSES','HORARIO_idHORARIO','BUS_idBUS');
 					echo ('</table>');
 					break;
 				case 8:
@@ -107,7 +108,7 @@
 					echo ('<a href="eliminar.php?valores=8"><input type="submit" value="Eliminar" /></a><a href="ingreso.php?valores=8"><input type="submit" value="Nuevo" /></a>');
 					$sql1 = 'desc GIRO';
 					$sql2 = 'SELECT * FROM GIRO';
-					tablas($sql1,$sql2,$enlace);
+					tablas($sql1,$sql2,$enlace,'GIRO','idGIRO');
 					echo ('</table>');
 					break;
 				case 9:
@@ -116,7 +117,7 @@
 					echo ('<a href="eliminar.php?valores=9"><input type="submit" value="Eliminar" /></a><a href="ingreso.php?valores=9"><input type="submit" value="Nuevo" /></a>');
 					$sql1 = 'desc HORARIO';
 					$sql2 = 'SELECT * FROM HORARIO';
-					tablas($sql1,$sql2,$enlace);
+					tablas($sql1,$sql2,$enlace,'HORARIO','idHORARIO');
 					echo ('</table>');
 					break;
 				case 10:
@@ -125,7 +126,7 @@
 					echo ('<a href="eliminar.php?valores=10"><input type="submit" value="Eliminar" /></a><a href="ingreso.php?valores=10"><input type="submit" value="Nuevo" /></a>');
 					$sql1 = 'desc LOCAL';
 					$sql2 = 'SELECT * FROM LOCAL';
-					tablas($sql1,$sql2,$enlace);
+					tablas($sql1,$sql2,$enlace,'LOCAL','idLOCAL');
 					echo ('</table>');
 					break;
 				case 11:
@@ -134,7 +135,7 @@
 					echo ('<a href="eliminar.php?valores=11"><input type="submit" value="Eliminar" /></a><a href="ingreso.php?valores=11"><input type="submit" value="Nuevo" /></a>');
 					$sql1 = 'desc PAGO';
 					$sql2 = 'SELECT * FROM PAGO';
-					tablas($sql1,$sql2,$enlace);
+					tablas($sql1,$sql2,$enlace,'PAGO','idPAGO');
 					echo ('</table>');
 					break;
 				case 12:
@@ -143,7 +144,7 @@
 					echo ('<a href="eliminar.php?valores=12"><input type="submit" value="Eliminar" /></a><a href="ingreso.php?valores=12"><input type="submit" value="Nuevo" /></a>');
 					$sql1 = 'desc PROFESION';
 					$sql2 = 'SELECT * FROM PROFESION';
-					tablas($sql1,$sql2,$enlace);
+					tablas($sql1,$sql2,$enlace,'PROFESION','idPROFESION');
 					echo ('</table>');
 					break;
 				case 13:
@@ -152,16 +153,18 @@
 					echo ('<a href="eliminar.php?valores=13"><input type="submit" value="Eliminar" /></a><a href="ingreso.php?valores=13"><input type="submit" value="Nuevo" /></a>');
 					$sql1 = 'desc REPRESENTANTE';
 					$sql2 = 'SELECT * FROM REPRESENTANTE';
-					tablas($sql1,$sql2,$enlace);
+					tablas($sql1,$sql2,$enlace,'REPRESENTANTE','idREPRESENTANTE');
 					echo ('</table>');
 					break;
 				case 14:
 					echo('<table border="0" align="center" cellpadding="7" cellspacing="0" style="border:1px dashed #000000;">');
 					echo ('<caption align="center">REPRESENTANTE_PROFESIONAL</caption>');
-					echo ('<a href="eliminar.php?valores=14"><input type="submit" value="Eliminar" /></a><a href="ingreso.php?valores=14"><input type="submit" value="Nuevo" /></a>');
+					//echo ('<a href="eliminar.php?valores=14"><input type="submit" value="Eliminar" /></a><a href="ingreso.php?valores=14"><input type="submit" value="Nuevo" /></a>');
+					//echo ('<a href="ingreso.php?valores=14"><input type="submit" value="Nuevo" /></a>');
+					echo ('<div class="btn_new"><a href="ingreso.php?valores=14"></a></div>');
 					$sql1 = 'desc REPRESENTANTE_PROFESIONAL';
 					$sql2 = 'SELECT * FROM REPRESENTANTE_PROFESIONAL';
-					tablas($sql1,$sql2,$enlace);
+					tablas($sql1,$sql2,$enlace,'REPRESENTANTE_PROFESIONAL','PROFESION_idPROFESION','REPRESENTANTE_idREPRESENTANTE');
 					echo ('</table>');
 					break;
 				case 15:
@@ -170,7 +173,7 @@
 					echo ('<a href="eliminar.php?valores=15"><input type="submit" value="Eliminar" /></a><a href="ingreso.php?valores=15"><input type="submit" value="Nuevo" /></a>');
 					$sql1 = 'desc SECTOR';
 					$sql2 = 'SELECT * FROM SECTOR';
-					tablas($sql1,$sql2,$enlace);
+					tablas($sql1,$sql2,$enlace,'SECTOR','idSECTOR');
 					echo ('</table>');
 					break;
 				case 16:
@@ -179,11 +182,11 @@
 					echo ('<a href="eliminar.php?valores=16"><input type="submit" value="Eliminar" /></a><a href="ingreso.php?valores=16"><input type="submit" value="Nuevo" /></a>');
 					$sql1 = 'desc TIPO';
 					$sql2 = 'SELECT * FROM TIPO';
-					tablas($sql1,$sql2,$enlace);
+					tablas($sql1,$sql2,$enlace,'TIPO','idTIPO');
 					echo ('</table>');
 					break;
 				default:
-					inicio();
+					EscrituraIndex();
 					break;
 			}
 		
@@ -205,22 +208,8 @@
 </html>
 
 <?php
-	function inicio(){
-		echo ('<h1>Pagina web del terminal</h1>');
-		echo ('<p>Los formularios y botones son una herramienta estándar HTML que recolectan información. Estos pueden resultar útiles para reunir cualquier tipo de información que pueda ser almacenada en formato de texto.
-		En este tutorial exploraremos todas las herramientas disponibles para construir correctamente formularios y botones en HTML.</p>
-
-		<p>Un formulario puede insertarse en un documento HTML a través del elemento HTML "form" que actuará como contenedor para todos los elementos de entrada. Usualmente el script que procesa estos datos va especificado en el atributos "action". Lo que "action" haga con la información y cómo la maneje es un tema que no será tratado en este laboratorio ya que no pertenece al estándar HTML.</p>
-
-		<p>También se debe especificar cómo la información será enviada en el valor del atributo "method": "post" (los datos del formulario son adjuntados al cuerpo del mismo) ó "get" (los datos del formulario son adjuntados a la URL).</p>
-
-		<p>De este modo, un formulario simple puede tener la siguiente declaración:</p>
-		<br>
-		<br>
-		</td>');
-		}
 		
-	function tablas($sql1,$sql2,$enlace,$nombre){
+	function tablas($sql1,$sql2,$enlace,$nombre,$su_id,$id_2){
 		$nom_col = mysql_query($sql1, $enlace);
 		$fields = mysql_query($sql2, $enlace);
 		echo ('<thead>');
@@ -233,18 +222,26 @@
 		echo ('</tr>');
 		echo('</thead>');
 		$fields = mysql_query($sql2, $enlace);
-		echo ('<tr>');
+		
+		echo ('<tbody><tr>');
 		while ($fila2 = mysql_fetch_assoc($fields)) {
 			$nom_col = mysql_query($sql1, $enlace);
 			while ($fila = mysql_fetch_assoc($nom_col)) {
 				echo ('<td>'); 
-				//echo $fila2[$fila['Field']];
+				$id = $fila2[$su_id];
+				$id2 = $fila2[$id_2];
+				$fecha_arrivo=$fila2['FECHA_ARRIVO'];
 				echo utf8_encode($fila2[$fila['Field']]); 
 				echo ('</td>'); 
 			}
-			//echo('<td><div class="dos"><a href="#">Eliminar</a><a href="#">Modificar</a></div></td>');
-			echo('<td><div class="dos"><a href="editar.php?nombre_tabla='."$nombre".'">Editar</a></div></td>');
-			echo ('</tr>');
+			if ($nombre != 'FLUJO_BUSES' and $nombre != 'REPRESENTANTE_PROFESIONAL')
+				echo('<td><div class="dos"><a href="editar.php?nombre_tabla='."$nombre".'&id='."$id".'">Editar</a></div></td>');
+			else if($nombre == 'REPRESENTANTE_PROFESIONAL')
+				echo('<td><div class="dos"><a href="eliminar.php?valores=14&id='."$id".'&id2='."$id2".'">Eliminar</a></div></td>');
+			else
+				echo('<td><div class="dos"><a href="editar.php?nombre_tabla='."$nombre".'&id='."$id".'&id2='."$id2".'">
+				Editar</a></div><div class="dos"><a href="eliminar.php?valores=7&id='."$id".'&id2='."$id2".'&fecha_arrivo='."$fecha_arrivo".'">Eliminar</a></div></td>');
+			echo ('</tr></tbody>');
 		}
 		
 	}

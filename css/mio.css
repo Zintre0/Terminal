@@ -32,7 +32,7 @@ thead th, tfoot th {
 	font-size: 20px;
 	font-weight: 900;
 	text-decoration: none;
-	color: #B40486;
+	color: #DA06C4;
 	border: 1px solid #B40486;	
 }
 .dos a:hover {
@@ -44,3 +44,24 @@ thead th, tfoot th {
 	color: #000000;
 	border: 1px solid #0101DF;
 	}
+
+.btn_new a {
+	clear: both;
+	display: block;
+	width: 109px;
+	height: 30px;
+	padding: 4px 0 0 0;
+	background:	url(../images/new_button.png);
+	
+	
+	color: #ccc;
+	font-weight: bold;
+	font-size: 11px;
+	text-align: center;
+	text-decoration: none;
+}
+
+.btn_new a:hover {
+	color: #fff;
+	background: url(../images/new_button2.png) no-repeat;
+}

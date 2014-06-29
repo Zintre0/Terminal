@@ -40,7 +40,7 @@
 				case 2:
 					echo ('<form name="formulario" method="get" action="procesar.php">
 							<table summary="Submitted table designs" width="450" border="0" align="center" cellpadding="7" cellspacing="0" style="border:1px dashed #000000;">
-							<td>Seleccione el bus que desea eliminar
+							<td style="color:#fff;">Seleccione el bus que desea eliminar
 							<select name="idbus_elim">
 							<optgroup label="Selecciona un id bus">');							
 							$sql1 = 'SELECT idBUS,PATENTE FROM BUS';
@@ -61,7 +61,7 @@
 				case 3:
 					echo ('<form name="formulario" method="get" action="procesar.php">
 							<table summary="Submitted table designs" width="450" border="0" align="center" cellpadding="7" cellspacing="0" style="border:1px dashed #000000;">
-							<td>Seleccione el cobro que desea eliminar
+							<td style="color:#fff;">Seleccione el cobro que desea eliminar
 							<select name="id_cobro_serv_elim">
 							<optgroup label="___ID || MONTO || FECHA || EMPRESA">');
 							
@@ -152,28 +152,19 @@
 							echo ('</select></td><td><input type="submit" value="send"></td></table>
 						</form>');
 					break;
-				case 7://ARREGLAR
+				case 7:
+					$id2 = $_GET['id2'];
+					$id = $_GET['id'];
 					echo ('<form name="formulario" method="get" action="procesar.php">
 							<table summary="Submitted table designs" width="450" border="0" align="center" cellpadding="7" cellspacing="0" style="border:1px dashed #000000;">');
-					echo ('<td style="color:#fff;">Seleccione el que quiera eliminar
-							<select name="id_flujo_elim">
-							<optgroup label="_IDHORARIO || IDBUS || FECHA_ARRIVO">');
-							$sql1 = 'SELECT * FROM FLUJO_BUSES';
-							$sucu = mysql_query($sql1, $enlace);
-							if (!$sucu) {
-								echo "Error de BD, no se pudo consultar la base de datos\n";
-								exit;
-							}
-							while ($fil = mysql_fetch_assoc($sucu)) {
-								$em1 = utf8_encode($fil['HORARIO_idHORARIO']);
-								$em2 = utf8_encode($fil['BUS_idBUS']);
-								$em3 = utf8_encode($fil['FECHA_ARRIVO']);
-								echo ("<option value='$em1'> $em1 || $em2 || $em3 </option>");
-							}
-							echo ('</optgroup>');
-							echo ('</select></td>');
-							echo('<td><input type="submit" value="send"></td></table>
-						</form>');
+					echo ('<td style="color:#fff;">Seguro que desea eliminar?</td>');
+					echo ('<tr><td style="color:#fff;">HORARIO_idHORARIO ='.$_GET['id'].'</td></tr>');
+					echo ('<tr><td style="color:#fff;">BUS_idBUS ='.$_GET['id2'].'</td></tr>');
+					echo ('<tr><td style="color:#fff;">FECHA_ARRIVO ='.$_GET['fecha_arrivo'].'</td></tr>');
+					echo ('<tr><td ><input type="hidden" name="ID" value='.$id.' /></td></tr>');
+					echo ('<td ><input type="hidden" name="ID2" value='.$id2.' /></td>');
+					echo ('<td ><input type="hidden" name="id_flujo_elim" value=7 /></td>');
+					echo('<td><input type="submit" value="send"></td></table></form>');
 					break;
 				case 8:
 					echo ('<form name="formulario" method="get" action="procesar.php">
@@ -249,7 +240,7 @@
 					
 					echo ('<form name="formulario" method="get" action="procesar.php">
 							<table summary="Submitted table designs" width=600 border="0" align="center" cellpadding="7" cellspacing="0" style="border:1px dashed #000000;">
-							<td style="color:#fff;">Seleccione el local que desea eliminar
+							<td style="color:#fff;">Seleccione el pago que desea eliminar
 							<select name="id_pago_elim">
 							<optgroup label="_idPAGO || MONTO_PAGO || FECHA_PAGO">');
 							
@@ -274,7 +265,7 @@
 				
 					echo ('<form name="formulario" method="get" action="procesar.php">
 							<table summary="Submitted table designs" width=600 border="0" align="center" cellpadding="7" cellspacing="0" style="border:1px dashed #000000;">
-							<td style="color:#fff;">Seleccione el local que desea eliminar
+							<td style="color:#fff;">Seleccione la profesion que desea eliminar
 							<select name="id_profesion_elim">
 							<optgroup label="_idPROFESION || NOMBRE_PROFESION">');
 							
@@ -298,9 +289,9 @@
 				
 					echo ('<form name="formulario" method="get" action="procesar.php">
 							<table summary="Submitted table designs" width=600 border="0" align="center" cellpadding="7" cellspacing="0" style="border:1px dashed #000000;">
-							<td style="color:#fff;">Seleccione el local que desea eliminar
+							<td style="color:#fff;">Seleccione el representante que desea eliminar
 							<select name="id_representante_elim">
-							<optgroup label="_idREPRESENTANTE || EMPRESA_idEMPRESA || NOMBRE_REPRESENTANTE || APELLIDOS_REPRESENTANTE || RUT_REPRESENTANTE">');
+							<optgroup label="_idREPRESENTANTE || idEMPRESA || NOMBRE_REPRESENTANTE || APELLIDOS_REPRESENTANTE || RUT_REPRESENTANTE">');
 							
 							$sql1 = 'SELECT * FROM REPRESENTANTE';
 							$sucu = mysql_query($sql1, $enlace);
@@ -322,10 +313,20 @@
 						</form>');
 					break;
 				case 14:
-					
-						echo ('<form name="formulario" method="get" action="procesar.php">
+					$id2 = $_GET['id2'];
+					$id = $_GET['id'];
+					echo ('<form name="formulario" method="get" action="procesar.php">
+							<table summary="Submitted table designs" width="450" border="0" align="center" cellpadding="7" cellspacing="0" style="border:1px dashed #000000;">');
+					echo ('<td style="color:#fff;">SEGURO QUE DESEA ELIMINAR?</td>');
+					echo ('<tr><td style="color:#fff;">PROFESION_idPROFESION ='.$_GET['id'].'</td></tr>');
+					echo ('<tr><td style="color:#fff;">REPRESENTANTE_idREPRESENTANTE ='.$_GET['id2'].'</td></tr>');
+					echo ('<tr><td ><input type="hidden" name="ID" value='.$id.' /></td></tr>');
+					echo ('<td ><input type="hidden" name="ID2" value='.$id2.' /></td>');
+					echo ('<td ><input type="hidden" name="id_REP_elim" value=7 /></td>');
+					echo('<td><input type="submit" value="send"></td></table></form>');
+						/*echo ('<form name="formulario" method="get" action="procesar.php">
 							<table summary="Submitted table designs" width=600 border="0" align="center" cellpadding="7" cellspacing="0" style="border:1px dashed #000000;">
-							<td style="color:#fff;">Seleccione el local que desea eliminar
+							<td style="color:#fff;">Seleccione el representante relacionado con su profesion
 							<select name="id_REP_elim">
 							<optgroup label="_PROFESION_idPROFESION || REPRESENTANTE_idREPRESENTANTE || NOMBRE_REPRESENTANTE || APELLIDOS_REPRESENTANTE || RUT_REPRESENTANTE">');
 							
@@ -346,7 +347,7 @@
 							}
 							echo ('</optgroup>');
 							echo ('</select></td><td><input type="submit" value="send"></td></table>
-						</form>');
+						</form>');*/
 					
 					break;
 					

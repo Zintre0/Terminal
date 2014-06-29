@@ -36,9 +36,13 @@
 				echo 'No pudo seleccionar la base de datos';
 				exit;
 			}
-			switch ($_GET["valores"]) {
-				case 2:
-					echo('<form name="formulario" method="get" action="procesar.php">
+			
+			//echo ($_GET['nombre_tabla'].' ID= '.$_GET['id']);
+			$nombre = $_GET['nombre_tabla'];
+			$id = $_GET['id'];
+			switch ($nombre) {
+				case 'BUS'://2
+					echo('<form name="formulario" method="get" action="ingresarEdicion.php">
 							<table summary="Submitted table designs" width="50" border="0" align="center" cellpadding="7" cellspacing="0" style="border:1px dashed #000000;">
 							<tr>
 							<td style="color:#fff;">Selecciona a la empresa que pertenece
@@ -60,16 +64,18 @@
 							}
 							echo ('</optgroup>');
 							echo ('</select></td>');
-							echo ('<td style="color:#fff;">Ingresa la patente: <input name="patente" type="text" id="consulta" required/></td>
-							<td style="color:#fff;">Ingresa la capacidad del bus: <input name="capacidad" type="text" id="consulta" required/></td>');
+							echo ('<td style="color:#fff;">Ingresa la nueva patente: <input name="patente" type="text" id="consulta" required/></td>
+							<td style="color:#fff;">Ingresa la nueva capacidad del bus: <input name="capacidad" type="text" id="consulta" required/></td>');
+							echo ('<td ><input type="hidden" name="ID" value='.$id.' /></td>');
+							echo ('<td ><input type="hidden" name="nombre_tabla" value='.$nombre.' /></td>');
 							echo('<td><input type="submit" value="send"></td></tr></table></form>');
 					break;
-				case 3:
-					echo('<form name="formulario" method="get" action="procesar.php">
+				case 'COBRO_SERVICIO': //3
+					echo('<form name="formulario" method="get" action="ingresarEdicion.php">
 							<table summary="Submitted table designs" width="50" border="0" align="center" cellpadding="7" cellspacing="0" style="border:1px dashed #000000;">
 							<tr>');
-					echo ('<td style="color:#fff;">Ingresa el monto del cobro: <input name="cobro_servicio" type="text" id="consulta" required/></td>
-							<td style="color:#fff;">Ingresa la fecha del cobro: <input name="fecha" type="text" id="consulta" required/></td>');
+					echo ('<td style="color:#fff;">Ingrese un nuevo monto de cobro: <input name="cobro_servicio" type="text" id="consulta" required/></td>
+							<td style="color:#fff;">Ingrese una nueva fecha de cobro: <input name="fecha" type="text" id="consulta" required/></td>');
 					echo('<td style="color:#fff;">Selecciona a la empresa que pertenece
 							<select name="id_empresa">
 							<optgroup label="Seleccione un id empresa">');
@@ -89,15 +95,17 @@
 							}
 							echo ('</optgroup>');
 							echo ('</select></td>');
+							echo ('<td ><input type="hidden" name="ID" value='.$id.' /></td>');
+							echo ('<td ><input type="hidden" name="nombre_tabla" value='.$nombre.' /></td>');
 							echo('<td><input type="submit" value="send"></td></tr>
 								</table>
 								</form>');
 					break;
-				case 4:
-					echo('<form name="formulario" method="get" action="procesar.php">
+				case 'CONTACTO'://4
+					echo('<form name="formulario" method="get" action="ingresarEdicion.php">
 							<table summary="Submitted table designs" width="50" border="0" align="center" cellpadding="7" cellspacing="0" style="border:1px dashed #000000;">
 							<tr>');
-					echo('<td style="color:#fff;">Selecciona al representante con este contacto
+					echo('<td style="color:#fff;">Selecciona al nuevo representante con este contacto
 							<select name="contacto">
 							<optgroup label="Seleccione un id representante">');
 							
@@ -117,17 +125,18 @@
 							}
 							echo ('</optgroup>');
 							echo ('</select></td>');
-							echo ('<td style="color:#fff;">Ingresa el telefono: <input name="telefono" type="text" id="consulta" required/></td>
-							<td style="color:#fff;">Ingresa el e-mail: <input name="e_mail" type="text" id="consulta" required/></td>');
-							echo('<td><input type="submit" value="send"></td></tr>
-								</table>
-								</form>');
+							echo ('<td style="color:#fff;">Ingresa el nuevo telefono: <input name="telefono" type="text" id="consulta" required/></td>
+							<td style="color:#fff;">Ingresa el nuevo e-mail: <input name="e_mail" type="text" id="consulta" required/></td>');
+							echo ('<td ><input type="hidden" name="ID" value='.$id.' /></td>');
+							echo ('<td ><input type="hidden" name="nombre_tabla" value='.$nombre.' /></td>');
+							echo('<td><input type="submit" value="send"></td></tr></table></form>');
 					break;
-				case 5:
-					echo('<form name="formulario" method="get" action="procesar.php">
+					
+				case 'CONTRATO'://5
+					echo('<form name="formulario" method="get" action="ingresarEdicion.php">
 							<table summary="Submitted table designs" width="50" border="0" align="center" cellpadding="7" cellspacing="0" style="border:1px dashed #000000;">
 							<tr>');
-					echo('<td style="color:#fff;">Selecciona al representante asociado al contrato
+					echo('<td style="color:#fff;">Selecciona al nuevo representante asociado al contrato
 							<select name="contrato">
 							<optgroup label="Seleccione un id representante">');
 							
@@ -147,10 +156,9 @@
 							}
 							echo ('</optgroup>');
 							echo ('</select></td>');
-							echo ('<td style="color:#fff;">Ingresa la fecha de inicio: <input name="fecha_ini" type="text" id="consulta" required/></td>
-							<td style="color:#fff;">Ingresa la fecha de termino: <input name="fecha_ter" type="text" id="consulta" required/></td>');
-							//<td>Ingrese el dia de pago: <input name="fecha_pago" type="text" id="consulta" required/></td>
-							echo('<td style="color:#fff;">Selecciona un dia de pago
+							echo ('<td style="color:#fff;">Ingresa la nueva fecha de inicio: <input name="fecha_ini" type="text" id="consulta" required/></td>
+							<td style="color:#fff;">Ingresa la nueva fecha de termino: <input name="fecha_ter" type="text" id="consulta" required/></td>');
+							echo('<td style="color:#fff;">Selecciona un el nuevo dia de pago
 							<select name="fecha_pago">
 							<optgroup label="Seleccione un dia">');
 							$i=1;
@@ -160,17 +168,19 @@
 							}
 							echo ('</optgroup>');
 							echo ('</select></td>');
-							
-							echo('<td style="color:#fff;">Ingresa el monto del contrato: <input name="monto" type="text" id="consulta" required/></td>');
+							echo('<td style="color:#fff;">Ingresa el nuevo monto del contrato: <input name="monto" type="text" id="consulta" required/></td>');
+							echo ('<td ><input type="hidden" name="ID" value='.$id.' /></td>');
+							echo ('<td ><input type="hidden" name="nombre_tabla" value='.$nombre.' /></td>');
 							echo('<td><input type="submit" value="send"></td></tr>
 								</table>
 								</form>');
 					break;
-				case 6:
-					echo('<form name="formulario" method="get" action="procesar.php">
+					
+				case 'EMPRESA'://6
+					echo('<form name="formulario" method="get" action="ingresarEdicion.php">
 							<table summary="Submitted table designs" width="50" border="0" align="center" cellpadding="7" cellspacing="0" style="border:1px dashed #000000;">
 							<tr>');
-					echo('<td style="color:#fff;">Selecciona un giro para la empresa
+					echo('<td style="color:#fff;">Selecciona el nuevo giro de la empresa
 							<select name="id_giro_empresa">
 							<optgroup label="Selecciona un giro">');
 							
@@ -187,70 +197,42 @@
 							}
 							echo ('</optgroup>');
 							echo ('</select></td>');
-							echo ('<td style="color:#fff;">Ingrese el nombre de la empresa: <input name="nom_empre" type="text" id="consulta" required/></td>
-							<td style="color:#fff;">Ingrese rut de la empresa: <input name="rut_emp" type="text" id="consulta" required/></td>');
+							echo ('<td style="color:#fff;">Ingrese el nuevo nombre de la empresa: <input name="nom_empre" type="text" id="consulta" required/></td>
+							<td style="color:#fff;">Ingresa el nuevo rut de la empresa: <input name="rut_emp" type="text" id="consulta" required/></td>');
+							echo ('<td ><input type="hidden" name="ID" value='.$id.' /></td>');
+							echo ('<td ><input type="hidden" name="nombre_tabla" value='.$nombre.' /></td>');
 							echo('<td><input type="submit" value="send"></td></tr>
 								</table>
 								</form>');
 					break;
-				case 7:
-					echo('<form name="formulario" method="get" action="procesar.php">
+				case 'FLUJO_BUSES'://7
+					$id2 = $_GET['id2'];
+					echo('<form name="formulario" method="get" action="ingresarEdicion.php">
 							<table summary="Submitted table designs" width="50" border="0" align="center" cellpadding="7" cellspacing="0" style="border:1px dashed #000000;">
 							<tr>');
-					echo('<td style="color:#fff;">Selecciona un horario de llegada
-							<select name="id_horario_buses">
-							<optgroup label="__ID --> ENTRADA || SALIDA">');
-							
-							$sql1 = 'SELECT * FROM HORARIO order by idHORARIO';
-							$sucu = mysql_query($sql1, $enlace);
-							if (!$sucu) {
-								echo "Error de BD, no se pudo consultar la base de datos\n";
-								exit;
-							}
-							while ($fil = mysql_fetch_assoc($sucu)) {
-								$em1 = utf8_encode($fil['idHORARIO']);
-								$em2 = utf8_encode($fil['ENTRADA']);
-								$em3 = utf8_encode($fil['SALIDA']);
-								echo ("<option value='$em1'> $em1 --> $em2 || $em3</option>");
-							}
-							echo ('</optgroup>');
-							echo ('</select></td>');
-					echo('<td style="color:#fff;">Selecciona un bus
-							<select name="id_bus">
-							<optgroup label="__ID --> PATENTE">');
-							
-							$sql1 = 'SELECT * FROM BUS order by idBUS';
-							$sucu = mysql_query($sql1, $enlace);
-							if (!$sucu) {
-								echo "Error de BD, no se pudo consultar la base de datos\n";
-								exit;
-							}
-							while ($fil = mysql_fetch_assoc($sucu)) {
-								$em1 = utf8_encode($fil['idBUS']);
-								$em2 = utf8_encode($fil['PATENTE']);
-								echo ("<option value='$em1'> $em1 --> $em2 </option>");
-							}
-							echo ('</optgroup>');
-							echo ('</select></td>');
-							echo ('<td style="color:#fff;">Ingrese el fecha arrivo(AAAA-MM-DD): <input name="fecha_arrivo" type="text" id="consulta" required/></td>');
+							echo ('<td style="color:#fff;">Ingrese la nueva fecha arrivo(AAAA-MM-DD): <input name="fecha_arrivo" type="text" id="consulta" required/></td>');
+							echo ('<td ><input type="hidden" name="ID" value='.$id.' /></td>');
+							echo ('<td ><input type="hidden" name="ID2" value='.$id2.' /></td>');
+							echo ('<td ><input type="hidden" name="nombre_tabla" value='.$nombre.' /></td>');
 							echo('<td><input type="submit" value="send"></td></tr>
 								</table>
 								</form>');
 					break;
-				case 8:
-					echo('<form name="formulario" method="get" action="procesar.php">
+				case 'GIRO'://8
+					echo('<form name="formulario" method="get" action="ingresarEdicion.php">
 							<table summary="Submitted table designs" width="50" border="0" align="center" cellpadding="7" cellspacing="0" style="border:1px dashed #000000;">
 							<tr>');
-							echo ('<td style="color:#fff;">Ingresa un nombre de giro: <input name="nom_giro" type="text" id="consulta" required/></td>');
-							echo('<td><input type="submit" value="send"></td></tr>
-								</table>
-								</form>');
+					echo ('<td style="color:#fff;">Ingresa el nuevo nombre del giro: <input name="nom_giro" type="text" id="consulta" required/></td>');
+					echo ('<td ><input type="hidden" name="ID" value='.$id.' /></td>');
+					echo ('<td ><input type="hidden" name="nombre_tabla" value='.$nombre.' /></td>');
+					echo('<td><input type="submit" value="send"></td></tr></table></form>');
 					break;
-				case 9:
-					echo('<form name="formulario" method="get" action="procesar.php">
+				
+				case 'HORARIO'://9
+					echo('<form name="formulario" method="get" action="ingresarEdicion.php">
 							<table summary="Submitted table designs" width="50" border="0" align="center" cellpadding="7" cellspacing="0" style="border:1px dashed #000000;">
 							<tr>');
-					echo('<td style="color:#fff;">Selecciona el local que se relaciona con horario
+					echo('<td style="color:#fff;">Selecciona el nuevo local que se relaciona con horario
 							<select name="id_local_horario">
 							<optgroup label="Selecciona un local">');
 							
@@ -268,12 +250,14 @@
 							echo ('</select></td>');
 							echo ('<td style="color:#fff;">Ingrese la hora de llegada(HH:MM:SS): <input name="hora_llega" type="text" id="consulta" required/></td>');
 							echo ('<td style="color:#fff;">Ingrese la hora de salida(HH:MM:SS): <input name="hora_salida" type="text" id="consulta" required/></td>');
+							echo ('<td ><input type="hidden" name="ID" value='.$id.' /></td>');
+							echo ('<td ><input type="hidden" name="nombre_tabla" value='.$nombre.' /></td>');
 							echo('<td><input type="submit" value="send"></td></tr>
 								</table>
 								</form>');
 					break;
-				case 10:
-					echo('<form name="formulario" method="get" action="procesar.php">
+				case 'LOCAL'://10
+					echo('<form name="formulario" method="get" action="ingresarEdicion.php">
 							<table summary="Submitted table designs" width="50" border="0" align="center" cellpadding="7" cellspacing="0" style="border:1px dashed #000000;">
 							<tr>');
 					echo('<td style="color:#fff;">Selecciona si el local tiene contrato
@@ -293,51 +277,18 @@
 							echo ("<option value='NULL'>-->NULL<--</option>");
 							echo ('</optgroup>');
 							echo ('</select></td>');
-					echo('<td style="color:#fff;">Selecciona el tipo de local
-							<select name="tipo_local">
-							<optgroup label="Selecciona un tipo">');
-							
-							$sql1 = 'SELECT * FROM TIPO order by idTIPO';
-							$sucu = mysql_query($sql1, $enlace);
-							if (!$sucu) {
-								echo "Error de BD, no se pudo consultar la base de datos\n";
-								exit;
-							}
-							while ($fil = mysql_fetch_assoc($sucu)) {
-								$em1 = utf8_encode($fil['idTIPO']);
-								$em2 = utf8_encode($fil['TIPO_LOCAL']);
-								echo ("<option value='$em1'> $em1 --> $em2</option>");
-							}
-							echo ('</optgroup>');
-							echo ('</select></td>');
-							
-					echo('<td style="color:#fff;">Selecciona un sector
-							<select name="sector_local">
-							<optgroup label="Selecciona un sector">');
-							
-							$sql1 = 'SELECT * FROM SECTOR order by idSECTOR';
-							$sucu = mysql_query($sql1, $enlace);
-							if (!$sucu) {
-								echo "Error de BD, no se pudo consultar la base de datos\n";
-								exit;
-							}
-							while ($fil = mysql_fetch_assoc($sucu)) {
-								$em1 = utf8_encode($fil['idSECTOR']);
-								$em2 = utf8_encode($fil['NOMBRE_SECTOR']);
-								echo ("<option value='$em1'> $em1 --> $em2</option>");
-							}
-							echo ('</optgroup>');
-							echo ('</select></td>');
+							echo ('<td ><input type="hidden" name="ID" value='.$id.' /></td>');
+							echo ('<td ><input type="hidden" name="nombre_tabla" value='.$nombre.' /></td>');
 							echo('<td><input type="submit" value="send"></td></tr>
 								</table>
 								</form>');
 					break;
-				case 11:
-					echo('<form name="formulario" method="get" action="procesar.php">
+				case 'PAGO'://11
+					echo('<form name="formulario" method="get" action="ingresarEdicion.php">
 							<table summary="Submitted table designs" width="50" border="0" align="center" cellpadding="7" cellspacing="0" style="border:1px dashed #000000;">
 							<tr>');
-					echo ('<td style="color:#fff;">Ingresa el monto del pago: <input name="monto_pago" type="text" id="consulta" required/></td>
-							<td style="color:#fff;">Ingresa la fecha del pago: <input name="fecha_pago" type="text" id="consulta" required/></td>');
+					echo ('<td style="color:#fff;">Ingresa el nuevo monto del pago: <input name="monto_pago" type="text" id="consulta" required/></td>
+							<td style="color:#fff;">Ingresa la nueva fecha del pago: <input name="fecha_pago" type="text" id="consulta" required/></td>');
 					echo('<td style="color:#fff;">Selecciona a la empresa que pertenece
 							<select name="id_empresa">
 							<optgroup label="Seleccione un id empresa">');
@@ -357,24 +308,26 @@
 							}
 							echo ('</optgroup>');
 							echo ('</select></td>');
+							echo ('<td ><input type="hidden" name="ID" value='.$id.' /></td>');
+							echo ('<td ><input type="hidden" name="nombre_tabla" value='.$nombre.' /></td>');
 							echo('<td><input type="submit" value="send"></td></tr>
 								</table>
 								</form>');
 					break;
-				case 12:
-					echo('<form name="formulario" method="get" action="procesar.php">
+				case 'PROFESION'://12
+					echo('<form name="formulario" method="get" action="ingresarEdicion.php">
 							<table summary="Submitted table designs" width="50" border="0" align="center" cellpadding="7" cellspacing="0" style="border:1px dashed #000000;">
 							<tr>');
-					echo ('<td style="color:#fff;">Ingresa el nombre de la profesion: <input name="nom_profesion" type="text" id="consulta" required/></td>');
-							echo('<td><input type="submit" value="send"></td></tr>
-								</table>
-								</form>');
+					echo ('<td style="color:#fff;">Ingresa el nuevo nombre de la profesion: <input name="nom_profesion" type="text" id="consulta" required/></td>');
+					echo ('<td ><input type="hidden" name="ID" value='.$id.' /></td>');
+					echo ('<td ><input type="hidden" name="nombre_tabla" value='.$nombre.' /></td>');
+					echo('<td><input type="submit" value="send"></td></tr></table></form>');
 					break;
-				case 13:
-					echo('<form name="formulario" method="get" action="procesar.php">
+				case 'REPRESENTANTE'://13
+					echo('<form name="formulario" method="get" action="ingresarEdicion.php">
 							<table summary="Submitted table designs" width="50" border="0" align="center" cellpadding="7" cellspacing="0" style="border:1px dashed #000000;">
 							<tr>');
-					echo('<td style="color:#fff;">Selecciona a la empresa que pertenece
+					echo('<td style="color:#fff;">Selecciona a la nueva empresa que pertenece
 							<select name="id_empresa_representante">
 							<optgroup label="Seleccione un id empresa">');
 							
@@ -396,79 +349,33 @@
 							echo ('<td style="color:#fff;">Ingresa el nombre: <input name="nombre" type="text" id="consulta" required/></td>
 							<td style="color:#fff;">Ingresa los apellidos: <input name="apellidos" type="text" id="consulta" required/></td>
 							<td style="color:#fff;">Ingresa lel rut: <input name="rut_repre" type="text" id="consulta" required/></td>');
+							echo ('<td ><input type="hidden" name="ID" value='.$id.' /></td>');
+							echo ('<td ><input type="hidden" name="nombre_tabla" value='.$nombre.' /></td>');
 							echo('<td><input type="submit" value="send"></td></tr>
 								</table>
 								</form>');
 					break;
-				case 14:
-					echo('<form name="formulario" method="get" action="procesar.php">
+				case 'SECTOR'://15
+					echo('<form name="formulario" method="get" action="ingresarEdicion.php">
 							<table summary="Submitted table designs" width="50" border="0" align="center" cellpadding="7" cellspacing="0" style="border:1px dashed #000000;">
 							<tr>');
-						echo('<td style="color:#fff;">Selecciona profesion
-							<select name="id_profesion">
-							<optgroup label="Seleccione un id de profesion">');
-							
-							$sql1 = 'SELECT * FROM PROFESION order by idPROFESION';
-							$sucu = mysql_query($sql1, $enlace);
-							if (!$sucu) {
-								echo "Error de BD, no se pudo consultar la base de datos\n";
-								#echo "Error MySQL: ' . mysql_error();
-								exit;
-							}
-							//$fila = mysql_fetch_assoc($sucu);
-							while ($fil = mysql_fetch_assoc($sucu)) {
-								$emm = utf8_encode($fil['idPROFESION']);
-								$em2 = utf8_encode($fil['NOMBRE_PROFESION']);
-								echo ("<option value='$emm'>$emm ---> $em2</option>");
-							}
-							echo ('</optgroup>');
-							echo ('</select></td>');
-					echo('<td style="color:#fff;">Selecciona representante
-							<select name="id_representante_profesional">
-							<optgroup label="Seleccione un id de representante">');
-							
-							$sql1 = 'SELECT idREPRESENTANTE,NOMBRE_REPRESENTANTE,APELLIDOS_REPRESENTANTE FROM REPRESENTANTE order by idREPRESENTANTE';
-							$sucu = mysql_query($sql1, $enlace);
-							if (!$sucu) {
-								echo "Error de BD, no se pudo consultar la base de datos\n";
-								#echo "Error MySQL: ' . mysql_error();
-								exit;
-							}
-							//$fila = mysql_fetch_assoc($sucu);
-							while ($fil = mysql_fetch_assoc($sucu)) {
-								$emm = utf8_encode($fil['idREPRESENTANTE']);
-								$em2 = utf8_encode($fil['NOMBRE_REPRESENTANTE']);
-								$em3 = utf8_encode($fil['APELLIDOS_REPRESENTANTE']);
-								echo ("<option value='$emm'>$emm ---> $em2 $em3 </option>");
-							}
-							echo ('</optgroup>');
-							echo ('</select></td>');
-							echo('<td><input type="submit" value="send"></td></tr>
-								</table>
-								</form>');
-					break;
-				case 15:
-					echo('<form name="formulario" method="get" action="procesar.php">
+					echo ('<td style="color:#fff;">Ingresa el nuevo nombre del sector: <input name="nom_sector" type="text" id="consulta" required/></td>');
+					echo ('<td ><input type="hidden" name="ID" value='.$id.' /></td>');
+					echo ('<td ><input type="hidden" name="nombre_tabla" value='.$nombre.' /></td>');
+					echo('<td><input type="submit" value="send"></td></tr></table></form>');
+					break;	
+				case 'TIPO'://16
+					echo('<form name="formulario" method="get" action="ingresarEdicion.php">
 							<table summary="Submitted table designs" width="50" border="0" align="center" cellpadding="7" cellspacing="0" style="border:1px dashed #000000;">
 							<tr>');
-					echo ('<td style="color:#fff;">Ingresa el nombre del sector: <input name="nom_sector" type="text" id="consulta" required/></td>');
-							echo('<td><input type="submit" value="send"></td></tr>
-								</table>
-								</form>');
-					break;
-				case 16:
-					echo('<form name="formulario" method="get" action="procesar.php">
-							<table summary="Submitted table designs" width="50" border="0" align="center" cellpadding="7" cellspacing="0" style="border:1px dashed #000000;">
-							<tr>');
-					echo ('<td style="color:#fff;">Ingresa el nombre del tipo: <input name="nom_tipo" type="text" id="consulta" required/></td>');
-							echo('<td><input type="submit" value="send"></td></tr>
-								</table>
-								</form>');
+					echo ('<td style="color:#fff;">Ingresa el nuevo nombre del '.$nombre.': <input name="nom_tipo" type="text" id="consulta" required/></td>');
+					echo ('<td ><input type="hidden" name="ID" value='.$id.' /></td>');
+					echo ('<td ><input type="hidden" name="nombre_tabla" value='.$nombre.' /></td>');
+					echo('<td><input type="submit" value="send"></td></tr></table></form>');
 					break;
 				default:
 					break;
-			}
-		
+			}	
 		?>
 				
 	</table>
