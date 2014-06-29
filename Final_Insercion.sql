@@ -206,7 +206,7 @@ CREATE TABLE `GIRO` (
 
 LOCK TABLES `GIRO` WRITE;
 /*!40000 ALTER TABLE `GIRO` DISABLE KEYS */;
-INSERT INTO `GIRO` VALUES (1,'Seguridad'),(2,'Aseo'),(3,'Transporte'),(4,'Ventas Varias'),(5,'Restaurant'),(6,'Hotel');
+INSERT INTO `GIRO` VALUES (1,'Seguridad'),(2,'Aseo'),(3,'Transporte'),(4,'Ventas Varias'),(5,'Restaurant');
 /*!40000 ALTER TABLE `GIRO` ENABLE KEYS */;
 UNLOCK TABLES;
 
