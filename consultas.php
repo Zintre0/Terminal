@@ -36,6 +36,12 @@
 			include './constantes.php';
 			include './funciones.php';
 			
+			$sql1 = array();//contendra los atributos...
+			$sql2 = '';//la consulta...
+			$columnas = 0;//las columnas a mostrar...
+			$valor=0;
+			$fields= '';
+			
 			$num = array(2,3,4,5,6);
 			$valores = array (2,3,4,5,6);
 
@@ -59,7 +65,8 @@
 					echo ('<a href="filtros.php?valores=2"><input type="submit" value="Filtrar por Empresa" /></a>');
 					$sql1 = array ('NOMBRE_EMPRESA', 'RUT_EMPRESA','NOMBRE_REPRESENTANTE', 'APELLIDOS_REPRESENTANTE', 'NUMERO_TELEFONO', 'MAIL');
 					$sql2 = 'select EMPRESA.NOMBRE_EMPRESA, EMPRESA.RUT_EMPRESA, REPRESENTANTE.NOMBRE_REPRESENTANTE, REPRESENTANTE.APELLIDOS_REPRESENTANTE, CONTACTO.NUMERO_TELEFONO, CONTACTO.MAIL from EMPRESA INNER JOIN  REPRESENTANTE ON REPRESENTANTE.EMPRESA_idEMPRESA = EMPRESA.idEMPRESA INNER JOIN CONTACTO ON CONTACTO.REPRESENTANTE_idREPRESENTANTE = REPRESENTANTE.idREPRESENTANTE';
-					
+					$columnas = 6;
+					$valor=2;
 					tablas($sql1, $sql2, $enlace, 6);
 					echo ('</table>');
 					break;
@@ -71,7 +78,8 @@
 					$sql1 = array ('NOMBRE_EMPRESA', 'RUT_EMPRESA', 'MONTO_PAGO', 'FECHA_PAGO');
 					$sql2 = 'select EMPRESA.NOMBRE_EMPRESA, EMPRESA.RUT_EMPRESA, PAGO.MONTO_PAGO, PAGO.FECHA_PAGO from EMPRESA INNER JOIN PAGO ON EMPRESA.idEMPRESA = PAGO.EMPRESA_idEMPRESA' ;
 					tablas($sql1,$sql2,$enlace, 4);
-					
+					$columnas = 4;
+					$valor=3;
 					echo ('</table>');
 					break;
 					
@@ -82,6 +90,8 @@
 
 					$sql1 = array ('NOMBRE_EMPRESA', 'RUT_EMPRESA','PAGO_SERVICIO', 'FECHA_SERVICIO');
 					$sql2 = 'select EMPRESA.NOMBRE_EMPRESA, EMPRESA.RUT_EMPRESA, COBRO_SERVICIO.PAGO_SERVICIO, COBRO_SERVICIO.FECHA_SERVICIO from EMPRESA INNER JOIN COBRO_SERVICIO ON EMPRESA.idEMPRESA = COBRO_SERVICIO.EMPRESA_idEMPRESA';
+					$columnas = 4;
+					$valor=4;
 					tablas($sql1,$sql2,$enlace, 4);
 					echo ('</table>');
 					break;
@@ -91,6 +101,8 @@
 					echo ('<a href="filtros.php?valores=5"><input type="submit" value="Filtrar por Empresa" /></a>');
 					$sql1 = array('idCONTRATO', 'FECHA_INICIO', 'FECHA_TERMINO', 'MONTO_CONTRATO', 'TIPO_LOCAL', 'NOMBRE_SECTOR', 'NOMBRE_REPRESENTANTE','APELLIDOS_REPRESENTANTE', 'NOMBRE_EMPRESA');
 					$sql2 = 'select CONTRATO.idCONTRATO, CONTRATO.FECHA_INICIO, CONTRATO.FECHA_TERMINO, CONTRATO.MONTO_CONTRATO, TIPO.TIPO_LOCAL, SECTOR.NOMBRE_SECTOR, REPRESENTANTE.NOMBRE_REPRESENTANTE, REPRESENTANTE.APELLIDOS_REPRESENTANTE, EMPRESA.NOMBRE_EMPRESA from CONTRATO INNER JOIN LOCAL ON LOCAL.CONTRATO_idCONTRATO = CONTRATO.idCONTRATO inner join TIPO ON TIPO.idTIPO = LOCAL.TIPO_idTIPO INNER JOIN SECTOR ON SECTOR.idSECTOR = LOCAL.SECTOR_idSECTOR INNER JOIN REPRESENTANTE ON REPRESENTANTE.idREPRESENTANTE = CONTRATO.REPRESENTANTE_idREPRESENTANTE INNER JOIN EMPRESA ON EMPRESA.idEMPRESA = REPRESENTANTE.EMPRESA_idEMPRESA';
+					$columnas = 9;
+					$valor=5;
 					tablas($sql1, $sql2, $enlace, 9);
 					echo ('</table>');
 					break;
@@ -101,6 +113,8 @@
 
 					$sql1 = array('PATENTE', 'NOMBRE_EMPRESA', 'FECHA_ARRIVO', 'ENTRADA', 'SALIDA');
 					$sql2 = 'select BUS.PATENTE, EMPRESA.NOMBRE_EMPRESA, FLUJO_BUSES.FECHA_ARRIVO, HORARIO.ENTRADA, HORARIO.SALIDA from BUS INNER JOIN EMPRESA ON EMPRESA.idEMPRESA = BUS.EMPRESA_idEMPRESA INNER JOIN FLUJO_BUSES ON FLUJO_BUSES.BUS_idBUS = BUS.idBUS inner join HORARIO ON HORARIO.idHORARIO = FLUJO_BUSES.HORARIO_idHORARIO';
+					$columnas = 5;
+					$valor=6;
 					tablas($sql1,$sql2,$enlace, 5);
 					echo ('</table>');
 					break;
@@ -112,6 +126,8 @@
 
 					$sql1 = array('NOMBRE_REPRESENTANTE', 'APELLIDOS_REPRESENTANTE', 'RUT_REPRESENTANTE', 'NOMBRE_EMPRESA', 'NOMBRE_PROFESION', 'NUMERO_TELEFONO', 'MAIL');
 					$sql2 = 'SELECT REPRESENTANTE.NOMBRE_REPRESENTANTE, REPRESENTANTE.APELLIDOS_REPRESENTANTE, REPRESENTANTE.RUT_REPRESENTANTE, EMPRESA.NOMBRE_EMPRESA, PROFESION.NOMBRE_PROFESION, CONTACTO.NUMERO_TELEFONO, CONTACTO.MAIL FROM REPRESENTANTE INNER JOIN EMPRESA ON REPRESENTANTE.EMPRESA_idEMPRESA = EMPRESA.idEMPRESA INNER JOIN REPRESENTANTE_PROFESIONAL ON REPRESENTANTE.idREPRESENTANTE =REPRESENTANTE_PROFESIONAL.REPRESENTANTE_idREPRESENTANTE INNER JOIN PROFESION ON REPRESENTANTE_PROFESIONAL.PROFESION_idPROFESION = PROFESION.idPROFESION INNER JOIN CONTACTO ON REPRESENTANTE.idREPRESENTANTE = CONTACTO.REPRESENTANTE_idREPRESENTANTE';
+					$columnas = 7;
+					$valor=7;
 					tablas($sql1,$sql2,$enlace, 7);
 					echo ('</table>');
 					break;
@@ -123,10 +139,29 @@
 			}
 		
 		?>
-				
-	</table>
 	
+		<?php
+		//vemos si le ingresamos el boton de pdf...
+		if ($valor != 0){
+			echo '<form method="post">';
+			echo '<input name="Button1" type="submit" value="Generar PDF"  />&nbsp';
+		}
+	?>
+	
+		</form>
 
+</table>
+<?php
+
+	if(isset($_POST["Button1"])){
+	   
+	     include 'pruebaPDF1.php';
+	     
+	     GenerarPDF($sql1, $sql2, $columnas, $valor);
+	   	     
+	}
+	
+?>
   <div style="background-color:black; height:auto;width:100%;clear:both;">
 	<table style="width:100%; color:#fff;">
 	<tr>

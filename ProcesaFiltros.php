@@ -27,8 +27,14 @@
 		<br>
 		
 		<?php
+		
 			include './constantes.php';
+			//variables a ocupar para generar el PDF...
+			$sql1 = array();//contendra los atributos...
+			$sql3 = '';//la consulta...
+			$columnas = 0;//las columnas a mostrar...
 			$valor = 0;
+			$fields= '';
 			foreach ($_GET as $R => $V){
 
 				if ($R=="idempresa_show"){
@@ -75,7 +81,7 @@
 					$global = 'select EMPRESA.NOMBRE_EMPRESA, EMPRESA.RUT_EMPRESA, REPRESENTANTE.NOMBRE_REPRESENTANTE, REPRESENTANTE.APELLIDOS_REPRESENTANTE, CONTACTO.NUMERO_TELEFONO, CONTACTO.MAIL from EMPRESA INNER JOIN  REPRESENTANTE ON REPRESENTANTE.EMPRESA_idEMPRESA = EMPRESA.idEMPRESA INNER JOIN CONTACTO ON CONTACTO.REPRESENTANTE_idREPRESENTANTE = REPRESENTANTE.idREPRESENTANTE where EMPRESA.idEMPRESA = ';
 					$parte2 =  $_GET['idempresa_show'];
 					$sql3 = $global.$parte2;
-					
+					$columnas = 6;//las columnas a mostrar...
 					tablas($sql1, $sql3, $enlace, 6);
 					echo ('</table>');
 			}else if ($valor==3){
@@ -93,7 +99,7 @@
 					$global = 'select EMPRESA.NOMBRE_EMPRESA, EMPRESA.RUT_EMPRESA, PAGO.MONTO_PAGO, PAGO.FECHA_PAGO from EMPRESA LEFT OUTER JOIN PAGO ON EMPRESA.idEMPRESA = PAGO.EMPRESA_idEMPRESA where EMPRESA.idEMPRESA =';
 					$parte2 =  $_GET['pagos_show'];
 					$sql3 = $global.$parte2;
-					
+					$columnas = 4;//las columnas a mostrar...
 					tablas($sql1, $sql3, $enlace, 4);
 					echo ('</table>');
 			}else if ($valor==4){
@@ -112,7 +118,7 @@
 					$global = 'select EMPRESA.NOMBRE_EMPRESA, EMPRESA.RUT_EMPRESA, COBRO_SERVICIO.PAGO_SERVICIO, COBRO_SERVICIO.FECHA_SERVICIO from EMPRESA LEFT OUTER JOIN COBRO_SERVICIO ON EMPRESA.idEMPRESA = COBRO_SERVICIO.EMPRESA_idEMPRESA WHERE EMPRESA.idEMPRESA =';
 					$parte2 =  $_GET['cobros'];
 					$sql3 = $global.$parte2;
-					
+					$columnas = 4;//las columnas a mostrar...
 					tablas($sql1, $sql3, $enlace, 4);
 					echo ('</table>');
 					
@@ -132,7 +138,7 @@
 					$global = 'select CONTRATO.idCONTRATO, CONTRATO.FECHA_INICIO, CONTRATO.FECHA_TERMINO, CONTRATO.MONTO_CONTRATO, TIPO.TIPO_LOCAL, SECTOR.NOMBRE_SECTOR, REPRESENTANTE.NOMBRE_REPRESENTANTE, REPRESENTANTE.APELLIDOS_REPRESENTANTE, EMPRESA.NOMBRE_EMPRESA from CONTRATO INNER JOIN LOCAL ON LOCAL.CONTRATO_idCONTRATO = CONTRATO.idCONTRATO inner join TIPO ON TIPO.idTIPO = LOCAL.TIPO_idTIPO INNER JOIN SECTOR ON SECTOR.idSECTOR = LOCAL.SECTOR_idSECTOR INNER JOIN REPRESENTANTE ON REPRESENTANTE.idREPRESENTANTE = CONTRATO.REPRESENTANTE_idREPRESENTANTE INNER JOIN EMPRESA ON EMPRESA.idEMPRESA = REPRESENTANTE.EMPRESA_idEMPRESA WHERE EMPRESA.idEMPRESA = ';
 					$parte2 =  $_GET['contratos'];
 					$sql3 = $global.$parte2;
-					
+					$columnas = 9;//las columnas a mostrar...
 					tablas($sql1, $sql3, $enlace, 9);
 					echo ('</table>');
 			}
@@ -155,6 +161,7 @@
 					$parte2 =  $_GET['flujos'];
 					$sql3 = $global.$parte2.$ordenar;
 					//echo $sql3;
+					$columnas = 5;//las columnas a mostrar...
 					tablas($sql1, $sql3, $enlace, 5);
 					echo ('</table>');
 			}
@@ -176,40 +183,26 @@
 					$parte2 =  $_GET['representantes'];
 					$sql3 = $global.$parte2;
 					//echo $sql3;
+					$columnas = 7;//las columnas a mostrar...
 					tablas($sql1, $sql3, $enlace, 7);
 					echo ('</table>');
 			}
 		?>
-				
-	</table>
-	
-	<?php
-		include './pruebaPDF1.php';
-	?>
-	
-	<?php
-		
-		function escribir($x){
-		echo $x;
-		echo '<script> alert("Se esta procesando su archivo"); </script>';
-		Generar();
-		}
-
-		//un poco de java script...
-		//function msg($x){
-			//echo '<script> alert("' . $x . '"); </script>';
-		//}
-	?>
-
+			
 	<form method="post">
 	<input name="Button1" type="submit" value="Generar PDF"  />&nbsp;
 	
 	</form>
 
+</table>
 <?php
 
 	if(isset($_POST["Button1"])){
-	     escribir($base_de_datos);
+	     
+	     include 'pruebaPDF1.php';
+	     
+	     GenerarPDF($sql1, $sql3, $columnas, $valor);
+	     
 	}
 ?>
 
@@ -229,7 +222,7 @@
 
 <?php
 
-	function tablas($sql1, $sql2, $enlace, $tamano){
+	function tablas($sql1, $sql2, $enlace, $tamano, $fields){
 		
 		echo('<table border="0" align="center" cellpadding="7" cellspacing="0" style="border:1px dashed #000000;">');
 		$nom_col = $sql1;
@@ -268,4 +261,5 @@
 		}
 		
 	}
+	
 ?>

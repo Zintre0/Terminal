@@ -20,7 +20,6 @@
 		<br>&nbsp;
 		<br><div class="dos"><a href="index.php?menu=1">Inicio</a></div><br>
 		<br><div class="dos"><a href="estadisticas.php?menu=2">Volver a Consultas Estadísticas</a></div><br>
-		<br><div class="dos"><a href="pruebaPDF1.php?menu=9">Hacer PDF </a></div></div>
 
 		</td>
 		<td>&nbsp;&nbsp;&nbsp;</td>
@@ -30,6 +29,11 @@
 		<?php
 			include './constantes.php';
 			$valor = 0;
+			//variables a ocupar para generar el PDF...
+			$sql1 = array();//contendra los atributos...
+			$sql2 = '';//la consulta...
+			$columnas = 0;//las columnas a mostrar...
+			$valor1 = 0;
 	
 			foreach ($_GET as $R => $V){
 
@@ -115,7 +119,8 @@
 					$medio =  $_GET['local'];
 					$junta = $inicial.$medio;
 					$sql2= $junta.$final;					
-					
+					$columnas=3;
+					$valor1=33;
 					tablas($sql1, $sql2, $enlace, 3);
 					
 					echo ('</table>');
@@ -138,6 +143,8 @@
 					$medio =  $_GET['buses'];
 					$junta = $inicial.$medio;
 					$sql2= $junta.$final;					
+					$columnas=3;
+					$valor1=44;
 					//echo $sql2;
 					tablas($sql1, $sql2, $enlace, 3);
 					
@@ -161,6 +168,8 @@
 					$medio =  $_GET['pagos'];
 					$junta = $inicial.$medio;
 					$sql2= $junta.$final;					
+					$columnas=3;
+					$valor1=55;
 					//echo $sql2;
 					tablas($sql1, $sql2, $enlace, 3);
 					
@@ -184,7 +193,8 @@
 					$medio =  $_GET['sin_pagos'];
 					//$junta = $inicial.$medio;
 					$sql2= $inicial.$medio;					
-					
+					$columnas=2;
+					$valor1=66;
 					tablas($sql1, $sql2, $enlace, 2);
 					//echo $sql2;
 					echo ('</table>');
@@ -207,7 +217,8 @@
 					$medio =  $_GET['cobros'];
 					$junta = $inicial.$medio;
 					$sql2= $junta.$final;					
-					
+					$columnas=3;
+					$valor1=77;
 					tablas($sql1, $sql2, $enlace, 2);
 					//echo $sql2;
 					echo ('</table>');
@@ -231,7 +242,8 @@
 					$medio =  $_GET['sin_cobros'];
 					//$junta = $inicial.$medio;
 					$sql2= $inicial.$medio;					
-					
+					$columnas=3;
+					$valor1=99;
 					tablas($sql1, $sql2, $enlace, 2);
 					//echo $sql2;
 					echo ('</table>');
@@ -255,7 +267,8 @@
 					$medio =  $_GET['historial'];
 					//$junta = $inicial.$medio;
 					$sql2= $inicial.$medio;					
-					
+					$columnas=4;
+					$valor1=10;
 					tablas($sql1, $sql2, $enlace, 4);
 					//echo $sql2;
 					echo ('</table>');
@@ -278,7 +291,8 @@
 					$medio =  $_GET['fechas'];
 					$junta = $inicial.$medio;
 					$sql2= $junta.$final;					
-					
+					$columnas=4;
+					$valor1=10;
 					tablas($sql1, $sql2, $enlace, 4);
 					//echo $sql2;
 					echo ('</table>');
@@ -302,7 +316,8 @@
 					$medio =  $_GET['montos'];
 					$junta = $inicial.$medio;
 					$sql2= $junta.$final;					
-					
+					$columnas=4;
+					$valor1=10;
 					tablas($sql1, $sql2, $enlace, 4);
 					//echo $sql2;
 					echo ('</table>');
@@ -326,7 +341,8 @@
 					$medio =  $_GET['historial_cobro'];
 					//$junta = $inicial.$medio;
 					$sql2= $inicial.$medio;					
-					
+					$columnas=4;
+					$valor1=11;
 					tablas($sql1, $sql2, $enlace, 4);
 					//echo $sql2;
 					echo ('</table>');
@@ -349,7 +365,8 @@
 					$medio =  $_GET['fechas_cobro'];
 					$junta = $inicial.$medio;
 					$sql2= $junta.$final;					
-					
+					$columnas=4;
+					$valor1=11;
 					tablas($sql1, $sql2, $enlace, 4);
 					//echo $sql2;
 					echo ('</table>');
@@ -373,7 +390,8 @@
 					$medio =  $_GET['montos_cobro'];
 					$junta = $inicial.$medio;
 					$sql2= $junta.$final;					
-					
+					$columnas=4;
+					$valor1=11;
 					tablas($sql1, $sql2, $enlace, 4);
 					//echo $sql2;
 					echo ('</table>');
@@ -398,7 +416,8 @@
 					$medio =  $_GET['empresa'];
 					$junta = $inicial.$medio;
 					$sql2= $junta.$final;					
-					
+					$columnas=8;
+					$valor1=12;
 					tablas($sql1, $sql2, $enlace, 8);
 					//echo $sql2;
 					echo ('</table>');
@@ -422,7 +441,8 @@
 					$final = '\' order by EMPRESA.NOMBRE_EMPRESA';
 					$junta = $inicial.$medio;
 					$sql2= $junta.$final;					
-					
+					$columnas=8;
+					$valor1=12;
 					tablas($sql1, $sql2, $enlace, 8);
 					//echo $sql2;
 					echo ('</table>');
@@ -446,15 +466,29 @@
 					$agrupar = ' GROUP BY EMPRESA.idEMPRESA';
 					$junta = $inicial.$medio;
 					$sql2= $junta.$agrupar;					
-					
+					$columnas=5;
+					$valor1=20;
 					tablas($sql1, $sql2, $enlace, 5);
 					//echo $sql2;
 					echo ('</table>');
 			}
 		?>
-				
-	</table>
+	<form method="post">
+	<input name="Button1" type="submit" value="Generar PDF"  />&nbsp;
 	
+	</form>
+
+</table>
+<?php
+
+	if(isset($_POST["Button1"])){
+	     
+	     include 'pruebaPDF1.php';
+	     
+	     GenerarPDF($sql1, $sql2, $columnas, $valor1);
+	     
+	}
+?>
 
   <div style="background-color:black; height:auto;width:100%;clear:both;">
 	<table style="width:100%; color:#fff;">
