@@ -142,7 +142,7 @@
 	
 		<?php
 		//vemos si le ingresamos el boton de pdf...
-		if ($valor != 0){
+		if ($valor != 0 and $valor!= 6 and $valor!= 4 and $valor!=3){
 			echo '<form method="post">';
 			echo '<input name="Button1" type="submit" value="Generar PDF"  />&nbsp';
 		}
@@ -166,7 +166,7 @@
 	<table style="width:100%; color:#fff;">
 	<tr>
 		<td style="width:30%; text-align:center;">&nbsp;</td>
-		<td style="width:40%; text-align:center;"><img src="./imagenes/logoescuela.png" width="115" height="23"></img>
+		<td style="width:40%; text-align:center;"><img src="./images/logoescuela.png" width="115" height="23"></img>
 	</tr>
 	</table>    
   </div>

@@ -482,7 +482,7 @@
 	<tr>
 		<td style="width:30%; text-align:center;">&nbsp;</td>
 		<td style="width:40%; text-align:center;"><img src="./images/logoescuela.png" width="115" height="23"></img>
-		<img src="./imagenes/logo_universidad.png"></img></td>
+		
 	</tr>
 	</table>    
   </div>
